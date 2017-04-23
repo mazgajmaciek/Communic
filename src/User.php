@@ -9,7 +9,11 @@ class User {
 
     public function __construct() {
         $this->id = -1;
-        // default null, nie trzeba wpisywac reszty
+        // default null (jesli zmienna nie jest podana
+        // nie trzeba wpisywac reszty ponizej
+//        $this->username = "";
+//        $this->email = "";
+//        $this->hashPass = "";
     }
 
     function getId() {
@@ -66,6 +70,45 @@ class User {
         } else {
             //die("Zapis do bazy danych sie nie udal." . $pdo->errorInfo());
         }
+    }
+
+    static public function loadUserById(PDO $pdo, $id) {
+
+        $stmt = $pdo->prepare("SELECT * FROM Users WHERE id=:id");
+        $result = $stmt->execute([
+            'id' => $id
+        ]);
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $loadedUser = new User();
+            $loadedUser->id = $row['id'];
+            $loadedUser->username = $row['username'];
+            $loadedUser->hashPassword = $row['hash_password'];
+            $loadedUser->email = $row['email'];
+
+            return $loadedUser;
+        }
+
+        return null;
+    }
+
+    static public function showUserByEmail(PDO $connection, $email) {
+        $stmt = $connection->prepare('SELECT * FROM Users WHERE email=:email');
+        $result = $stmt->execute(['email' => $email]);
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $loadedUser = new User();
+            $loadedUser->id = $row['id'];
+            $loadedUser->username = $row['username'];
+            $loadedUser->hashPassword = $row['hash_password'];
+            $loadedUser->email = $row['email'];
+            return $loadedUser;
+        }
+
+        return null;
     }
 
 }
