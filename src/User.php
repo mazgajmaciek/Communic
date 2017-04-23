@@ -55,7 +55,7 @@ class User {
             $result = $prepare->execute([
                 'username' => $this->username,
                 'email' => $this->email,
-                'hashPassword' => $this->hashPassword
+                'hash_password' => $this->hashPassword
             ]);
 
             // pobranie ostatniego ID dodanego rekordu
