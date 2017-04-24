@@ -7,8 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $user = User::showUserByEmail($connection, $email);
     if ($user) {
-        if ($user->getHashPassword() == $password) {
+        if (/* $user->getHashPassword() */ password_verify($password, $user->getHashPassword()) === TRUE) {
             $_SESSION['logged'] = true;
+            echo "Haslo poprawne";
+            
         } else {
             $errors[] = 'Hasło niepoprawne';
         }
