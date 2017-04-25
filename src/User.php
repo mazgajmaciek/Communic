@@ -87,11 +87,10 @@ class User {
                 'hash_password' => $this->hashPassword,
                 'id' => $this->id
             ]);
-            
+
             if ($result === true) {
                 return true;
             }
-            
         }
     }
 
@@ -152,6 +151,25 @@ class User {
         }
 
         return $ret;
+    }
+
+    public function delete(PDO $pdo) {
+        if ($this->id != -1) {
+            $sql = "DELETE FROM Users WHERE id=:id";
+
+            $stmt = $pdo->prepare($sql);
+            $result = $stmt->execute([
+                'id' => $this->id
+            ]);
+
+            if ($result === true) {
+                $this->id = -1;
+
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
 }
