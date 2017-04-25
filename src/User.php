@@ -79,6 +79,19 @@ class User {
             return (bool) $result;
         } else {
             //die("Zapis do bazy danych sie nie udal." . $pdo->errorInfo());
+            $sql = "UPDATE Users SET username=:username, email=:email, hash_password = :hash_password WHERE id=:id";
+            $stmt = $pdo->prepare($sql);
+            $result = $stmt->execute([
+                'username' => $this->username,
+                'email' => $this->email,
+                'hash_password' => $this->hashPassword,
+                'id' => $this->id
+            ]);
+            
+            if ($result === true) {
+                return true;
+            }
+            
         }
     }
 
