@@ -5,6 +5,10 @@
 
 include_once '../bootstrap.php';
 
+if($_SERVER['REQUEST_METHOD'] === ['POST']) {
+    var_dump($_POST);
+    
+}
 if (!isset($_SESSION['logged']) || $_SESSION['logged'] != true) {
     die('użytkownik musi być zalogowany');
 }
