@@ -10,6 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user) {
         if (/* $user->getHashPassword() */ password_verify($password, $user->getHashPassword()) === TRUE) {
             $_SESSION['logged'] = true;
+            $_SESSION['userId'] = $user->getId();
+            $_SESSION['username'] = $user->getUsername();
+            
+            
+            var_dump($_SESSION);
+            
+            
             header( "refresh:3;url=mainpage.php" );
             echo "Uzytkownik zalogowany. Nastapi przekierowanie na strone glowna";
             
