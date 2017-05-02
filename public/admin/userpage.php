@@ -37,6 +37,7 @@ if ($stmt->rowCount() > 0) {
         echo '<br>';
         
         //var_dump($row);
+        //http://stackoverflow.com/questions/12151970/database-design-for-posts-and-comments
         
     }
 }
