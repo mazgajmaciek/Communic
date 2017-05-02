@@ -11,3 +11,4 @@ if ($connection->errorCode() != null) {
     die();
 }
 
+?>
