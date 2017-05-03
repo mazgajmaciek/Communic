@@ -83,9 +83,9 @@ class Tweet {
         $result = $stmt->execute([
             'id' => $id
         ]);
-        
+
         //var_dump($stmt->rowCount());
-        
+
 
         if ($result === true && $stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -94,9 +94,40 @@ class Tweet {
                 //echo $loadedTweet->id = $row['message_id'] . '<br>';
                 echo $loadedTweet->userId = $row['username'] . '<br>';
                 echo $loadedTweet->text = $row['message_text'] . '<br>';
-                echo $loadedTweet->creationDate = $row['message_datetime']. '<br>';
+                echo $loadedTweet->creationDate = $row['message_datetime'] . '<br>';
                 echo "<br>";
-                
+
+
+                //return $loadedTweet;
+            }
+
+            return null;
+        }
+    }
+
+    static public function loadAllTweets($pdo) {
+        $stmt = $pdo->prepare("SELECT "
+                . "Users.username, "
+                . "Messages.message_text, "
+                . "Messages.message_datetime "
+                . "FROM "
+                . "Messages "
+                . "JOIN "
+                . "Users "
+                . "ON Users.id=Messages.user_id "
+                . "ORDER BY Messages.message_datetime DESC");
+        $result = $stmt->execute();
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $loadedTweet = new Tweet();
+                //echo $loadedTweet->id = $row['message_id'] . '<br>';
+                echo $loadedTweet->userId = $row['username'] . '<br>';
+                echo $loadedTweet->text = $row['message_text'] . '<br>';
+                echo $loadedTweet->creationDate = $row['message_datetime'] . '<br>';
+                echo "<br>";
+
 
                 //return $loadedTweet;
             }

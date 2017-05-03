@@ -2,5 +2,5 @@
 
 include_once '../bootstrap.php';
 
-Tweet::loadAllTweetsByUserId($connection, 6);
+Tweet::loadAllTweets($connection);
 
