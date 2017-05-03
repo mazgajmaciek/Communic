@@ -68,12 +68,23 @@ class Tweet {
     }
 
     static public function loadAllTweetsByUserId(PDO $pdo, $id) {
-        $stmt = $pdo->prepare("SELECT * FROM Messages WHERE user_id=:id");
+        //$stmt = $pdo->prepare("SELECT * FROM Messages WHERE user_id=:id");
+        $stmt = $pdo->prepare("SELECT "
+                . "Users.username, "
+                . "Messages.message_text, "
+                . "Messages.message_datetime "
+                . "FROM "
+                . "Messages "
+                . "JOIN "
+                . "Users "
+                . "ON Users.id=Messages.user_id "
+                . "WHERE `user_id`=:id "
+                . "ORDER BY Messages.message_datetime DESC");
         $result = $stmt->execute([
             'id' => $id
         ]);
         
-        var_dump($stmt->rowCount());
+        //var_dump($stmt->rowCount());
         
 
         if ($result === true && $stmt->rowCount() > 0) {
@@ -81,7 +92,7 @@ class Tweet {
 
                 $loadedTweet = new Tweet();
                 //echo $loadedTweet->id = $row['message_id'] . '<br>';
-                echo $loadedTweet->userId = $row['user_id'] . '<br>';
+                echo $loadedTweet->userId = $row['username'] . '<br>';
                 echo $loadedTweet->text = $row['message_text'] . '<br>';
                 echo $loadedTweet->creationDate = $row['message_datetime']. '<br>';
                 echo "<br>";
