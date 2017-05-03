@@ -120,8 +120,8 @@ class User {
         return null;
     }
 
-    static public function showUserByEmail(PDO $connection, $email) {
-        $stmt = $connection->prepare('SELECT * FROM Users WHERE email=:email');
+    static public function showUserByEmail(PDO $pdo, $email) {
+        $stmt = $pdo->prepare('SELECT * FROM Users WHERE email=:email');
         $result = $stmt->execute(['email' => $email]);
 
         if ($result === true && $stmt->rowCount() > 0) {

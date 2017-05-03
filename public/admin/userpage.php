@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <?php
 //var_dump($_SESSION);
 
-$userId = $_SESSION['userId'];
+//$userId = $_SESSION['userId'];
 
 
-$sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime FROM Messages JOIN Users ON Users.id=Messages.user_id WHERE `user_id`= 6 ORDER BY Messages.message_datetime DESC";
+$sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime FROM Messages JOIN Users ON Users.id=Messages.user_id WHERE `user_id`=: ORDER BY Messages.message_datetime DESC";
 
 $stmt = $connection->prepare($sql);
 $stmt->execute([
@@ -34,11 +34,15 @@ if ($stmt->rowCount() > 0) {
         echo $row['username'] . '<br>';
         echo $row['message_text'] . '<br>';
         echo $row['message_datetime'] . '<br>';
+        
         echo '<br>';
         
         //var_dump($row);
         //http://stackoverflow.com/questions/12151970/database-design-for-posts-and-comments
         
     }
+} else {
+    echo "Uzytkownik nie ma zadnych wiadomosci";
+    
 }
 ?>
