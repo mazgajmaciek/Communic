@@ -34,9 +34,9 @@ class Tweet {
 //        $this->id = $id;
 //    }
 //
-//    function setUserId($userId) {
-//        $this->userId = $userId;
-//    }
+    function setUserId($userId) {
+        $this->userId = $userId;
+    }
 
     function setText($text) {
         $this->text = $text;
@@ -134,6 +134,48 @@ class Tweet {
 
             return null;
         }
+    }
+    
+        public function saveToDB(PDO $pdo) {
+        //sprawdza czy robimy insert czy update
+        if ($this->id == -1) { // if -1, robimy insert
+            //przygotowanie zapytania
+            
+            //$userId = $_SESSION['userId'];
+            
+            $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:user_id, :message_text)";
+            $prepare = $pdo->prepare($sql);
+
+            //wyslanie zapytania do bazy z kluczami i wartosciami do podmienienia
+            $result = $prepare->execute([
+                //uzywa userId zapisanego w sesji
+                'user_id' => $this->userId,
+                'message_text' => $this->text
+            ]);
+
+            // pobranie ostatniego ID dodanego rekordu i przypisanie do ID w tabeli Users
+            //$this->id = $pdo->lastInsertId();
+
+
+            return (bool) $result;
+        } 
+        
+        //edycja Tweeta
+//        else {
+//            //die("Zapis do bazy danych sie nie udal." . $pdo->errorInfo());
+//            $sql = "UPDATE Users SET username=:username, email=:email, hash_password = :hash_password WHERE id=:id";
+//            $stmt = $pdo->prepare($sql);
+//            $result = $stmt->execute([
+//                'username' => $this->username,
+//                'email' => $this->email,
+//                'hash_password' => $this->hashPassword,
+//                'id' => $this->id
+//            ]);
+//
+//            if ($result === true) {
+//                return true;
+//            }
+//        }
     }
 
 }
