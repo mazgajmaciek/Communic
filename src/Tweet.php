@@ -105,44 +105,45 @@ class Tweet {
         }
     }
 
-    static public function loadAllTweets($pdo) {
-        $stmt = $pdo->prepare("SELECT "
-                . "Users.username, "
-                . "Messages.message_text, "
-                . "Messages.message_datetime "
-                . "FROM "
-                . "Messages "
-                . "JOIN "
-                . "Users "
-                . "ON Users.id=Messages.user_id "
-                . "ORDER BY Messages.message_datetime DESC");
-        $result = $stmt->execute();
+    static public function loadAllTweets(PDO $pdo) {
 
-        if ($result === true && $stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
+
+//        $stmt = $pdo->prepare("SELECT "
+//                . "Users.username, "
+//                . "Messages.message_text, "
+//                . "Messages.message_datetime "
+//                . "FROM "
+//                . "Messages "
+//                . "JOIN "
+//                . "Users "
+//                . "ON Users.id=Messages.user_id "
+//                . "ORDER BY Messages.message_datetime DESC");
+        $sql = "SELECT * FROM Messages";
+        $ret = [];
+
+        $result = $pdo->query($sql);
+
+        if ($result !== false && $result->rowCount() > 0) {
+            foreach ($result as $row) {
                 $loadedTweet = new Tweet();
-                //echo $loadedTweet->id = $row['message_id'] . '<br>';
-                echo $loadedTweet->userId = $row['username'] . '<br>';
-                echo $loadedTweet->text = $row['message_text'] . '<br>';
-                echo $loadedTweet->creationDate = $row['message_datetime'] . '<br>';
-                echo "<br>";
+                $loadedTweet->id = $row['message_id'];
+                $loadedTweet->userId = $row['user_id'];
+                $loadedTweet->text = $row['message_text'];
+                $loadedTweet->creationDate = $row['message_datetime'];
 
-
-                //return $loadedTweet;
+                $ret[] = $loadedTweet;
             }
-
-            return null;
+            return $ret;
         }
+        return null;
     }
-    
-        public function saveToDB(PDO $pdo) {
+
+    public function saveToDB(PDO $pdo) {
         //sprawdza czy robimy insert czy update
         if ($this->id == -1) { // if -1, robimy insert
             //przygotowanie zapytania
-            
             //$userId = $_SESSION['userId'];
-            
             $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:user_id, :message_text)";
             $prepare = $pdo->prepare($sql);
 
@@ -158,8 +159,8 @@ class Tweet {
 
 
             return (bool) $result;
-        } 
-        
+        }
+
         //edycja Tweeta
 //        else {
 //            //die("Zapis do bazy danych sie nie udal." . $pdo->errorInfo());

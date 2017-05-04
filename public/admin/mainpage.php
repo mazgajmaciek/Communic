@@ -4,7 +4,7 @@ include_once '../bootstrap.php';
 <h1>Witaj, <?php echo $_SESSION['username']; ?></h1>
 
 <h2>Dodaj nową wiadomość: </h2>
-<form method="post">
+<form method="post" action="#">
     <?php //echo join('<br>', $errors); ?>
     <br>
     Twoja wiadomosc <input name="message_text" placeholder="Maksymalnie 140 znakow" maxlength="140">
@@ -14,21 +14,30 @@ include_once '../bootstrap.php';
     <br>
 
     <?php
-    //var_dump($_SESSION);
-//SHOW * FROM Messages of all users, sorted by date when added
-    $sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime FROM Messages JOIN Users ON Users.id=Messages.user_id ORDER BY Messages.message_datetime DESC";
+    $tweets = [];
 
-    $result = $connection->query($sql);
+    $tweets[] = Tweet::loadAllTweets($connection);
 
-    if ($result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            echo $row['message_text'] . '<br>';
-            echo "<a href=userpage.php?username=" . $row['username'] . ">" . $row['username'] . '</a>' . '<br>';
-            echo $row['message_datetime'] . '<br>';
-            echo '<br>';
-        }
+    foreach ($tweets as $key => $value) {
+        echo $value;
     }
 
+
+
+
+//    $sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime FROM Messages JOIN Users ON Users.id=Messages.user_id ORDER BY Messages.message_datetime DESC";
+//
+//    $result = $connection->query($sql);
+//
+//    if ($result->rowCount() > 0) {
+//        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+//            echo $row['message_text'] . '<br>';
+//            echo "<a href=userpage.php?username=" . $row['username'] . ">" . $row['username'] . '</a>' . '<br>';
+//            echo $row['message_datetime'] . '<br>';
+//            echo '<br>';
+//        }
+//    }
+// below inserts new tweets into communic_db.Messages
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if (!empty($_POST['message_text'])) {
             //var_dump($_SESSION);

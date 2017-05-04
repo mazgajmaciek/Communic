@@ -142,6 +142,7 @@ class User {
         $ret = [];
 
         $result = $pdo->query($sql);
+        
         if ($result !== false && $result->rowCount() != 0) {
             foreach ($result as $row) {
                 $loadedUser = new User();
