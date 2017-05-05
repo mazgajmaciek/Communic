@@ -16,10 +16,19 @@ include_once '../bootstrap.php';
     <?php
     $tweets = [];
 
-    $tweets[] = Tweet::loadAllTweets($connection);
+    $tweets = Tweet::loadAllTweets($connection);
 
+    
+    //var_dump($tweets);
+    
+    
     foreach ($tweets as $key => $value) {
-        echo $value;
+        echo "<a href=userpage.php?userId=" . $value->getUserId() . ">" . $value->getUserId() . '</a>' . '<br>';
+        echo $value->getText() . '<br>';
+        echo $value->getCreationDate() . '<br>';
+        echo '<br>';
+        
+        
     }
 
 
@@ -32,31 +41,29 @@ include_once '../bootstrap.php';
 //    if ($result->rowCount() > 0) {
 //        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 //            echo $row['message_text'] . '<br>';
-//            echo "<a href=userpage.php?username=" . $row['username'] . ">" . $row['username'] . '</a>' . '<br>';
+//            echo "<a href=userpage.php?username=" . $value->getText() . ">" . $value->getText() . '</a>' . '<br>';
 //            echo $row['message_datetime'] . '<br>';
 //            echo '<br>';
 //        }
 //    }
+//    
 // below inserts new tweets into communic_db.Messages
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         if (!empty($_POST['message_text'])) {
             //var_dump($_SESSION);
+            
             $messageText = $_POST['message_text'];
-
             $userId = $_SESSION['userId'];
 
             $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:userid, :message_text)";
-
-            try {
-                $stmt = $connection->prepare($sql);
-                $stmt->execute([
-                    'userid' => $userId,
-                    'message_text' => $messageText
-                ]);
-                echo "Wiadomosc została wysłana";
-            } catch (Exception $ex) {
-                
-            }
+            
+            $tweet = new Tweet();
+            $tweet->setUserId($userId);
+            $tweet->setText($messageText);
+            $tweet->saveToDB($connection);
+            
+            echo "Wiadomosc została wysłana";
+            
         } else {
             echo "Nie wysłano wiadomości. Spróbuj ponownie";
         }

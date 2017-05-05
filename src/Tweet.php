@@ -33,7 +33,7 @@ class Tweet {
 //    function setId($id) {
 //        $this->id = $id;
 //    }
-//
+
     function setUserId($userId) {
         $this->userId = $userId;
     }
@@ -119,7 +119,7 @@ class Tweet {
 //                . "Users "
 //                . "ON Users.id=Messages.user_id "
 //                . "ORDER BY Messages.message_datetime DESC");
-        $sql = "SELECT * FROM Messages";
+        $sql = "SELECT * FROM Messages JOIN Users ON Users.id=Messages.user_id ORDER BY Messages.message_datetime DESC";
         $ret = [];
 
         $result = $pdo->query($sql);

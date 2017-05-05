@@ -4,13 +4,12 @@ include_once '../bootstrap.php';
 
 
 
-<a href="mainpage.php"><h2>Powrót do strony głównej
-    </h2> </a>
+<a href="mainpage.php"><h2>Powrót do strony głównej</h2> </a>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //var_dump($_GET);
-    echo "Strona użytkownika " . $_GET['username'];
+    echo "Strona użytkownika " . $_GET['userId'];
 }
 ?>
 
@@ -19,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <?php
 //var_dump($_SESSION);
 
-//$userId = $_SESSION['userId'];
+$userId = $_GET['userId'];
 
 
-$sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime FROM Messages JOIN Users ON Users.id=Messages.user_id WHERE `user_id`=: ORDER BY Messages.message_datetime DESC";
+$sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime FROM Messages JOIN Users ON Users.id=Messages.user_id WHERE `user_id`=:userId ORDER BY Messages.message_datetime DESC";
 
 $stmt = $connection->prepare($sql);
 $stmt->execute([
