@@ -23,7 +23,8 @@ include_once '../bootstrap.php';
     
     
     foreach ($tweets as $key => $value) {
-        echo "<a href=userpage.php?userId=" . $value->getUserId() . ">" . $value->getUserId() . '</a>' . '<br>';
+        echo "Id uzytkownika: " . "<a href=userpage.php?userId=" . $value->getUserId() . ">" . $value->getUserId() . '</a>' . '<br>';
+        echo "Id wiadomosci: " . "<a href=tweetdetails.php?messageId=" . $value->getId() . ">" . $value->getId() . '</a>' . '<br>';
         echo $value->getText() . '<br>';
         echo $value->getCreationDate() . '<br>';
         echo '<br>';
