@@ -79,7 +79,7 @@ class Comment {
         return null;
     }
 
-    static public function saveToDB(PDO $pdo) {
+    public function saveToDB(PDO $pdo) {
         //sprawdza czy robimy insert czy update
         if ($this->id == -1) { // if -1, robimy insert
             //przygotowanie zapytania

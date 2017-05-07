@@ -13,5 +13,7 @@ $userId = $_SESSION['userId'];
 $tweet->setText('wiadomosc testowa');
 $tweet->setUserId($userId);
 
+
+
 $tweet->saveToDB($connection);
 

@@ -16,4 +16,3 @@ var_dump($comment);
 
 
 $comment->saveToDB($connection);
-var_dump($comment);
