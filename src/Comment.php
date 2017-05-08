@@ -56,7 +56,6 @@ class Comment {
         $this->text = $text;
     }
 
-    
     static public function loadCommentById(PDO $pdo, $id) {
         $stmt = $pdo->prepare("SELECT * FROM Comments WHERE id=:id");
         $result = $stmt->execute([
@@ -76,6 +75,32 @@ class Comment {
             return $loadedComment;
         }
 
+        return null;
+    }
+
+    static public function loadAllCommentsByPostId(PDO $pdo, $postId) {
+        $stmt = $pdo->prepare("SELECT * FROM Comments WHERE postId=:postId");
+        $result = $stmt->execute([
+            'postId' => $postId
+        ]);
+
+        //var_dump($stmt->rowCount());
+        $ret = [];
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $loadedComment = new Comment();
+                $loadedComment->id = $row['id'];
+                $loadedComment->userId = $row['userId'];
+                $loadedComment->postId = $row['postId'];
+                $loadedComment->creationDate = $row['creation_date'];
+                $loadedComment->text = $row['text'];
+
+                $ret[] = $loadedComment;
+            }
+            return $ret;
+        }
         return null;
     }
 
