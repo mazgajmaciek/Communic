@@ -22,10 +22,6 @@ $tweets = [];
 
 $tweets = Tweet::loadAllTweets($connection);
 
-
-//var_dump($tweets);
-
-
 foreach ($tweets as $key => $value) {
     if ($value->getId() == $messageId) {
         echo $value->getId() . '<br>';
@@ -34,3 +30,35 @@ foreach ($tweets as $key => $value) {
         echo $value->getUserId() . '<br>';
     }
 }
+?>
+
+<h4>Tweet comments:</h4>
+
+<?php
+$tweetComments = Comment::loadAllCommentsByPostId($connection, $messageId);
+
+if ($tweetComments != null) {
+    foreach ($tweetComments as $key => $value) {
+        if ($value->getPostId() == $messageId) {
+//    echo "Data stworzenia: " . $value->getCreationDate() . '<br>';
+//    echo "Id komentarza: " . $value->getId() . '<br>';
+//    echo "Id tweeta: " . $value->getPostId() . '<br>';
+            echo "Tekst komentarza: " . $value->getText() . '<br>';
+            echo "Id usera: " . $value->getUserId() . '<br>';
+            echo "<br>";
+        }
+    }
+    ?>    
+    <form>
+        <br>
+        Dodaj komentarz <input name="message_text" placeholder="Maksymalnie 60 znakow" maxlength="140">
+        <br>
+        <button type="submit">Wyslij</button>
+        <br>
+        <br>
+    </form>
+    <?php
+} else {
+    echo "Brak komentarzy do wyświetlenia.";
+}
+

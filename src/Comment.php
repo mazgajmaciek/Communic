@@ -79,7 +79,7 @@ class Comment {
     }
 
     static public function loadAllCommentsByPostId(PDO $pdo, $postId) {
-        $stmt = $pdo->prepare("SELECT * FROM Comments WHERE postId=:postId");
+        $stmt = $pdo->prepare("SELECT * FROM Comments WHERE postId=:postId ORDER BY creation_date DESC");
         $result = $stmt->execute([
             'postId' => $postId
         ]);
@@ -101,6 +101,7 @@ class Comment {
             }
             return $ret;
         }
+        
         return null;
     }
 
