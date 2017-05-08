@@ -16,3 +16,11 @@ var_dump($comment);
 
 
 $comment->saveToDB($connection);
+
+$comment2 = new Comment();
+
+$comment2->setUserId(3);
+$comment2->setPostId(4);
+$comment2->setText('coment');
+
+$comment2->saveToDB($connection);

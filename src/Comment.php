@@ -58,7 +58,7 @@ class Comment {
 
     
     static public function loadCommentById(PDO $pdo, $id) {
-        $stmt = $pdo->prepare("SELECT * FROM Messages WHERE id=:id");
+        $stmt = $pdo->prepare("SELECT * FROM Comments WHERE id=:id");
         $result = $stmt->execute([
             'id' => $id
         ]);
@@ -67,13 +67,13 @@ class Comment {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $loadedComment = new Comment();
-            $loadedTweet->id = $row['id'];
-            $loadedTweet->userId = $row['userId'];
-            $loadedTweet->postId = $row['postId'];
-            $loadedTweet->text = $row['text'];
-            $loadedTweet->creationDate = $row['creation_date'];
+            $loadedComment->id = $row['id'];
+            $loadedComment->userId = $row['userId'];
+            $loadedComment->postId = $row['postId'];
+            $loadedComment->text = $row['text'];
+            $loadedComment->creationDate = $row['creation_date'];
 
-            return $loadedTweet;
+            return $loadedComment;
         }
 
         return null;
