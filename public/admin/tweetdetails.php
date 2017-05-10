@@ -48,17 +48,39 @@ if ($tweetComments != null) {
             echo "<br>";
         }
     }
-    ?>    
-    <form>
-        <br>
-        Dodaj komentarz <input name="message_text" placeholder="Maksymalnie 60 znakow" maxlength="140">
-        <br>
-        <button type="submit">Wyslij</button>
-        <br>
-        <br>
-    </form>
-    <?php
 } else {
     echo "Brak komentarzy do wyświetlenia.";
 }
+?>    
+<form method="post">
+    <br>
+    Dodaj komentarz <input name="comment_text" placeholder="Maksymalnie 60 znakow" maxlength="60">
+    <br>
+    <button type="submit">Wyslij</button>
+    <br>
+    <br>
+</form>
+<?php
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+//    var_dump($_POST);
+//    var_dump($_SESSION);
+    
+    
+    $text = $_POST['comment_text'];
+    
+    $comment = new Comment;
+    
+    $comment->setPostId($messageId);
+    $comment->setText($text);
+    $comment->setUserId($_SESSION['userId']);
+    $comment->saveToDB($connection);
+    
+    
+    
+    echo "Dodano nowy komentarz";
+    
+}
+
+?>
