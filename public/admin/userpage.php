@@ -11,6 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //var_dump($_GET);
     echo "Strona użytkownika " . $_GET['userId'];
 }
+
+if ($_SESSION['userId'] == $_GET['userId']) {
+    echo sprintf("<a href=privateMessages.php><h3>Przejdź do prywatnych wiadomości</h3></a>"); 
+}
+
 ?>
 
 <h3>Wiadomosci wraz z komentarzami:</h3>
