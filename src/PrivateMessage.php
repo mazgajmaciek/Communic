@@ -136,6 +136,29 @@ class PrivateMessage {
             //$this->id = $pdo->lastInsertId();
 
             return (bool) $result;
+        } else {
+            $sql = "UPDATE `PrivateMessage` SET `sender_id` = :sender_id, `receiver_id` = :receiver_id, `privatemessage_text` = :privatemessage_text, `privatemessage_readstatus` = :privatemessage_readstatus WHERE `id` = :id";
+
+            $prepare = $pdo->prepare($sql);
+
+            //wyslanie zapytania do bazy z kluczami i wartosciami do podmienienia
+            $result = $prepare->execute([
+                //uzywa userId zapisanego w sesji
+                'sender_id' => $this->senderId,
+                'receiver_id' => $this->receiverId,
+                'privatemessage_text' => $this->text,
+                'privatemessage_readstatus' => $this->readStatus,
+                'id' => $this->id
+            ]);
+
+            // pobranie ostatniego ID dodanego rekordu i przypisanie do ID w tabeli Users
+            //$this->id = $pdo->lastInsertId();
+
+            if ($result === true) {
+                return true;
+            } else {
+                echo "false";
+            }
         }
     }
 
