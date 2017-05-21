@@ -3,6 +3,8 @@ include_once '../bootstrap.php';
 ?>
 <h1>Witaj, <?php echo $_SESSION['username']; ?></h1>
 
+<a href="profileDetails.php"><h3>Twój profil</h3></a>
+
 <a href="privateMessages.php"><h3>Przejdź do prywatnych wiadomości</h3></a>
 
 <h2>Dodaj nową wiadomość: </h2>

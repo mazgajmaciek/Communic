@@ -114,6 +114,32 @@ class PrivateMessage {
         }
         return null;
     }
+    
+    static public function loadAllPrivateMessagesBySenderId(PDO $pdo, $senderId) {
+        $stmt = $pdo->prepare("SELECT * FROM PrivateMessage WHERE sender_id=:sender_id");
+        $result = $stmt->execute([
+            'sender_id' => $senderId
+        ]);
+
+        $ret = [];
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $loadedPrivateMessage = new PrivateMessage();
+                $loadedPrivateMessage->id = $row['id'];
+                $loadedPrivateMessage->senderId = $row['sender_id'];
+                $loadedPrivateMessage->receiverId = $row['receiver_id'];
+                $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
+                $loadedPrivateMessage->text = $row['privatemessage_text'];
+                $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
+
+                $ret[] = $loadedPrivateMessage;
+            }
+            return $ret;
+        }
+        return null;
+    }
 
     public function saveToDB(PDO $pdo) {
         //sprawdza czy robimy insert czy update
