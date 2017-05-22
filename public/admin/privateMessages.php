@@ -19,14 +19,17 @@ $userId = $_SESSION['userId'];
 //var_dump($receivedMessages);
 
         foreach ($receivedMessages as $key => $value) {
+            
+            //var_dump($receivedMessages);
+            
 
             if ($value->getReadStatus() == 0) {
                 $substring = substr($value->getText(), 0, 30);
-                echo "Autor wiadomości: " . $value->getSenderId();
+                echo "Autor wiadomości: " . $value->getUsername;
                 echo "Treść wiadomości: " . sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
             } else {
                 $substring = substr($value->getText(), 0, 30);
-                echo "Autor wiadomości: " . $value->getSenderId() . '<br>';
+                echo "Autor wiadomości: " . $value->getUsername . '<br>';
                 echo "Treść wiadomości: " . sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
             }
         }

@@ -1,6 +1,6 @@
 <?php
 
-class PrivateMessage {
+class PrivateMessage extends User {
 
     private $id;
     private $senderId;
@@ -90,7 +90,7 @@ class PrivateMessage {
     }
 
     static public function loadAllPrivateMessagesByUserId(PDO $pdo, $receiverId) {
-        $stmt = $pdo->prepare("SELECT * FROM PrivateMessage WHERE receiver_id=:receiver_id");
+        $stmt = $pdo->prepare("SELECT * FROM Users JOIN PrivateMessage ON Users.id=PrivateMessage.sender_id WHERE receiver_id=:receiver_id");
         $result = $stmt->execute([
             'receiver_id' => $receiverId
         ]);
@@ -107,6 +107,7 @@ class PrivateMessage {
                 $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
                 $loadedPrivateMessage->text = $row['privatemessage_text'];
                 $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
+                $loadedPrivateMessage->getUsername = $row['username'];
 
                 $ret[] = $loadedPrivateMessage;
             }
