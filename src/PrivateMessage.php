@@ -67,7 +67,7 @@ class PrivateMessage extends User {
     }
 
     static public function loadPrivateMessageById(PDO $pdo, $id) {
-        $stmt = $pdo->prepare("SELECT * FROM PrivateMessage WHERE id=:id");
+        $stmt = $pdo->prepare("SELECT * FROM Users JOIN PrivateMessage ON Users.id=PrivateMessage.receiver_id WHERE PrivateMessage.id=:id");
         $result = $stmt->execute([
             'id' => $id
         ]);
@@ -82,6 +82,8 @@ class PrivateMessage extends User {
             $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
             $loadedPrivateMessage->text = $row['privatemessage_text'];
             $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
+            $loadedPrivateMessage->getUsername = $row['username'];
+            
 
             return $loadedPrivateMessage;
         }

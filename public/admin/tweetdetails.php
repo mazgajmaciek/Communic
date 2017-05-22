@@ -43,7 +43,8 @@ if ($tweetComments != null) {
 //    echo "Id komentarza: " . $value->getId() . '<br>';
 //    echo "Id tweeta: " . $value->getPostId() . '<br>';
             echo "Tekst komentarza: " . $value->getText() . '<br>';
-            echo "Id usera: " . $value->getUserId() . '<br>';
+            //echo "Id usera: " . $value->getUserId() . '<br>';
+            echo "Autor komentarza: " . $value->getUsername . '<br>';
             echo "<br>";
         }
     }

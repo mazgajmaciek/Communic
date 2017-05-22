@@ -79,7 +79,7 @@ class Comment extends Tweet {
     }
 
     static public function loadAllCommentsByPostId(PDO $pdo, $postId) {
-        $stmt = $pdo->prepare("SELECT * FROM Comments WHERE postId=:postId ORDER BY creation_date DESC");
+        $stmt = $pdo->prepare("SELECT * FROM `Comments` JOIN Users ON Users.id = Comments.userId WHERE postId=:postId ORDER BY creation_date DESC");
         $result = $stmt->execute([
             'postId' => $postId
         ]);
@@ -89,13 +89,13 @@ class Comment extends Tweet {
 
         if ($result === true && $stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-
                 $loadedComment = new Comment();
                 $loadedComment->id = $row['id'];
                 $loadedComment->userId = $row['userId'];
                 $loadedComment->postId = $row['postId'];
                 $loadedComment->creationDate = $row['creation_date'];
                 $loadedComment->text = $row['text'];
+                $loadedComment->getUsername = $row['username'];
 
                 $ret[] = $loadedComment;
             }
