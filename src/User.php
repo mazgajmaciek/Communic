@@ -85,6 +85,10 @@ class User {
             //die("Zapis do bazy danych sie nie udal." . $pdo->errorInfo());
             $sql = "UPDATE Users SET username=:username, email=:email, hash_password = :hash_password WHERE id=:id";
             $stmt = $pdo->prepare($sql);
+            
+            $newId = $pdo->lastInsertId();
+            
+            
             $result = $stmt->execute([
                 'username' => $this->username,
                 'email' => $this->email,
