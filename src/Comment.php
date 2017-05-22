@@ -1,6 +1,6 @@
 <?php
 
-class Comment {
+class Comment extends Tweet {
 
     private $id;
     private $userId;

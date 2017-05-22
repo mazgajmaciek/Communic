@@ -1,6 +1,6 @@
 <?php
 
-class Tweet {
+class Tweet extends User {
 
     private $id;
     private $userId;
@@ -131,6 +131,8 @@ class Tweet {
                 $loadedTweet->userId = $row['user_id'];
                 $loadedTweet->text = $row['message_text'];
                 $loadedTweet->creationDate = $row['message_datetime'];
+                $loadedTweet->getUsername = $row['username'];
+                
 
                 $ret[] = $loadedTweet;
             }

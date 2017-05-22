@@ -1,8 +1,6 @@
 <?php
 include_once '../bootstrap.php';
 
-var_dump($_SESSION);
-
 $userId = $_SESSION['userId'];
 ?>
 
@@ -24,10 +22,12 @@ $userId = $_SESSION['userId'];
 
             if ($value->getReadStatus() == 0) {
                 $substring = substr($value->getText(), 0, 30);
-                echo sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
+                echo "Autor wiadomości: " . $value->getSenderId();
+                echo "Treść wiadomości: " . sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
             } else {
                 $substring = substr($value->getText(), 0, 30);
-                echo sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
+                echo "Autor wiadomości: " . $value->getSenderId() . '<br>';
+                echo "Treść wiadomości: " . sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
             }
         }
         ?>

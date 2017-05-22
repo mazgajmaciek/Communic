@@ -6,7 +6,6 @@ include_once '../bootstrap.php';
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    var_dump($_GET);
     echo "Szczegoly tweeta o id: " . $_GET['messageId'];
 }
 ?>
@@ -14,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 <h3>Tweet details:</h3>
 
 <?php
-//var_dump($_SESSION);
 
 $messageId = $_GET['messageId'];
 
@@ -24,10 +22,11 @@ $tweets = Tweet::loadAllTweets($connection);
 
 foreach ($tweets as $key => $value) {
     if ($value->getId() == $messageId) {
-        echo $value->getId() . '<br>';
-        echo $value->getCreationDate() . ' <br>';
-        echo $value->getText() . '<br>';
-        echo $value->getUserId() . '<br>';
+        //echo $value->getId() . '<br>';
+        
+        echo "Treść wiadomości: <b>" . $value->getText() . '</b><br>';
+        echo "Data wysłania: " . $value->getCreationDate() . ' <br>';
+        echo "Autor wiadomości: " . $value->getUsername . '<br>';
     }
 }
 ?>
