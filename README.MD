@@ -6,4 +6,4 @@ Very simple (no framework, no front-end, only a simple back-end backbone) Twitte
 
 ``mysql -uUŻYTKOWNIK -p NAZWA_BAZY < data/db.sql``
 
-``database structure backup in communic_db.sql``
+database structure backup in ``communic_db.sql``
