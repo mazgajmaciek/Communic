@@ -5,7 +5,7 @@ $errors = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) !== FALSE) {
-            var_dump($_POST);
+            //var_dump($_POST);
 
 
             $username = $_POST['username'];
