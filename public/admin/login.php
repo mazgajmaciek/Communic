@@ -51,9 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
 <div class="page-bg"></div>
+
 <div class="container form-signin">
     <div class="panel panel-info">
-        <div class="panel-body">
+        <div class="panel-body h4">
             Logowanie
         </div>
         <div class="panel-footer">
@@ -72,18 +73,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-
-
 </div> <!-- /container -->
 
-<div class="container jumbotron" style="width: 20rem;">
-    <img class="card-img-top" src="" alt="Card image cap">
-    <div class="card-body">
-        <h4 class="card-title">Rejestracja</h4>
-        <p class="card-text">Jesteś nowy? Zarejestruj się!</p>
-        <a href="register.php" class="btn btn-primary">Zarejestruj się</a>
+<!--<div class="container jumbotron rounded" style="width: 20rem;">-->
+<!--    <img class="card-img-top" src="" alt="Card image cap">-->
+<!--    <div class="card-body">-->
+<!--        <h4 class="card-title">Rejestracja</h4>-->
+<!--        <p class="card-text">Jesteś nowy? Zarejestruj się!</p>-->
+<!--        <a href="register.php" class="btn btn-primary">Zarejestruj się</a>-->
+<!--    </div>-->
+<!--</div>-->
+<!---->
+<div class="container form-signin">
+    <div class="panel panel-info">
+        <div class="panel-body h4">
+            Jesteś nowy? Zarejestruj się!
+        </div>
+        <div class="panel-footer">
+            <form class="form-signin">
+                <!--        <div class="checkbox">-->
+                <!--            <label>-->
+                <!--                <input type="checkbox" value="remember-me"> Remember me-->
+                <!--            </label>-->
+                <!--        </div>-->
+                <a href="register.php" class="btn btn-lg btn-primary btn-block" type="submit">Rejestracja</a>
+            </form>
+        </div>
     </div>
-</div>
+</div> <!-- /container -->
+
 
 
 
