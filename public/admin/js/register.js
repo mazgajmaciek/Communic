@@ -1,8 +1,28 @@
+$(function () {
+
+    var $modalRegister = $('#modalRegister');
+
+
+    $('body').on('submit', '#modalRegister', function (element) {
+        element.preventDefault();
+
+        var $username = $modalRegister.find('#username').val();
+        alert($username.value);
+
+    });
+
+});
+
+
 $('body').on('submit', '#modalRegister', function (element) {
 
     element.preventDefault();
 
-    alert('asdkadhgsk');
+    var $modalRegister = find("#modalRegister");
+    var $username = $modalRegister.find('#username').val();
+
+    alert($username.value);
+
     // var id = $(this).find('#id').val();
     //
     // console.log(id);

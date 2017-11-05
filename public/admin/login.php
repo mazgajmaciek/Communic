@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container form-signin">
     <div class="panel panel-info">
         <div class="panel-body h4">
-            Logowanie
+            Login
         </div>
         <div class="panel-footer">
             <form class="form-signin" method="post">
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!--                <input type="checkbox" value="remember-me"> Remember me-->
                 <!--            </label>-->
                 <!--        </div>-->
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
             </form>
         </div>
     </div>
@@ -78,19 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container form-signin">
     <div class="panel panel-info">
         <div class="panel-body h4">
-            Jesteś nowy? Zarejestruj się!
+            No account? Register here!
         </div>
         <div class="panel-footer">
             <form class="form-signin">
-<!--                        <div class="checkbox">-->
-<!--                            <label>-->
-<!--                                <input type="checkbox" value="remember-me"> Remember me-->
-<!--                            </label>-->
-<!--                        </div>-->
-<!--                <a href="register.php" class="btn btn-lg btn-primary btn-block" type="submit">Rejestracja</a>-->
-
                 <button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#modalRegister">
-                    Rejestracja
+                    Register
                 </button>
             </form>
         </div>
@@ -139,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button class="btn btn-success">Save changes</button>
+                <button class="btn btn-success">Send</button>
             </div>
             </form>
         </div>
