@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,15 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div> <!-- /container -->
 
-<!--<div class="container jumbotron rounded" style="width: 20rem;">-->
-<!--    <img class="card-img-top" src="" alt="Card image cap">-->
-<!--    <div class="card-body">-->
-<!--        <h4 class="card-title">Rejestracja</h4>-->
-<!--        <p class="card-text">Jesteś nowy? Zarejestruj się!</p>-->
-<!--        <a href="register.php" class="btn btn-primary">Zarejestruj się</a>-->
-<!--    </div>-->
-<!--</div>-->
-<!---->
 <div class="container form-signin">
     <div class="panel panel-info">
         <div class="panel-body h4">
@@ -98,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!--        </div>-->
 <!--                <a href="register.php" class="btn btn-lg btn-primary btn-block" type="submit">Rejestracja</a>-->
 
-                <button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#register">
+                <button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#modalRegister">
                     Rejestracja
                 </button>
             </form>
@@ -107,20 +98,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div> <!-- /container -->
 
 <!-- Modal -->
-<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Register</h4>
             </div>
             <div class="modal-body">
-                ...
+                <form class="form-signin" action='' method="POST">
+                    <fieldset>
+                        <div class="control-group form-signin">
+                            <!-- Username -->
+                            <label class="control-label"  for="username">Username</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="username" placeholder="" class="">
+                                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- E-mail -->
+                            <label class="control-label" for="email">E-mail</label>
+                            <div class="controls">
+                                <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                                <p class="help-block">Please provide your E-mail</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- Password-->
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                                <p class="help-block">Password should be at least 4 characters</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <!-- Password -->
+                            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
+                            <div class="controls">
+                                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
+                                <p class="help-block">Please confirm password</p>
+                            </div>
+                        </div>
+                    </fieldset>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button class="btn btn-success">Save changes</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -129,5 +159,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/register.js"></script>
 </body>
 </html>
