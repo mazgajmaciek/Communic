@@ -82,11 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="panel-footer">
             <form class="form-signin">
-                <!--        <div class="checkbox">-->
-                <!--            <label>-->
-                <!--                <input type="checkbox" value="remember-me"> Remember me-->
-                <!--            </label>-->
-                <!--        </div>-->
+<!--                        <div class="checkbox">-->
+<!--                            <label>-->
+<!--                                <input type="checkbox" value="remember-me"> Remember me-->
+<!--                            </label>-->
+<!--                        </div>-->
 <!--                <a href="register.php" class="btn btn-lg btn-primary btn-block" type="submit">Rejestracja</a>-->
 
                 <button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#modalRegister">
@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div> <!-- /container -->
 
-<!-- Modal -->
+<!-- Registration popup Modal -->
 <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -108,11 +108,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-body">
                 <form class="form-signin" action='' method="POST">
                     <fieldset>
-                        <div class="control-group form-signin">
+                        <div class="control-group">
                             <!-- Username -->
-                            <label class="control-label"  for="username">Username</label>
-                            <div class="controls">
-                                <input type="text" id="username" name="username" placeholder="" class="">
+                            <label class="control-label" for="username">Username</label>
+                            <div>
+                                <input type="text" id="username" name="username" placeholder="Type in your username" class="form-control">
                                 <p class="help-block">Username can contain any letters or numbers, without spaces</p>
                             </div>
                         </div>
@@ -120,8 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="control-group">
                             <!-- E-mail -->
                             <label class="control-label" for="email">E-mail</label>
-                            <div class="controls">
-                                <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                            <div>
+                                <input type="text" id="email" name="email" placeholder="Type in your email address" class="form-control">
                                 <p class="help-block">Please provide your E-mail</p>
                             </div>
                         </div>
@@ -129,18 +129,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="control-group">
                             <!-- Password-->
                             <label class="control-label" for="password">Password</label>
-                            <div class="controls">
-                                <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-                                <p class="help-block">Password should be at least 4 characters</p>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <!-- Password -->
-                            <label class="control-label"  for="password_confirm">Password (Confirm)</label>
-                            <div class="controls">
-                                <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-                                <p class="help-block">Please confirm password</p>
+                            <div>
+                                <input type="password" id="password" name="password" placeholder="Type in your password" class="form-control">
+                                <p class="help-block">Please type in your password</p>
                             </div>
                         </div>
                     </fieldset>
