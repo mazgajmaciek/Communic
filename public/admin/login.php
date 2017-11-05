@@ -96,14 +96,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!--                <input type="checkbox" value="remember-me"> Remember me-->
                 <!--            </label>-->
                 <!--        </div>-->
-                <a href="register.php" class="btn btn-lg btn-primary btn-block" type="submit">Rejestracja</a>
+<!--                <a href="register.php" class="btn btn-lg btn-primary btn-block" type="submit">Rejestracja</a>-->
+
+                <button type="button" class="btn btn-lg btn-primary btn-block" data-toggle="modal" data-target="#register">
+                    Rejestracja
+                </button>
             </form>
         </div>
     </div>
 </div> <!-- /container -->
 
-
-
+<!-- Modal -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
