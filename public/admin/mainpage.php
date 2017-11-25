@@ -1,6 +1,8 @@
 <?php
 include_once '../bootstrap.php';
 
+var_dump($_SESSION);
+
 ?>
 <h1>Witaj, <?php echo $_SESSION['username']; ?></h1>
 
