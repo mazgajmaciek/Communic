@@ -1,6 +1,7 @@
 <?php
 include_once '../../bootstrap.php';
 
+header('Content-Type: application/json');//return json header
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -13,9 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['userId'] = $user->getId();
             $_SESSION['username'] = $user->getUsername();
 
-            echo $response = ['success' => json_encode('login successful', JSON_PRETTY_PRINT)];
+
+            $response = ['success' => 'login successful'];
+            echo json_encode($response);
+
         } else {
-            echo $response = ['error' => json_encode('wrong password', JSON_PRETTY_PRINT)];
+            $response = ['error' => 'wrong password'];
+            echo json_encode($response);
         }
     } else {
         echo $response = ['error' => json_encode("user doesn't exist", JSON_PRETTY_PRINT)];
