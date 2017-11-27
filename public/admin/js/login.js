@@ -1,7 +1,7 @@
-
 $(function () {
 
-    $('form.form-login').on('submit', function () {
+    $('form.form-login').on('submit', function (event) {
+        event.preventDefault();
 
         var that = $(this),
             url = that.attr('action'),
@@ -21,28 +21,43 @@ $(function () {
             url: url,
             type: type,
             data: data,
+            dataType: 'json'
             })
             .done(function (response) {
                 console.log(response);
 
-                if(response.success){
-                    alert('login successful');
-                    setTimeout(' window.location.href = "mainpage.php"; ',2000);
+                var $loginResult = $("#loginResult");
+                var that = $(this);
 
+                if(response.success){
+                    var msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
+                    $loginResult.html(msg);
+                    $loginResult.slideToggle().delay(500);
+
+                    setTimeout(' window.location.href = "mainpage.html"; ',500);
+                    return false;
                 } else {
-                    alert(response.error);
-                    $("#loginResult").fadeIn(1000, function(){
-                        $("#loginResult").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>   '+response.error+'</div>');
-                    });
+                    var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
+                    $loginResult.html(msg);
+                    $loginResult.slideDown().delay(500);
+                    $loginResult.slideUp().delay(500);
+                    //$loginResult.hide();
+
+
+                    // $loginResult.add('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>   '+response.error+'</div>');
+                    // $loginResult.show();
+                    // $loginResult.delay(1000).fadeOut("normal", function() {
+                    //
+                    // });
+                    // this.remove();
+                    return false;
                 }
             })
-            .fail(function (error) {
-            console.log(JSON.stringify(error));
+            .fail(function (response) {
+            console.log(response.error);
             });
 
 
-        // to prevent submitting the form in traditional fashion
-        return false;
     });
 
 
