@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Witaj, <?php echo $_SESSION['username']; ?></h1>
+
+    <a href="profileDetails.php"><h3>Twój profil</h3></a>
+    <a href="privateMessages.php"><h3>Przejdź do prywatnych wiadomości</h3></a>
+    <a href="login.html"><h3>Wyloguj</h3></a>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="logoutBtn">Logout</button>
+
+    <h2>Dodaj nową wiadomość: </h2>
+    <form method="post" action="#">
+        <?php //echo join('<br>', $errors); ?>
+        <br>
+        Twoja wiadomosc <input name="message_text" placeholder="Maksymalnie 140 znakow" maxlength="140">
+        <br>
+        <button type="submit">Wyslij</button>
+        <br>
+        <br>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/mainpage.js"></script>
+</body>
+</html>
