@@ -75,7 +75,7 @@
                 <h4 class="modal-title" id="myModalLabel">Register</h4>
             </div>
             <div class="modal-body">
-                <form class="form-signin" action='' method="POST" id="login">
+                <form class="form-signin" action='ajax/register.php' method="POST" id="registerPopup">
                     <fieldset>
                         <div class="control-group">
                             <!-- Username -->
@@ -102,6 +102,10 @@
                                 <input type="password" id="password" name="password" placeholder="Type in your password" class="form-control">
                                 <p class="help-block">Please type in your password</p>
                             </div>
+                        </div>
+
+                        <div id="regResult" style="display: none">
+                            <!--notification popup-->
                         </div>
                     </fieldset>
 
