@@ -2,8 +2,8 @@
 include_once '../../bootstrap.php';
 header('Content-Type: application/json');//return json header
 
-$errors = [];
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['password'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username']) && isset($
         $result = $user->save($connection);
 
         $_SESSION['logged'] = true;
-        //header("refresh:3;url=mainpage.php");
 
         $response = ['success' => 'You have registered!'];
         echo json_encode($response);
