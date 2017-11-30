@@ -23,7 +23,7 @@ $(function () {
                 }
             })
             .fail(function (response) {
-                console.log(JSON.stringify(response));
+                console.log(JSON.stringify(response.error));
             });
     });
 
