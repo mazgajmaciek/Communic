@@ -2,7 +2,7 @@ $(function () {
 
     //show username of currently logged in user
     var $navbarUsername = $("#navbarUsername");
-    $($navbarUsername).load("../admin/ajax/mainpage.php", function() {
+    $($navbarUsername).load("../admin/ajax/mainpage.php", function () {
 
         $.ajax({
             url: "../admin/ajax/mainpage.php",
@@ -12,11 +12,22 @@ $(function () {
                 $navbarUsername.html("Welcome, " + response.success);
                 console.log(response.tweets);
 
-                for(var i = 0; i < response.tweets.length; i++) {
-                    var obj = response.tweets[i];
+                var $tweetPanel = $('#tweetPanel');
 
-                    console.log(obj.text);
+                if (response.tweets.length > 0) {
+
+                    $.each(response.tweets, function (index, value) {
+                        //console.log(value.text);
+
+                        //the below is incorrect. New element should be added with each iteration and then its values
+                        $tweetPanel.find('.panel-body').html(value.userName);
+                        $tweetPanel.find('.panel-footer').html(value.text);
+                    })
+
+                } else {
+                    $tweetPanel.find('.panel-body').html("No tweets");
                 }
+
 
             })
             .fail(function (response) {
@@ -37,10 +48,10 @@ $(function () {
             .done(function (response) {
                 console.log(response);
 
-                if(response.loggedout){
+                if (response.loggedout) {
                     //alert dropdown here
 
-                    setTimeout(window.location.replace("login.html"),2000);
+                    setTimeout(window.location.replace("login.html"), 2000);
                 } else {
                     alert('something went no yes');
                     return false;
