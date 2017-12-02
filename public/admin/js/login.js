@@ -27,11 +27,11 @@ $(function () {
                 console.log(response);
 
                 var $loginResult = $("#loginResult");
-                var that = $(this);
 
                 if(response.success){
-                    var msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
-                    $loginResult.html(msg);
+                    var $msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
+
+                    $loginResult.html($msg);
                     $loginResult.slideToggle().delay(500);
 
                     setTimeout(' window.location.href = "mainpage.html"; ',500);
