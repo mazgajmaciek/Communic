@@ -12,9 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['logged'] = true;
             $_SESSION['userId'] = $user->getId();
             $_SESSION['username'] = $user->getUsername();
+            $username = $_SESSION['username'];
 
 
-            $response = ['success' => 'login successful'];
+            $response = ['success' => 'login successful',
+                        'username' => $username];
             echo json_encode($response);
 
         } else {

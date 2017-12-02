@@ -1,6 +1,7 @@
 <?php
 
-class Comment extends Tweet {
+class Comment extends Tweet implements JsonSerializable
+{
 
     private $id;
     private $userId;
@@ -8,7 +9,8 @@ class Comment extends Tweet {
     private $creationDate;
     private $text;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->id = -1;
         $this->userId = null;
         $this->postId = null;
@@ -16,23 +18,38 @@ class Comment extends Tweet {
         $this->text = null;
     }
 
-    function getId() {
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'userId' => $this->userId,
+            'postId' => $this->postId,
+            'creationDate' => $this->creationDate,
+            'text' => $this->text];
+    }
+
+    function getId()
+    {
         return $this->id;
     }
 
-    function getUserId() {
+    function getUserId()
+    {
         return $this->userId;
     }
 
-    function getPostId() {
+    function getPostId()
+    {
         return $this->postId;
     }
 
-    function getCreationDate() {
+    function getCreationDate()
+    {
         return $this->creationDate;
     }
 
-    function getText() {
+    function getText()
+    {
         return $this->text;
     }
 
@@ -40,23 +57,28 @@ class Comment extends Tweet {
 //        $this->id = $id;
 //    }
 
-    function setUserId($userId) {
+    function setUserId($userId)
+    {
         $this->userId = $userId;
     }
 
-    function setPostId($postId) {
+    function setPostId($postId)
+    {
         $this->postId = $postId;
     }
 
-    function setCreationDate($creationDate) {
+    function setCreationDate($creationDate)
+    {
         $this->creationDate = $creationDate;
     }
 
-    function setText($text) {
+    function setText($text)
+    {
         $this->text = $text;
     }
 
-    static public function loadCommentById(PDO $pdo, $id) {
+    static public function loadCommentById(PDO $pdo, $id)
+    {
         $stmt = $pdo->prepare("SELECT * FROM Comments WHERE id=:id");
         $result = $stmt->execute([
             'id' => $id
@@ -78,7 +100,8 @@ class Comment extends Tweet {
         return null;
     }
 
-    static public function loadAllCommentsByPostId(PDO $pdo, $postId) {
+    static public function loadAllCommentsByPostId(PDO $pdo, $postId)
+    {
         $stmt = $pdo->prepare("SELECT * FROM `Comments` JOIN Users ON Users.id = Comments.userId WHERE postId=:postId ORDER BY creation_date DESC");
         $result = $stmt->execute([
             'postId' => $postId
@@ -101,11 +124,12 @@ class Comment extends Tweet {
             }
             return $ret;
         }
-        
+
         return null;
     }
 
-    public function saveToDB(PDO $pdo) {
+    public function saveToDB(PDO $pdo)
+    {
         //sprawdza czy robimy insert czy update
         if ($this->id == -1) { // if -1, robimy insert
             //przygotowanie zapytania
@@ -125,7 +149,7 @@ class Comment extends Tweet {
             //$this->id = $pdo->lastInsertId();
 
 
-            return (bool) $result;
+            return (bool)$result;
         }
     }
 

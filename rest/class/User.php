@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class User implements JsonSerializable {
 
     private $id;
     private $username;
@@ -20,6 +20,16 @@ class User {
 //    function getId() {
 //        return $this->id;
 //    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'hashPassword' => $this->hashPassword,
+            'email' => $this->email
+        ];
+    }
 
     function getUsername() {
         return $this->username;
