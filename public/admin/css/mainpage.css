@@ -36,3 +36,24 @@ body {
     max-width: 330px;
     margin: auto;
 }
+
+.panel-footer:after, panel-footer:before {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.clear {
+    clear: both;
+}
+
+.split-para {
+    display: block;
+    margin: 10px;
+}
+
+.split-para span {
+    display: inline;
+    float: right;
+    margin-left: 10px;
+}
