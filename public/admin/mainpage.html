@@ -35,7 +35,7 @@
 </nav>
 
 <!--new message panel-->
-<form method="post" action="#">
+<form class="tweet-new" method="post" action="ajax/mainpage.php">
     <div class="panel panel-default panel-primary tweet-newmessage">
         <div class="panel-heading">
             <h3 class="panel-title"><b>New message:</b></h3>
@@ -44,9 +44,7 @@
             <textarea class="form-control" name="new_message_text" placeholder="max 140 characters" maxlength="140"></textarea>
         </div>
         <div class="panel-footer">
-            <button type="button" id="newMsgBtn" class="btn btn-primary pull-right">
-                Send
-            </button>
+            <button type="submit" id="newMsgBtn" class="btn btn-primary pull-right">Send</button>
         </div>
     </div>
 </form>

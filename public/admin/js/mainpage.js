@@ -75,10 +75,47 @@ $(function () {
 	});
 
 	//send new tweet
-	var $newMsgBtn = $('#newMsgBtn');
+	var $newTweetForm = $(".tweet-new");
 
-	$($newMsgBtn).on('click', function (event) {
+	$($newTweetForm).on('submit', function (event) {
 		event.preventDefault();
+
+		var that = $(this),
+			url = that.attr('action'),
+			type = that.attr('method'),
+			data = {};
+
+		that.find('[name]').each(function () {
+
+			var that = $(this),
+				name = that.attr('name'),
+				value = that.val();
+
+			data[name] = value;
+		});
+
+		$.ajax({
+			url: url,
+			dataType: 'json',
+			type: type,
+			data: data
+		})
+			.done(function (response) {
+				console.log(response);
+
+				// if (response.loggedout) {
+				// 	//alert dropdown here
+				//
+				// 	setTimeout(window.location.replace("login.html"), 2000);
+				// } else {
+				// 	alert('something went no yes');
+				// 	return false;
+				// }
+			})
+			.fail(function (response) {
+				console.log(response.error);
+			});
+
 
 		// var that = $(this),
 		//     url = that.attr('action'),
