@@ -21,8 +21,10 @@
 </head>
 <body>
 
+<!--page background-->
 <div class="page-bg"></div>
 
+<!--navigation bar-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -32,28 +34,37 @@
     </div>
 </nav>
 
-
-
-    <h2>Dodaj nową wiadomość: </h2>
-    <form method="post" action="#">
-        <br>
-        Twoja wiadomosc <input name="message_text" placeholder="Maksymalnie 140 znakow" maxlength="140">
-        <br>
-        <button type="submit">Wyslij</button>
-        <br>
-        <br>
-
-        <div class="panel panel-primary" id="tweetPanel">
-            <div class="panel-body"></div>
-            <div class="panel-footer"></div>
+<!--new message panel-->
+<form method="post" action="#">
+    <div class="panel panel-default panel-primary tweet-newmessage">
+        <div class="panel-heading">
+            <h3 class="panel-title"><b>New message:</b></h3>
         </div>
+        <div class="panel-body">
+            Twoja wiadomosc <input name="message_text" placeholder="Maksymalnie 140 znakow" maxlength="140">
+        </div>
+        <div class="panel-footer">
+            <button type="button" id="newMsgBtn" class="btn btn-primary pull-right">
+                Send
+            </button>
+        </div>
+    </div>
+</form>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/mainpage.js"></script>
-        <script src="js/login.js"></script>
+    <ul class="list-group list-tweet" id="tweetList">
+        <!--<div class="panel panel-default">-->
+        <!--<div class="panel-heading">${tweet.userName}</div>-->
+        <!--<div class="panel-body">${tweet.text}</div>-->
+        <!--</div>-->
+    </ul>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/mainpage.js"></script>
+    <script src="js/login.js"></script>
 
 </body>
 </html>

@@ -15,13 +15,8 @@ $(function () {
                 var $tweetPanel = $('#tweetPanel');
 
                 if (response.tweets.length > 0) {
-
                     $.each(response.tweets, function (index, value) {
-                        //console.log(value.text);
-
-                        //the below is incorrect. New element should be added with each iteration and then its values
-                        $tweetPanel.find('.panel-body').html(value.userName);
-                        $tweetPanel.find('.panel-footer').html(value.text);
+                        renderTweet(value);
                     })
 
                 } else {
@@ -35,6 +30,20 @@ $(function () {
             });
 
     });
+
+    var $tweetList = $('#tweetList');
+
+    //render post function
+    function renderTweet(tweet) {
+        var string = `<div class="panel panel-default">
+  <div class="panel-heading"><b>${tweet.userName}</b></div>
+  <div class="panel-body">${tweet.text}</div>
+</div>`;
+
+        $tweetList.append(string);
+
+    }
+
 
 
     //logout to login page
@@ -62,11 +71,12 @@ $(function () {
             });
     });
 
-    //send new message
+    //send new tweet
     var $newMsgBtn = $('#newMsgBtn');
 
     $($newMsgBtn).on('click', function (event) {
         event.preventDefault();
+        alert("works");
 
         // var that = $(this),
         //     url = that.attr('action'),
