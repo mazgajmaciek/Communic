@@ -57,3 +57,8 @@ body {
     float: right;
     margin-left: 10px;
 }
+
+textarea[name="new_message_text"] {
+    height: 120px;
+    resize: none;
+}
