@@ -76,7 +76,6 @@ $(function () {
 
     $($newMsgBtn).on('click', function (event) {
         event.preventDefault();
-        alert("works");
 
         // var that = $(this),
         //     url = that.attr('action'),

@@ -16,15 +16,6 @@ $response = ["tweets" => $jsonTweets,
 
 echo json_encode($response);
 
-//    foreach ($tweets as $key => $value) {
-//        echo "Nazwa uzytkownika: " . "<b><a href=userpage.php?userId=" . $value->getUserId() . ">" . $value->getUsername . '</a></b>' . '<br>';
-//        echo "Id wiadomosci: " . "<a href=tweetdetails.php?messageId=" . $value->getId() . ">" . $value->getId() . '</a>' . '<br>';
-//        echo "Treść wiadomości: <i>" . $value->getText() . '</i><br>';
-//        echo $value->getCreationDate() . '<br>';
-//        $tweetComments = Comment::loadAllCommentsByPostId($connection, $value->getId());
-//        echo "Liczba komentarzy: " . "<a href=tweetdetails.php?messageId=" . $value->getId() . ">" . count($tweetComments) . '</a><br><br>';
-//    }
-
 
 // below inserts new tweets into communic_db.Messages
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
