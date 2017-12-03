@@ -12,26 +12,33 @@ foreach ($tweets as $newTweet) {
 }
 
 $response = ["tweets" => $jsonTweets,
-    "success" => $username];
+    "username" => $username];
 
 // below inserts new tweets into communic_db.Messages
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
-    $messageText = $_POST['new_message_text'];
-    $userId = $_SESSION['userId'];
+    if (!empty($_POST['new_message_text'])) {
 
-    $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:userid, :message_text)";
+        $messageText = $_POST['new_message_text'];
+        $userId = $_SESSION['userId'];
 
-    $newTweet = new Tweet();
-    $newTweet->setUserId($userId);
-    $newTweet->setText($messageText);
-    $newTweet->saveToDB($connection);
+        $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:userid, :message_text)";
 
-    $response += ["newTweet" => $newTweet];
+        $newTweet = new Tweet();
+        $newTweet->setUserId($userId);
+        $newTweet->setText($messageText);
+        $newTweet->saveToDB($connection);
+
+        $response += ["newTweet" => $newTweet];
+    } else {
+        $response += ["error" => "Cannot submit empty tweet."];
+    }
+
 } else {
     $response += ["error" => "Server error. New tweet not sent."];
 }
+
 
 echo json_encode($response);
 

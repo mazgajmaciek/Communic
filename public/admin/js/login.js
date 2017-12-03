@@ -78,7 +78,6 @@ $(function () {
                 console.log(response);
 
                 var $regResult = $("#regResult");
-                var that = $(this);
 
                 if(response.success){
                     var msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
