@@ -114,20 +114,20 @@ $(function () {
 		})
 			.done(function (response) {
 
-				var $panelFooterNotice = $(".tweet-newmessage");
+				var $newTweetNotice = $("#tweet-textarea-notice");
 				var $textArea = $("textarea[name='new_message_text']");
 				console.log(response);
 
 				if (response.newTweet) {
 					prependNewTweet(response.newTweet);
+					//clears new tweet textarea
 					$textArea.val('');
 				} else {
 					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
-					$panelFooterNotice.append(msg);
-					$panelFooterNotice.find(".alert alert-danger").fadeOut(300, function () {
-						var that = $(this);
-							that.remove();
-					});
+
+					$newTweetNotice.html(msg);
+					$newTweetNotice.slideDown().delay(500);
+					$newTweetNotice.slideUp().delay(500);
 
 					return false;
 				}
