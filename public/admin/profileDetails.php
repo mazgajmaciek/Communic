@@ -2,7 +2,7 @@
 include_once '../bootstrap.php';
 ?>
 
-<h2><a href="mainpage.php">Powrót do strony głównej</a></h2>
+<h2><a href="pages/mainpage.php">Powrót do strony głównej</a></h2>
 
     <a href="privateMessages.php"><h3>Przejdź do prywatnych wiadomości</h3></a>
 

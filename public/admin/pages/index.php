@@ -9,46 +9,44 @@
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
+
+<!--page background-->
+<div class="page-bg"></div>
+
+<!--navigation bar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">BookStore</a>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand" id="navbarUsername" href="../profileDetails.php">Profile</a>
+                    <li><a href="?action=userpage">User Page</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="?action=books">Books</a></li>
-                <li><a href="?action=authors">Authors</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+        <button type="button" class="btn btn-primary navbar-btn navbar-right btn-logout" id="logoutBtn">Log Out</button>
+    </div>
 </nav>
-<div class="container">
+
+<div class="container" id="container">
     <?php
     $action = '';
     //check if there is subpage request
     if (isset($_GET['action'])) {
         $action = preg_replace('#[^0-9a-zA-Z]#', '', $_GET['action']);//clean all non alfanum chars from action for safety
-        $incFile = __DIR__.'/pages/'.$action.'.php';//define variable with subpage path
+        $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
         include_once $incFile;//load subpage file
+
     }
     ?>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="js/scripts.js"></script>
+<script src="../js/index.js"></script>
 <?php
 //check if there is subpage request
 if ($action) {

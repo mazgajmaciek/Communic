@@ -1,5 +1,5 @@
 <?php
-include_once '../bootstrap.php';
+include_once '../../bootstrap.php';
 ?>
 
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SESSION['userId'] == $_GET['userId']) {
-    echo sprintf("<a href=privateMessages.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
+    echo sprintf("<a href=../privateMessages.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
 }
 
 if ($_SESSION['userId'] !== $_GET['userId']) {

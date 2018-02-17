@@ -1,7 +1,7 @@
 <?php
 //this probably should be restEndPoint?
 
-include_once '../../bootstrap.php';
+include_once '../../public/bootstrap.php';
 header('Content-Type: application/json');//return json header
 
 $username = $_SESSION['username'];

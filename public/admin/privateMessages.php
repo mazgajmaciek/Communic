@@ -4,7 +4,7 @@ include_once '../bootstrap.php';
 $userId = $_SESSION['userId'];
 ?>
 
-<h3><a href=mainpage.php>Powrót do strony głównej</a><h3>
+<h3><a href=pages/mainpage.php>Powrót do strony głównej</a><h3>
 
         <h3>Otrzymane wiadomości:</h3>
 
