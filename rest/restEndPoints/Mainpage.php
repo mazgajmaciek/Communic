@@ -1,4 +1,6 @@
 <?php
+//this probably should be restEndPoint?
+
 include_once '../../bootstrap.php';
 header('Content-Type: application/json');//return json header
 

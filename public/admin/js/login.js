@@ -34,7 +34,7 @@ $(function () {
                     $loginResult.html($msg);
                     $loginResult.slideToggle().delay(500);
 
-                    setTimeout(' window.location.href = "mainpage.html"; ',500);
+                    setTimeout(' window.location.href = "../admin/mainpage.html"; ',500);
                 } else {
                     var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
                     $loginResult.html(msg);
@@ -44,8 +44,8 @@ $(function () {
                     return false;
                 }
             })
-            .fail(function (response) {
-            console.log(response.error);
+            .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
             });
     });
 

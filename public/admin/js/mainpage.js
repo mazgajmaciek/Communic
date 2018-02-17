@@ -5,10 +5,10 @@ $(function () {
 	var $navbarUsername = $("#navbarUsername");
 
 	//show username of currently logged in user
-	$($navbarUsername).load("../admin/ajax/mainpage.php", function () {
+	$($navbarUsername).load("../admin/pages/mainpage.php", function () {
 
 		$.ajax({
-			url: "../admin/ajax/mainpage.php",
+			url: "../admin/pages/mainpage.php",
 			dataType: 'json'
 		})
 			.done(function (response) {
