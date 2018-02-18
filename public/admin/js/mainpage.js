@@ -1,9 +1,40 @@
 $(function () {
 
+	$.getJSON('../pages/mainpage.php', function(data) {
+		$.each(data, function(index) {
+			alert(data[index].TEST1);
+			alert(data[index].TEST2);
+		});
+	});
+
 	var $newTweetForm = $(".tweet-new");
 	var $tweetList = $('#tweetList');
 
 
+		$.ajax({
+			url: "../pages/mainpage.php",
+			dataType: 'json'
+		})
+			.done(function (response) {
+				alert(response.tweets.length);
+
+				var $tweetPanel = $('#tweetPanel');
+
+				if (response.tweets.length > 0) {
+
+					$.each(response.tweets, function (index, value) {
+						renderTweet(value);
+					})
+
+				} else {
+					$tweetPanel.find('.panel-body').html("No tweets");
+				}
+
+
+			})
+			.fail(function (response) {
+				console.log(response);
+			});
 
 
 	//render post function

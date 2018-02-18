@@ -1,60 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Communic - Main Page</title>
-
-    <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/mainpage.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-<body>
-<!--new message panel-->
-<form class="tweet-new" method="post" action="mainpage.php">
-    <div class="panel panel-default panel-primary tweet-newmessage">
-        <div class="panel-heading">
-            <h3 class="panel-title"><b>New message:</b></h3>
-        </div>
-        <div class="panel-body">
-            <textarea id="new-tweet-textarea" class="form-control" name="new_message_text" placeholder="max 140 characters" maxlength="140"></textarea>
-            <div id="tweet-textarea-notice" style="display: none"></div>
-        </div>
-        <div class="panel-footer">
-            <button type="submit" id="newMsgBtn" class="btn btn-primary pull-right">Send</button>
-        </div>
-    </div>
-</form>
-
-<!--tweet ul list, added dynamically in mainpage.js-->
-    <ul class="list-group list-tweet" id="tweetList">
-        <!--<div class="panel panel-default">-->
-        <!--<div class="panel-heading">${tweet.userName}</div>-->
-        <!--<div class="panel-body">${tweet.text}</div>-->
-        <!--</div>-->
-    </ul>
-
-
-
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/mainpage.js"></script>
-</body>
-</html>
-
 <?php
 include_once '../../bootstrap.php';
 header('Content-Type: application/json');//return json header
@@ -70,3 +13,33 @@ foreach ($tweets as $newTweet) {
 
 $response = ["tweets" => $jsonTweets,
     "username" => $username];
+
+// below inserts new tweets into communic_db.Messages
+
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+
+    if (!empty($_POST['new_message_text'])) {
+
+        $messageText = $_POST['new_message_text'];
+        $userId = $_SESSION['userId'];
+
+        $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:userid, :message_text)";
+
+        $newTweet = new Tweet();
+        $newTweet->setUserId($userId);
+        $newTweet->setText($messageText);
+        $newTweet->saveToDB($connection);
+
+        $response += ["newTweet" => $newTweet];
+    } else {
+        $response += ["error" => "Cannot submit empty tweet."];
+    }
+
+} else {
+    $response += ["error" => "Server error. New tweet not sent."];
+}
+
+
+echo json_encode($response);
+
+?>

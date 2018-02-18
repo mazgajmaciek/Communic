@@ -44,9 +44,9 @@ $(function () {
                     return false;
                 }
             })
-            .fail(function(XMLHttpRequest, textStatus, errorThrown) {
-	            alert("Status: " + textStatus); alert("Error: " + errorThrown);
-            });
+	        .fail(function (response) {
+		        console.log(response);
+	        });
     });
 
     var $registerPopup = $("#registerPopup");

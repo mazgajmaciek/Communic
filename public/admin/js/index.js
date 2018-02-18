@@ -1,7 +1,7 @@
 $(function () {
-	$('#container').load("mainpage.php");
+	$('#container').load("../mainpage.html");
 
-	var $navbarUsername = $("#navbarUsername");
+
 
 	//show username of currently logged in user
 	// $($navbarUsername).load("../pages/mainpage.php", function () {
