@@ -12,7 +12,7 @@ class Tweet extends User implements JsonSerializable {
         $this->id = -1;
         $this->userId = null;
         $this->text = null;
-        $this->creationDate = null;
+        $this->creationDate = new DateTime();
         $this->userName = null;
     }
 

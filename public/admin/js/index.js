@@ -47,7 +47,7 @@ $(function () {
 					if (response.loggedout) {
 						//alert dropdown here
 
-						setTimeout(window.location.replace("../pages/login.php"), 2000);
+						setTimeout(window.location.replace("../login.html"), 2000);
 					} else {
 						alert('something went no yes');
 						return false;
