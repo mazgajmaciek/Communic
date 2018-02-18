@@ -1,12 +1,5 @@
 $(function () {
 
-	$.getJSON('../pages/mainpage.php', function(data) {
-		$.each(data, function(index) {
-			alert(data[index].TEST1);
-			alert(data[index].TEST2);
-		});
-	});
-
 	var $newTweetForm = $(".tweet-new");
 	var $tweetList = $('#tweetList');
 
@@ -16,7 +9,6 @@ $(function () {
 			dataType: 'json'
 		})
 			.done(function (response) {
-				alert(response.tweets.length);
 
 				var $tweetPanel = $('#tweetPanel');
 
