@@ -35,7 +35,7 @@ $(function () {
 						  <div class="panel-heading">
 						        <div class="split-para">
 						            <b>${tweet.userName}</b>
-						            <span>${tweet.creationDate}</span></div>
+						            <span>${tweet.creationDate.date}</span></div>
 						  </div>
 						  <div class="panel-body">${tweet.text}</div>
 						</div>`;
@@ -49,7 +49,7 @@ $(function () {
 						  <div class="panel-heading">
 						        <div class="split-para">
 						            <b>${tweet.userName}</b>
-						            <span>${tweet.creationDate}</span></div>
+						            <span>${tweet.creationDate.date}</span></div>
 						  </div>
 						  <div class="panel-body">${tweet.text}</div>
 						</div>`;
