@@ -3,7 +3,6 @@ $(function () {
 	var $newTweetForm = $(".tweet-new");
 	var $tweetList = $('#tweetList');
 
-
 		$.ajax({
 			url: "../pages/mainpage.php",
 			dataType: 'json'
@@ -14,8 +13,8 @@ $(function () {
 
 				if (response.tweets.length > 0) {
 
-					$.each(response.tweets, function (index, value) {
-						renderTweet(value);
+					$.each(response.tweets, function (index, tweet) {
+						renderTweet(tweet);
 					})
 
 				} else {
@@ -35,7 +34,7 @@ $(function () {
 						  <div class="panel-heading">
 						        <div class="split-para">
 						            <b>${tweet.userName}</b>
-						            <span>${tweet.creationDate.date}</span></div>
+						            <span>${tweet.creationDate}</span></div>
 						  </div>
 						  <div class="panel-body">${tweet.text}</div>
 						</div>`;
@@ -44,14 +43,14 @@ $(function () {
 	}
 
 	//append new tweet to the top of the list
-	function prependNewTweet(tweet) {
+	function prependNewTweet(tweets) {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
-						            <b>${tweet.userName}</b>
-						            <span>${tweet.creationDate.date}</span></div>
+						            <b>${tweets.username}</b>
+						            <span>${tweets.newTweet.creationDate.date}</span></div>
 						  </div>
-						  <div class="panel-body">${tweet.text}</div>
+						  <div class="panel-body">${tweets.newTweet.text}</div>
 						</div>`;
 
 		$tweetList.prepend(string);
@@ -88,10 +87,10 @@ $(function () {
 
 				var $newTweetNotice = $("#tweet-textarea-notice");
 				var $textArea = $("textarea[name='new_message_text']");
-				console.log(response);
 
 				if (response.newTweet) {
-					prependNewTweet(response.newTweet);
+					console.log(response);
+					prependNewTweet(response);
 					//clears new tweet textarea
 					$textArea.val('');
 				} else {

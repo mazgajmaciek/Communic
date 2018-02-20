@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $messageText = $_POST['new_message_text'];
         $userId = $_SESSION['userId'];
 
+
         $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:userid, :message_text)";
 
         $newTweet = new Tweet();
