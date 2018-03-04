@@ -28,7 +28,7 @@ $(function () {
 			});
 
 
-	//render post function
+	//render tweet function
 	function renderTweet(tweet) {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
@@ -48,7 +48,7 @@ $(function () {
 						  <div class="panel-heading">
 						        <div class="split-para">
 						            <b>${tweets.username}</b>
-						            <span>${tweets.newTweet.creationDate.date}</span></div>
+						            <span>${tweets.newTweet.creationDate}</span></div>
 						  </div>
 						  <div class="panel-body">${tweets.newTweet.text}</div>
 						</div>`;
@@ -85,6 +85,8 @@ $(function () {
 		})
 			.done(function (response) {
 
+				console.log(response);
+
 				var $newTweetNotice = $("#tweet-textarea-notice");
 				var $textArea = $("textarea[name='new_message_text']");
 
@@ -105,7 +107,8 @@ $(function () {
 
 			})
 			.fail(function (response) {
-				console.log(response.error);
+				console.log(JSON.stringify(response.error));
+				//alert(response.error);
 			});
 
 	});

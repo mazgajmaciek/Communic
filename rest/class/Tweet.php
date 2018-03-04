@@ -22,7 +22,7 @@ class Tweet extends User implements JsonSerializable {
             'id' => $this->id,
             'userId' => $this->userId,
             'text' => $this->text,
-            'creationDate' => $this->creationDate,
+            'creationDate' => $this->creationDate instanceof \DateTime ? $this->creationDate->format('Y-m-d H:i:s') : $this->creationDate,
             'userName' => $this->userName
         ];
     }
