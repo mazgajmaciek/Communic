@@ -1,10 +1,10 @@
 <?php
-include_once '../bootstrap.php';
+include_once '../../bootstrap.php';
 ?>
 
-<h2><a href="pages/mainpage.php">Powrót do strony głównej</a></h2>
+<h2><a href="mainpage.php">Powrót do strony głównej</a></h2>
 
-    <a href="privateMessages.php"><h3>Przejdź do prywatnych wiadomości</h3></a>
+    <a href="../privateMessages.php"><h3>Przejdź do prywatnych wiadomości</h3></a>
 
 <h2>Zmień swój adres email:</h2>
 
@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $loggedUser = User::loadUserById($connection, $userId);
         $loggedUser->setUsername($newUsername);
         $loggedUser->save($connection);
-        
+
         $_SESSION['username'] = $newUsername;
-        
+
 
         echo "Twoja nazwa użytkownika została zmieniona!";
     }

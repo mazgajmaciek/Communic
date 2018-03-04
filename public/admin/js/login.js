@@ -84,7 +84,11 @@ $(function () {
                     $regResult.html(msg);
                     $regResult.slideToggle().delay(500);
 
-                    setTimeout('window.location.href = mainpage.php',500);
+                    //setTimeout('window.location.href = ../mainpage.html',500);
+
+	                var delay = 500;
+	                var URL = '../admin/pages/index.php';
+	                setTimeout(function(){ window.location = URL; }, delay);
                 } else {
                     var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
                     $regResult.html(msg);

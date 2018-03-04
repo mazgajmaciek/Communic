@@ -22,7 +22,8 @@
         <div class="navbar-header">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand" id="navbarUsername" href="../profileDetails.php">Profile</a>
+                    <a class="navbar-brand" href="?action=index">Communic</a>
+                    <li><a href="?action=profileDetails">Profile</a></li>
                     <li><a href="?action=userpage">User Page</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -38,6 +39,7 @@
     if (isset($_GET['action'])) {
         $action = preg_replace('#[^0-9a-zA-Z]#', '', $_GET['action']);//clean all non alfanum chars from action for safety
         $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
+        var_dump($incFile);
         include_once $incFile;//load subpage file
 
     }
@@ -50,7 +52,7 @@
 <?php
 //check if there is subpage request
 if ($action) {
-    echo '<script src="js/'.$action.'.js"></script>';//load js file for subbage
+    echo '<script src="../js/'.$action.'.js"></script>';//load js file for subbage
 }
 ?>
 </body>

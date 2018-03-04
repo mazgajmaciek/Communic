@@ -2,9 +2,7 @@
 include_once '../../bootstrap.php';
 ?>
 
-
-
-<a href="mainpage.php"><h2>Powrót do strony głównej</h2> </a>
+<a href="index.php"><h2>Powrót do strony głównej</h2> </a>
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
