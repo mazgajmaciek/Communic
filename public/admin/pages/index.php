@@ -22,7 +22,7 @@
         <div class="navbar-header">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="?action=index">Communic</a>
+                    <a id="mainpage" class="navbar-brand" href="?action=mainpage">Communic</a>
                     <li><a href="?action=profileDetails">Profile</a></li>
                     <li><a href="?action=userpage">User Page</a></li>
                 </ul>
@@ -39,7 +39,6 @@
     if (isset($_GET['action'])) {
         $action = preg_replace('#[^0-9a-zA-Z]#', '', $_GET['action']);//clean all non alfanum chars from action for safety
         $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
-        var_dump($incFile);
         include_once $incFile;//load subpage file
 
     }

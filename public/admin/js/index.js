@@ -1,5 +1,16 @@
 $(function () {
-	$('#container').load("../mainpage.html");
+
+	// $('#container').load("../mainpage.html");
+
+	var $mainpage = $('#mainpage');
+
+	$mainpage.on('submit', function (event) {
+		event.preventDefault();
+
+	});
+
+
+
 
 
 
