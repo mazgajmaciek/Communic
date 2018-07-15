@@ -1,6 +1,11 @@
 <?php
 
+//TODO - probably requires namespace for User as parser returns error "class User not found"
+require_once('User.php');
+
 class Tweet extends User implements JsonSerializable {
+
+    //TODO - The array you show has all the properties as private. this mean that this value are not available outside their class's scope.
 
     private $id;
     private $userId;
@@ -8,7 +13,13 @@ class Tweet extends User implements JsonSerializable {
     private $creationDate;
     private $userName;
 
-    public function __construct() {
+    public static $pdo;
+
+    public function __construct(PDO $pdo) {
+        parent::__construct();
+
+        self::$pdo = $pdo;
+
         $this->id = -1;
         $this->userId = null;
         $this->text = null;

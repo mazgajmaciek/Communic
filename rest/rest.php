@@ -36,8 +36,12 @@ require_once $classFile;
 
 $pathId = isset($path[2]) ? $path[2] : null;
 
+//TODO this was copied straight from bookstore project therefore include_once will probably require rewriting -
 if (!isset($response['error'])) {//process request if no db error
-    include_once __DIR__.'/restEndpoints/'.$className.'.php';
+    $dir = __DIR__.'/restEndPoints/'.$className.'.php';
+    str_replace("//", "", $dir);
+    include_once $dir;
+    $response['dir'] = $dir;
 }
 
 header('Content-Type: application/json');//return json header

@@ -34,7 +34,12 @@ $(function () {
                     $loginResult.html($msg);
                     $loginResult.slideToggle().delay(500);
 
-                    setTimeout('window.location.href = "../admin/pages/index.php";',500);
+	                var delay = 500;
+                    // setTimeout('window.location.href = "../public/admin/pages/index.php";', delay);
+                    // setTimeout('window.location.href = "../public/admin/pages/mainpage.php";', delay);
+	                setTimeout('window.location.replace("../public/admin/pages/index.php")', delay);
+                    //window.location.replace("../public/admin/pages/mainpage.php");
+
                 } else {
                     var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
                     $loginResult.html(msg);

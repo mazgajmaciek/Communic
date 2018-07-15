@@ -1,15 +1,21 @@
 $(function () {
 
-	// $('#container').load("../mainpage.html");
+	$('#container').load("../pages/mainpage.php");
 
-	var $mainpage = $('#mainpage');
-
-	$mainpage.on('submit', function (event) {
+	$('#mainpage').on('click', function (event) {
 		event.preventDefault();
-
+		$('#container').load("../pages/mainpage.php");
 	});
 
+	$('#profiledetails').on('click', function(event) {
+		event.preventDefault();
+		$("#container").load("../pages/profileDetails.php");
+	});
 
+	$('#userpage').on('click', function(event) {
+		event.preventDefault();
+		$("#container").load("../pages/userpage.php");
+	});
 
 
 
@@ -58,7 +64,7 @@ $(function () {
 					if (response.loggedout) {
 						//alert dropdown here
 
-						setTimeout(window.location.replace("../login.html"), 2000);
+						setTimeout(window.location.replace("../../index.php"), 2000);
 					} else {
 						alert('something went no yes');
 						return false;

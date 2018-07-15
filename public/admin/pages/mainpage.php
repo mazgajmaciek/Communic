@@ -20,6 +20,10 @@
 
 </head>
 <body>
+
+<!--page background-->
+<div class="page-bg"></div>
+
 <!--new message panel-->
 <form class="tweet-new" method="post" action="mainpage.php">
     <div class="panel panel-default panel-primary tweet-newmessage">

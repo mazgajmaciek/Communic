@@ -4,10 +4,13 @@ $(function () {
 	var $tweetList = $('#tweetList');
 
 		$.ajax({
-			url: "../pages/mainpage.php",
-			dataType: 'json'
+			url: "../../../rest/rest.php/tweet",
+			dataType: 'json',
+			type: 'GET'
 		})
 			.done(function (response) {
+
+				console.log(response);
 
 				var $tweetPanel = $('#tweetPanel');
 
@@ -24,7 +27,8 @@ $(function () {
 
 			})
 			.fail(function (response) {
-				console.log(response);
+
+				console.log(response.responseText);
 			});
 
 
@@ -78,7 +82,8 @@ $(function () {
 		});
 
 		$.ajax({
-			url: url,
+			url: "../../../rest/rest.php/tweet",
+			//TODO - ajax url is pointing to form's action attribute in mainpage.php, this is why ajax request is returning the whole page - this has to be modified
 			dataType: 'json',
 			type: type,
 			data: data
@@ -107,8 +112,7 @@ $(function () {
 
 			})
 			.fail(function (response) {
-				console.log(JSON.stringify(response.error));
-				//alert(response.error);
+				console.log(response);
 			});
 
 	});

@@ -8,8 +8,8 @@
     <title>Communic - Login</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="admin/css/login.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
             Login
         </div>
         <div class="panel-footer">
-            <form class="form-login" action="pages/login.php" method="post">
+            <form class="form-login" action="admin/pages/navbar.php" method="post">
 
                 <label for="inputEmail" class="sr-only">Adres Email</label>
                 <input name="email" type="email" id="loginEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -74,7 +74,7 @@
                 <h4 class="modal-title" id="myModalLabel">Register</h4>
             </div>
             <div class="modal-body">
-                <form class="form-signin" action='pages/register.php' method="POST" id="registerPopup">
+                <form class="form-signin" action='admin/pages/register.php' method="POST" id="registerPopup">
                     <fieldset>
                         <div class="control-group">
                             <!-- Username -->
@@ -122,7 +122,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/login.js"></script>
+    <script src="admin/js/bootstrap.min.js"></script>
+    <script src="admin/js/login.js"></script>
 </body>
 </html>

@@ -3,11 +3,6 @@
 //Poniżej napisz kod łączący się z bazą danych
 
 include_once __DIR__ . '/../rest/config/db.php';
-//try {
-//    $connection = new PDO(sprintf("mysql:host=%s;dbname=%s", $hostname, $dbname), $user, $password, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-//} catch (PDOException $ex) {
-//    echo 'Connection failed: ' . $ex->getMessage();
-//}
 
 $response = [];
 //connect to DB
