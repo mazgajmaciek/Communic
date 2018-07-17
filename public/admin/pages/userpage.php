@@ -1,22 +1,31 @@
+<!doctype html>
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Communic</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
 <?php
 include_once '../../bootstrap.php';
-?>
 
-<a href="index.php"><h2>Powrót do strony głównej</h2> </a>
-
-<?php
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    //var_dump($_GET);
-    $userId = $_GET['userId'];
-    $username = User::loadUserById($connection, $userId);
-    echo "Strona użytkownika " . $username->getUsername();
+    var_dump($_SESSION);
+    $userName = $_SESSION['username'];
+    echo "Strona użytkownika " . $userName;
 }
 
-if ($_SESSION['userId'] == $_GET['userId']) {
-    echo sprintf("<a href=../privateMessages.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
-}
+//if($_SESSION['userId'] == $_GET['userId']) {
+    echo sprintf("<a href=privateMessages.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
+//}
 
-if ($_SESSION['userId'] !== $_GET['userId']) {
+if ($_SESSION['userId'] !== $_GET['userId'])
     ?>
 
     <h3>Wyślij prywatną wiadomość:</h3>

@@ -22,6 +22,7 @@
                     <a id="mainpage" class="navbar-brand" href="?action=mainpage">Communic</a>
                     <li><a id="profiledetails" href="?action=profileDetails">Profile</a></li>
                     <li><a id="userpage" href="?action=userpage">User Page</a></li>
+                    <li><a id="privateMessages" href="?action=privateMessages">Private Messages</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

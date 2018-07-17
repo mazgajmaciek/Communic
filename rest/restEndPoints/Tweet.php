@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!empty($_POST['new_message_text'])) {
 
         $messageText = $_POST['new_message_text'];
-        //$userId = $_SESSION['userId'];
+        $userId = $_SESSION['userId'];
 
         $sql = "INSERT INTO `Messages`(`user_id`, `message_text`) VALUES (:userid, :message_text)";
 

@@ -3,6 +3,7 @@ $(function () {
 	var $newTweetForm = $(".tweet-new");
 	var $tweetList = $('#tweetList');
 
+	//renders all existing tweets
 		$.ajax({
 			url: "../../../rest/rest.php/tweet",
 			dataType: 'json',
@@ -27,7 +28,6 @@ $(function () {
 
 			})
 			.fail(function (response) {
-
 				console.log(response.responseText);
 			});
 
@@ -83,7 +83,6 @@ $(function () {
 
 		$.ajax({
 			url: "../../../rest/rest.php/tweet",
-			//TODO - ajax url is pointing to form's action attribute in mainpage.php, this is why ajax request is returning the whole page - this has to be modified
 			dataType: 'json',
 			type: type,
 			data: data

@@ -1,10 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Communic</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="dupa">blabla</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/tweetDetails.js"></script>
+
 <?php
-include_once '../bootstrap.php';
+include_once '../../bootstrap.php';
 
 $userId = $_SESSION['userId'];
 ?>
 
-<h3><a href=pages/mainpage.php>Powrót do strony głównej</a><h3>
+<h3><a href=mainpage.php>Powrót do strony głównej</a><h3>
 
         <h3>Otrzymane wiadomości:</h3>
 
@@ -27,12 +52,13 @@ $userId = $_SESSION['userId'];
                     if (strlen($value->getText()) > 30) {
                         $substring = substr($value->getText(), 0, 30);
                         echo "Autor wiadomości: " . $value->getUsername;
-                        echo "Treść wiadomości: " . sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s... </a></b><br>", $value->getId(), $substring);
+                        echo "Treść wiadomości: " . sprintf("<b><a id=\"privateMsgLink\" href=../privateMessageDetails.php?privatemessageid=%d > %s... </ida></b><br>", $value->getId(), $substring);
+
                         echo '<br>';
                     } else {
                         $substring = substr($value->getText(), 0, 30);
                         echo "Autor wiadomości: " . $value->getUsername;
-                        echo "Treść wiadomości: " . sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
+                        echo "Treść wiadomości: " . sprintf("<b><a id=\"privateMsgLink\" href=../privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
                         echo '<br>';
                     }
                 } else {
@@ -40,12 +66,12 @@ $userId = $_SESSION['userId'];
                     if (strlen($value->getText()) > 30) {
                         $substring = substr($value->getText(), 0, 30);
                         echo "Autor wiadomości: " . $value->getUsername . '<br>';
-                        echo "Treść wiadomości: " . sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s... </a><br>", $value->getId(), $substring);
+                        echo "Treść wiadomości: " . sprintf("<a id=\"privateMsgLink\" href=../privateMessageDetails.php?privatemessageid=%d> %s... </a><br>", $value->getId(), $substring);
                         echo '<br>';
                     } else {
                         $substring = substr($value->getText(), 0, 30);
                         echo "Autor wiadomości: " . $value->getUsername . '<br>';
-                        echo "Treść wiadomości: " . sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
+                        echo "Treść wiadomości: " . sprintf("<a id=\"privateMsgLink\" href=../privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
                         echo '<br>';
                     }
                 }
@@ -86,12 +112,12 @@ if ($sentMessages !== null) {
             if (strlen($value->getText()) > 30) {
                 $substring = substr($value->getText(), 0, 30);
                 //echo "Autor wiadomości: " . $value->getUsername;
-                echo "Treść wiadomości: " . sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s... </a></b><br>", $value->getId(), $substring);
+                echo "Treść wiadomości: " . sprintf("<b><a href=../privateMessageDetails.php?privatemessageid=%d> %s... </a></b><br>", $value->getId(), $substring);
                 echo '<br>';
             } else {
                 $substring = substr($value->getText(), 0, 30);
                 //echo "Autor wiadomości: " . $value->getUsername;
-                echo "Treść wiadomości: " . sprintf("<b><a href=privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
+                echo "Treść wiadomości: " . sprintf("<b><a href=../privateMessageDetails.php?privatemessageid=%d> %s </a></b><br>", $value->getId(), $substring);
                 echo '<br>';
             }
         } else {
@@ -99,12 +125,12 @@ if ($sentMessages !== null) {
             if (strlen($value->getText()) > 30) {
                 $substring = substr($value->getText(), 0, 30);
                 //echo "Autor wiadomości: " . $value->getUsername . '<br>';
-                echo "Treść wiadomości: " . sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s... </a><br>", $value->getId(), $substring);
+                echo "Treść wiadomości: " . sprintf("<a href=../privateMessageDetails.php?privatemessageid=%d> %s... </a><br>", $value->getId(), $substring);
                 echo '<br>';
             } else {
                 $substring = substr($value->getText(), 0, 30);
                 //echo "Autor wiadomości: " . $value->getUsername . '<br>';
-                echo "Treść wiadomości: " . sprintf("<a href=privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
+                echo "Treść wiadomości: " . sprintf("<a href=../privateMessageDetails.php?privatemessageid=%d> %s </a><br>", $value->getId(), $substring);
                 echo '<br>';
             }
         }
@@ -112,3 +138,4 @@ if ($sentMessages !== null) {
 } else {
     echo "Brak wysłanych wiadomości";
 }
+?>

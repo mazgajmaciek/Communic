@@ -24,4 +24,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 //
 ?>
-<h3><a href=privateMessages.php>Powrót do skrzynki odbiorczej</a></h3>
+<h3><a href=pages/privateMessages.php>Powrót do skrzynki odbiorczej</a></h3>

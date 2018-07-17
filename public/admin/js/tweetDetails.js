@@ -1,10 +1,16 @@
 $(function () {
 
-	var that = $(this);
-}
-	$('#privateMsgLink').on('submit', function (event) {
+	alert("js loaded");
+	var $dupa = $('#dupa');
+
+	$dupa.on('mouseenter', function (event) {
 		event.preventDefault();
-		alert("js bang");
+		alert("dupa alert");
+	})
+
+	$('#privateMsgLink').on('click', function (event) {
+		event.preventDefault();
+		alert("bang");
 
 		var that = $(this),
 			url = that.attr('action'),
@@ -19,4 +25,7 @@ $(function () {
 
 			data[name] = value;
 		});
-});
+	});
+
+}
+

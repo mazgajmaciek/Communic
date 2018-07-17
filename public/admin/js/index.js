@@ -17,6 +17,11 @@ $(function () {
 		$("#container").load("../pages/userpage.php");
 	});
 
+	$('#privateMessages').on('click', function(event) {
+		event.preventDefault();
+		$("#container").load("../pages/privateMessages.php");
+	});
+
 
 
 
