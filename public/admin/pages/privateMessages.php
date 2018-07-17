@@ -17,7 +17,6 @@
 <br>
 <br>
 <br>
-<div id="dupa">blabla</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -29,15 +28,13 @@ include_once '../../bootstrap.php';
 $userId = $_SESSION['userId'];
 ?>
 
-<h3><a href=mainpage.php>Powrót do strony głównej</a><h3>
-
         <h3>Otrzymane wiadomości:</h3>
 
         <?php
         if ($userId == true) {
 
             $receivedMessages = PrivateMessage::loadAllPrivateMessagesByUserId($connection, $userId);
-            
+
         } else {
             echo "Uzytkownik niezalogowany";
         }
@@ -78,7 +75,7 @@ $userId = $_SESSION['userId'];
             }
         } else {
             echo "Brak otrzymanych wiadomości";
-            
+
         }
         ?>
 
