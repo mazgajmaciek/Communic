@@ -1,4 +1,5 @@
 <?php
+//session_start();
 //TODO - json does not seem to be formatted correctly?
 
 //include_once '../../public/bootstrap.php';

@@ -18,7 +18,7 @@ $user->setEmail('tt@tt.pl');
 $user->setUsername('test');
 $user->setHashPassword('password');
 
-$result = $user->save($connection);
+$result = $user->save($conn);
 echo "Mamy usera";
 
 
@@ -27,5 +27,5 @@ $user2->setEmail('mazgaj@mazgaj.pl');
 $user2->setHashPassword('haslo');
 $user2->setUsername('mazgaj1');
 
-$result = $user2->save($connection);
+$result = $user2->save($conn);
 

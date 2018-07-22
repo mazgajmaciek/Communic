@@ -2,4 +2,4 @@
 
 include_once '../bootstrap.php';
 
-var_dump(Comment::loadAllCommentsByPostId($connection, 35));
+var_dump(Comment::loadAllCommentsByPostId($conn, 35));

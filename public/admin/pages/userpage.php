@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 //if($_SESSION['userId'] == $_GET['userId']) {
-    echo sprintf("<a href=privateMessages.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
+    echo sprintf("<a href=privateMessage.phpprivateMessage.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
 //}
 
 if ($_SESSION['userId'] !== $_GET['userId'])
@@ -49,14 +49,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $senderId = $_SESSION['userId'];
         $receiverId = $_GET['userId'];
 
-        $privateMessage = new PrivateMessage();
+        $privateMessage = new Privatemessage();
 
         $privateMessage->setReadStatus(0);
         $privateMessage->setReceiverId($receiverId);
         $privateMessage->setSenderId($senderId);
         $privateMessage->setText($privateMessageText);
 
-        $privateMessage->saveToDB($connection);
+        $privateMessage->saveToDB($conn);
 
         echo "Wiadomość wysłana!";
     } else {
@@ -76,7 +76,7 @@ $userId = $_GET['userId'];
 
 $sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime, Messages.message_id FROM Messages JOIN Users ON Users.id=Messages.user_id WHERE `user_id`=:userId ORDER BY Messages.message_datetime DESC";
 
-$stmt = $connection->prepare($sql);
+$stmt = $conn->prepare($sql);
 $stmt->execute([
     'userId' => $userId,
 ]);
@@ -89,7 +89,7 @@ if ($stmt->rowCount() > 0) {
         echo "Użytkownik: " . $row['username'] . '<br>';
         echo "Treść wiadomości: <b>" . $row['message_text'] . '</b><br>';
         echo "Wysłano: " . $row['message_datetime'] . '<br>';
-        $tweetComments = Comment::loadAllCommentsByPostId($connection, $messageId);
+        $tweetComments = Comment::loadAllCommentsByPostId($conn, $messageId);
         echo "Liczba komentarzy: " . "<a href=tweetdetails.php?messageId=" . $messageId . ">" . count($tweetComments) . '</a><br><br>';
         echo '<br>';
 

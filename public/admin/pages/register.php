@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username']) && !empty
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $connection->prepare('SELECT COUNT(email) As `emailCount` FROM Users WHERE email = :email');
+    $stmt = $conn->prepare('SELECT COUNT(email) As `emailCount` FROM Users WHERE email = :email');
     $stmt->execute([
         'email' => $_POST['email']
     ]);
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username']) && !empty
         $user->setUsername($username);
         $user->setHashPassword($password);
 
-        $result = $user->save($connection);
+        $result = $user->save($conn);
 
         $_SESSION['logged'] = true;
 

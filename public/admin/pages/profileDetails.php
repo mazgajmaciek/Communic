@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['email_change']) && !empty($_POST['email_change'])) {
         $newEmail = $_POST['email_change'];
 
-        $loggedUser = User::loadUserById($connection, $userId);
+        $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setEmail($newEmail);
-        $loggedUser->save($connection);
+        $loggedUser->save($conn);
 
         echo "Twój adres email został zmieniony!";
     }
@@ -43,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['username_change']) && !empty($_POST['username_change'])) {
         $newUsername = $_POST['username_change'];
 
-        $loggedUser = User::loadUserById($connection, $userId);
+        $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setUsername($newUsername);
-        $loggedUser->save($connection);
+        $loggedUser->save($conn);
 
         $_SESSION['username'] = $newUsername;
 
@@ -68,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['password_change']) && !empty($_POST['password_change'])) {
         $newPassword = $_POST['password_change'];
 
-        $loggedUser = User::loadUserById($connection, $userId);
+        $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setHashPassword($newPassword);
-        $loggedUser->save($connection);
+        $loggedUser->save($conn);
 
         echo "Twoje hasło zostało zmienione!";
     }

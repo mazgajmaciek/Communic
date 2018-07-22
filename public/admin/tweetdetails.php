@@ -18,7 +18,7 @@ $messageId = $_GET['messageId'];
 
 $tweets = [];
 
-$tweets = Tweet::loadAllTweets($connection);
+$tweets = Tweet::loadAllTweets($conn);
 
 foreach ($tweets as $key => $value) {
     if ($value->getId() == $messageId) {
@@ -34,7 +34,7 @@ foreach ($tweets as $key => $value) {
 <h4>Tweet comments:</h4>
 
 <?php
-$tweetComments = Comment::loadAllCommentsByPostId($connection, $messageId);
+$tweetComments = Comment::loadAllCommentsByPostId($conn, $messageId);
 
 if ($tweetComments != null) {
     foreach ($tweetComments as $key => $value) {
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $comment->setPostId($messageId);
     $comment->setText($text);
     $comment->setUserId($_SESSION['userId']);
-    $comment->saveToDB($connection);
+    $comment->saveToDB($conn);
     
     
     

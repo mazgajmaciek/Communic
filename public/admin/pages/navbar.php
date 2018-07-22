@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $user = User::showUserByEmail($connection, $email);
+    $user = User::showUserByEmail($conn, $email);
     if ($user) {
         if (password_verify($password, $user->getHashPassword()) === TRUE) {
             $_SESSION['logged'] = true;

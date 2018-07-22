@@ -7,6 +7,6 @@ include_once '../bootstrap.php';
 
 //User::loadUserById($connection, 1);
 
-var_dump(User::loadUserById($connection, 7));
+var_dump(User::loadUserById($conn, 7));
 
 

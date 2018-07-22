@@ -1,26 +1,26 @@
 $(function () {
 
-	$('#container').load("../pages/mainpage.php");
+	// $('#container').load("../pages/mainpage.php");
 
-	$('#mainpage').on('click', function (event) {
-		event.preventDefault();
-		$('#container').load("../pages/mainpage.php");
-	});
-
-	$('#profiledetails').on('click', function(event) {
-		event.preventDefault();
-		$("#container").load("../pages/profileDetails.php");
-	});
-
-	$('#userpage').on('click', function(event) {
-		event.preventDefault();
-		$("#container").load("../pages/userpage.php");
-	});
-
-	$('#privateMessages').on('click', function(event) {
-		event.preventDefault();
-		$("#container").load("../pages/privateMessages.php");
-	});
+	// $('#mainpage').on('click', function (event) {
+	// 	event.preventDefault();
+	// 	$('#container').load("../pages/mainpage.php");
+	// });
+	//
+	// $('#profiledetails').on('click', function(event) {
+	// 	event.preventDefault();
+	// 	$("#container").load("../pages/profileDetails.php");
+	// });
+	//
+	// $('#userpage').on('click', function(event) {
+	// 	event.preventDefault();
+	// 	$("#container").load("../pages/userpage.php");
+	// });
+	//
+	// $('#privateMessages').on('click', function(event) {
+	// 	event.preventDefault();
+	// 	$("#container").load("../pages/privateMessage.php");
+	// });
 
 
 

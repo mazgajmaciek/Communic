@@ -7,4 +7,4 @@
 include_once __DIR__ . '/../rest/class/User.php';
 include_once __DIR__ . '/../rest/class/Tweet.php';
 include_once __DIR__ . '/../rest/class/Comment.php';
-include_once __DIR__ . '/../rest/class/PrivateMessage.php';
+include_once __DIR__ . '/../rest/class/Privatemessage.php';

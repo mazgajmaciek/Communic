@@ -1,6 +1,6 @@
 <?php
 
-class PrivateMessage extends User {
+class Privatemessage implements JsonSerializable {
 
     private $id;
     private $senderId;
@@ -8,14 +8,34 @@ class PrivateMessage extends User {
     private $creationDate;
     private $text;
     private $readStatus;
+    private $userName;
 
-    public function __construct() {
+    public static $pdo;
+
+    public function __construct(PDO $pdo) {
+
+        self::$pdo = $pdo;
+
         $this->id = -1;
         $this->senderId = null;
         $this->receiverId = null;
         $this->creationDate = null;
         $this->text = null;
         $this->readStatus = 0;
+        $this->userName = null;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'senderId' => $this->senderId,
+            'receiverId' => $this->receiverId,
+            'creationDate' => $this->creationDate instanceof \DateTime ? $this->creationDate->format('Y-m-d H:i:s') : $this->creationDate,
+            'text' => $this->text,
+            'readStatus' => $this->readStatus,
+            'userName' => $this->userName
+        ];
     }
 
     function getId() {
@@ -75,14 +95,14 @@ class PrivateMessage extends User {
         if ($result === true && $stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $loadedPrivateMessage = new PrivateMessage();
+            $loadedPrivateMessage = new Privatemessage($pdo);
             $loadedPrivateMessage->id = $row['id'];
             $loadedPrivateMessage->senderId = $row['sender_id'];
             $loadedPrivateMessage->receiverId = $row['receiver_id'];
             $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
             $loadedPrivateMessage->text = $row['privatemessage_text'];
             $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
-            $loadedPrivateMessage->getUsername = $row['username'];
+            $loadedPrivateMessage->userName = $row['username'];
             
 
             return $loadedPrivateMessage;
@@ -91,29 +111,31 @@ class PrivateMessage extends User {
         return null;
     }
 
-    static public function loadAllPrivateMessagesByUserId(PDO $pdo, $receiverId) {
-        $stmt = $pdo->prepare("SELECT * FROM Users JOIN PrivateMessage ON Users.id=PrivateMessage.sender_id WHERE receiver_id=:receiver_id");
+    static public function loadAllRcvdPrvMsgsByUserId(PDO $pdo, $receiverId = null) {
+        $stmt = $pdo->prepare("SELECT p.*, u.username FROM PrivateMessage p JOIN Users u ON p.sender_id=u.id WHERE receiver_id=:receiver_id");
         $result = $stmt->execute([
             'receiver_id' => $receiverId
         ]);
 
-        $ret = [];
+        $rcvdPrvMsgsArray = [];
 
         if ($result === true && $stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $stmt->fetchAll(PDO::FETCH_OBJ)) {
 
-                $loadedPrivateMessage = new PrivateMessage();
-                $loadedPrivateMessage->id = $row['id'];
-                $loadedPrivateMessage->senderId = $row['sender_id'];
-                $loadedPrivateMessage->receiverId = $row['receiver_id'];
-                $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
-                $loadedPrivateMessage->text = $row['privatemessage_text'];
-                $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
-                $loadedPrivateMessage->getUsername = $row['username'];
+                foreach ($row as $dbPrvMessage) {
+                    $loadedPrvMsg = new Privatemessage($pdo);
+                    $loadedPrvMsg->id = $dbPrvMessage->id;
+                    $loadedPrvMsg->senderId = $dbPrvMessage->sender_id;
+                    $loadedPrvMsg->receiverId = $dbPrvMessage->receiver_id;
+                    $loadedPrvMsg->creationDate = $dbPrvMessage->privatemessage_datetime;
+                    $loadedPrvMsg->text = $dbPrvMessage->privatemessage_text;
+                    $loadedPrvMsg->readStatus = $dbPrvMessage->privatemessage_readstatus;
+                    $loadedPrvMsg->userName = $dbPrvMessage->username;
 
-                $ret[] = $loadedPrivateMessage;
+                    $rcvdPrvMsgsArray[] = $loadedPrvMsg;
+                }
             }
-            return $ret;
+            return $rcvdPrvMsgsArray;
         }
         return null;
     }
@@ -129,7 +151,7 @@ class PrivateMessage extends User {
         if ($result === true && $stmt->rowCount() > 0) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-                $loadedPrivateMessage = new PrivateMessage();
+                $loadedPrivateMessage = new Privatemessage($pdo);
                 $loadedPrivateMessage->id = $row['id'];
                 $loadedPrivateMessage->senderId = $row['sender_id'];
                 $loadedPrivateMessage->receiverId = $row['receiver_id'];

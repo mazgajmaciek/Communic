@@ -2,4 +2,4 @@
 
 include_once '../bootstrap.php';
 
-var_dump(Tweet::loadAllTweets($connection));
+var_dump(Tweet::loadAllTweets($conn));

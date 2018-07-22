@@ -2,7 +2,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $privateMessageId = $_GET['privatemessageid'];
 
-    $privateMessage = PrivateMessage::loadPrivateMessageById($connection, $privateMessageId);
+    $privateMessage = Privatemessage::loadPrivateMessageById($conn, $privateMessageId);
 
     echo "Wysłane do: " . $privateMessage->getUsername . '<br>';
 //    echo $privateMessage->getSenderId() . '<br>';
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo "Treść wiadomości: " . $privateMessage->getText() . '<br>';
     $privateMessage->setReadStatus(1);
 
-    $privateMessage->saveToDB($connection);
+    $privateMessage->saveToDB($conn);
 };
 
 ?>

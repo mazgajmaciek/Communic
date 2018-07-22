@@ -2,11 +2,11 @@
 
 include_once '../bootstrap.php';
 
-$user = User::loadUserById($connection, 13);
+$user = User::loadUserById($conn, 13);
 $user->setEmail('mazgaj3@tlen.pl');
 $user->setHashPassword('haslohaslo');
 $user->setUsername('mazgaj2');
 
 
-$result = $user->save($connection);
+$result = $user->save($conn);
 

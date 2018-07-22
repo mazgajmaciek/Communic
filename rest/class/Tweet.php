@@ -1,6 +1,4 @@
 <?php
-
-//TODO - probably requires namespace for User as parser returns error "class User not found"
 require_once('User.php');
 
 class Tweet extends User implements JsonSerializable {

@@ -15,7 +15,7 @@ $comment->setText("komentarz1");
 var_dump($comment);
 
 
-$comment->saveToDB($connection);
+$comment->saveToDB($conn);
 
 $comment2 = new Comment();
 
@@ -23,4 +23,4 @@ $comment2->setUserId(3);
 $comment2->setPostId(4);
 $comment2->setText('coment');
 
-$comment2->saveToDB($connection);
+$comment2->saveToDB($conn);

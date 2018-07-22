@@ -15,5 +15,5 @@ $tweet->setUserId($userId);
 
 
 
-$tweet->saveToDB($connection);
+$tweet->saveToDB($conn);
 
