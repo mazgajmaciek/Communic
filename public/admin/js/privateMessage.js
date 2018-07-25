@@ -94,6 +94,12 @@ $(function () {
 				console.log(boxNewMsg);
 				boxNewMsg.removeClass("btn-warning");
 
+				//TODO - ajax to be completed for POSTing db update for read message
+				$
+					.ajax({
+						url: '../../../rest/rest.php/privateMessage/' + id,
+						type: 'POST'
+
 			})
 			.fail(function (error) {
 				console.log('Show author description error', error);
