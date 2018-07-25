@@ -13,7 +13,7 @@ $(function () {
 				console.log(response);
 
 				for (var i = 0; i < response.success.length; i++) {
-					if (response.success[i].readStatus == "0") {
+					if (response.success[i].readStatus === "0") {
 						renderNewReceivedPrivateMsg(response.success[i]);
 					} else {
 						renderReceivedPrivateMsg(response.success[i]);
@@ -62,20 +62,20 @@ $(function () {
 	function renderNewReceivedPrivateMsg(receivedMsg) {
 		var string = `<li class="list-group-item">
                 <div class="panel-heading btn-warning"> From:
-                <b><span class="senderUserNameNew" data-id="${receivedMsg.id}">${receivedMsg.userName}</span></b>
+                <span class="senderUserNameNew" data-id="${receivedMsg.id}">${receivedMsg.userName}</span>
                 <button data-id="${receivedMsg.id}" 
                 class="btn btn-primary pull-right btn-xs btn-show-received-message">
                 <li class="fa fa-info-circle"></li> Show message
                 </button>
+                </div>
+                <div class="panel-body btn-show-message-details">                      
                 </div>
                 </li>`;
 
 		$receivedMsgList.html($receivedMsgList.html() + string);
 	}
 
-	$('body').on('click', '.btn-show-received-message', function (event) {
-		//event.preventDefault();
-
+	$('body').on('click', '.btn-show-received-message', function () {
 		var id = $(this).data('id');
 		var that = $(this);
 
@@ -85,10 +85,15 @@ $(function () {
 				type: 'GET'
 			})
 			.done(function (response) {
-				var descElement = that.closest('.list-group-item').find('.book-description');
+				var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
 
-				descElement.text(response.success[0].description);
-				descElement.slideToggle();
+				prvMsgDetails.text(response.success[0].text);
+				prvMsgDetails.slideToggle();
+
+				var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
+				console.log(boxNewMsg);
+				boxNewMsg.removeClass("btn-warning");
+
 			})
 			.fail(function (error) {
 				console.log('Show author description error', error);

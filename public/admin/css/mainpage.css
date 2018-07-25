@@ -62,3 +62,7 @@ textarea[name="new_message_text"] {
     height: 120px;
     resize: none;
 }
+
+.btn-show-message-details {
+    display: none;
+}
