@@ -91,19 +91,32 @@ $(function () {
 				prvMsgDetails.slideToggle();
 
 				var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
-				console.log(boxNewMsg);
 				boxNewMsg.removeClass("btn-warning");
 
 				//TODO - ajax to be completed for POSTing db update for read message
+
+				var PrvMsgReadStatus = {
+				prvMsgReadStatus: id
+				}
+
 				$
 					.ajax({
 						url: '../../../rest/rest.php/privateMessage/' + id,
-						type: 'POST'
-
+						type: 'PATCH',
+						data: PrvMsgReadStatus
+					})
+					.done(function (response) {
+						console.log(PrvMsgReadStatus);
+						console.log(response);
+					})
+					.fail(function (error) {
+						console.log('Update private message read status error', error);
+					});
 			})
 			.fail(function (error) {
-				console.log('Show author description error', error);
+				console.log('Show private messages details error', error);
 			});
+
 
 		renderPrvMsgDetails();
 	});
