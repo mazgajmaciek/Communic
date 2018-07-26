@@ -18,18 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
 
     $userId = $_SESSION['userId'];
-//    $rcvdPrvMsgsArray = Privatemessage::loadAllRcvdPrvMsgsByUserId($conn,isset($userId) ? $userId : null);
-//    $jsonRcvdPrvMsgs = [];
-//    foreach ($rcvdPrvMsgsArray as $prvMsg) {
-//        $jsonRcvdPrvMsgs[] = json_decode(json_encode($prvMsg), true);
-//    }
     parse_str(file_get_contents("php://input"), $patchVars);
-    //TODO - front-end returns only message id - add array key in ajax to return read status 0/1
-    var_dump($patchVars);
+    $privateMessage = Privatemessage::loadPrivateMessageById($conn, $patchVars['prvMsgId']);
 
-    $privateMessage = Privatemessage::loadPrivateMessageById($conn, $privateMessageId);
-
-    $privateMessage->setReadStatus(1);
+    $privateMessage->setReadStatus($patchVars['readStatus']);
     $privateMessage->saveToDB($conn);
 
     $response = ['success' => $jsonRcvdPrvMsgs];

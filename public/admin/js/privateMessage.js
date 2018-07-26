@@ -79,53 +79,62 @@ $(function () {
 		var id = $(this).data('id');
 		var that = $(this);
 
+
 		$
 			.ajax({
 				url: '../../../rest/rest.php/privateMessage/' + id,
 				type: 'GET'
 			})
 			.done(function (response) {
+
+				console.log(response);
+
 				var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
 
-				prvMsgDetails.text(response.success[0].text);
-				prvMsgDetails.slideToggle();
-
-				var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
-				boxNewMsg.removeClass("btn-warning");
 
 				//TODO - ajax to be completed for POSTing db update for read message
 
-				var PrvMsgReadStatus = {
-				prvMsgReadStatus: id
+
+				if (response.success[id].readStatus === "0") {
+					// renderNewReceivedPrivateMsg(response.success[i]);
+
+					var PrvMsgReadStatus = {
+						readStatus: 1,
+						prvMsgId: id
+					};
+
+					$
+						.ajax({
+							url: '../../../rest/rest.php/privateMessage/' + id,
+							type: 'PATCH',
+							data: PrvMsgReadStatus
+						})
+						.done(function (response) {
+							console.log(PrvMsgReadStatus);
+							console.log(response);
+						})
+						.fail(function (error) {
+							console.log('Update private message read status error', error);
+						})
+
+				} else {
+					prvMsgDetails.text(response.success[0].text);
+					prvMsgDetails.slideToggle();
+
+					var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
+					boxNewMsg.removeClass("btn-warning");
 				}
 
-				$
-					.ajax({
-						url: '../../../rest/rest.php/privateMessage/' + id,
-						type: 'PATCH',
-						data: PrvMsgReadStatus
-					})
-					.done(function (response) {
-						console.log(PrvMsgReadStatus);
-						console.log(response);
-					})
-					.fail(function (error) {
-						console.log('Update private message read status error', error);
-					});
-			})
-			.fail(function (error) {
-				console.log('Show private messages details error', error);
+
+				renderPrvMsgDetails();
 			});
 
+		function renderPrvMsgDetails (messageId) {
 
-		renderPrvMsgDetails();
+		}
+
+		getReceivedPrivateMsg();
+		getSentPrivateMsg();
+
 	});
-
-	function renderPrvMsgDetails (messageId) {
-
-	}
-
-	getReceivedPrivateMsg();
-	getSentPrivateMsg();
-
 });
