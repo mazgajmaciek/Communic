@@ -24,5 +24,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
     $privateMessage->setReadStatus($patchVars['readStatus']);
     $privateMessage->saveToDB($conn);
 
-    $response = ['success' => $jsonRcvdPrvMsgs];
+    $response = ['success' => $privateMessage];
 }
