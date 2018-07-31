@@ -54,6 +54,8 @@ $(function () {
                 <li class="fa fa-info-circle"></li> Show message
                 </button>
                 </div>
+                <div class="panel-body btn-show-message-details">                      
+                </div>
                 </li>`;
 
 		$receivedMsgList.html($receivedMsgList.html() + string);
@@ -136,18 +138,25 @@ $(function () {
 
 			$
 				.ajax({
-					url: '../../../rest/rest.php/privateMessage/' + id,
-					type: 'GET',
+					url: '../../../rest/rest.php/privateMessage/',
+					type: 'GET'
 				})
 				.done(function (response) {
 
 					console.log(id);
 					console.log(response);
 
-					var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+					for (var i = 0; i < response.success.length; i++) {
+						if (response.success[i].id == id) {
 
-					prvMsgDetails.text(response.success.text);
-					prvMsgDetails.slideToggle();
+							var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+							prvMsgDetails.text(response.success[i].text);
+							prvMsgDetails.slideToggle();
+
+						} else {
+
+						}
+					}
 
 					//TODO - ajax to be completed for POSTing db update for read message
 					// if (response.success[id].readStatus === "0") {
