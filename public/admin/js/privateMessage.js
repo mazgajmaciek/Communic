@@ -78,59 +78,109 @@ $(function () {
 	$('body').on('click', '.btn-show-received-message', function () {
 
 		var that = $(this);
-		var id = $(this).data('id');
+		var id = that.data('id');
 
 		var PrvMsgReadStatus = {
 			readStatus: 1,
 			prvMsgId: id
 		};
 
-		$
-			.ajax({
-				url: '../../../rest/rest.php/privateMessage/' + id,
-				type: 'PATCH',
-				data: PrvMsgReadStatus
-			})
-			.done(function (response) {
+		//TODO - Got to work on how to make PATCH working wish ajax/server-side - server gets updated but .done executes only on already read message - why?
 
-				console.log(id);
-				console.log(response);
+		var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
 
 
-				var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+		if (boxNewMsg.hasClass("btn-warning")) {
+			$
+				.ajax({
+					url: '../../../rest/rest.php/privateMessage/' + id,
+					type: 'PATCH',
+					data: PrvMsgReadStatus
+				})
+				.done(function (response) {
+					var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+
+					prvMsgDetails.text(response.success.text);
+					boxNewMsg.removeClass("btn-warning");
+					prvMsgDetails.slideToggle();
 
 
-				prvMsgDetails.text(response.success.text);
-				prvMsgDetails.slideToggle();
 
-				var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
-				boxNewMsg.removeClass("btn-warning");
-
-				//TODO - ajax to be completed for POSTing db update for read message
-				// if (response.success[id].readStatus === "0") {
-				// 	// renderNewReceivedPrivateMsg(response.success[i]);
-				//
-				// 	$
-				// 		.ajax({
-				// 			url: '../../../rest/rest.php/privateMessage/' + id,
-				// 			type: 'PATCH',
-				// 			data: PrvMsgReadStatus
-				// 		})
-				// 		.done(function (response) {
-				// 			console.log(PrvMsgReadStatus);
-				// 			console.log(response);
-				// 		})
-				// 		.fail(function (error) {
-				// 			console.log('Update private message read status error', error);
-				// 		})
-				//
-				//
-				//
-				// }
-			})
-			.fail(function (error) {
+					//TODO - ajax to be completed for POSTing db update for read message
+					// if (response.success[id].readStatus === "0") {
+					// 	// renderNewReceivedPrivateMsg(response.success[id]);
+					//
+					// 	$
+					// 		.ajax({
+					// 			url: '../../../rest/rest.php/privateMessage/' + id,
+					// 			type: 'PATCH',
+					// 			data: PrvMsgReadStatus
+					// 		})
+					// 		.done(function (response) {
+					// 			console.log(PrvMsgReadStatus);
+					// 			console.log(response);
+					// 		})
+					// 		.fail(function (error) {
+					// 			console.log('Update private message read status error', error);
+					// 		})
+					//
+					//
+					//
+					// }
+				})
+				.fail(function (error) {
 					console.log('Show sent private message error', error);
 				});
+
+		} else {
+
+			$
+				.ajax({
+					url: '../../../rest/rest.php/privateMessage/' + id,
+					type: 'GET',
+				})
+				.done(function (response) {
+
+					console.log(id);
+					console.log(response);
+
+					var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+
+					prvMsgDetails.text(response.success.text);
+					prvMsgDetails.slideToggle();
+
+					//TODO - ajax to be completed for POSTing db update for read message
+					// if (response.success[id].readStatus === "0") {
+					// 	// renderNewReceivedPrivateMsg(response.success[id]);
+					//
+					// 	$
+					// 		.ajax({
+					// 			url: '../../../rest/rest.php/privateMessage/' + id,
+					// 			type: 'PATCH',
+					// 			data: PrvMsgReadStatus
+					// 		})
+					// 		.done(function (response) {
+					// 			console.log(PrvMsgReadStatus);
+					// 			console.log(response);
+					// 		})
+					// 		.fail(function (error) {
+					// 			console.log('Update private message read status error', error);
+					// 		})
+					//
+					//
+					//
+					// }
+				})
+				.fail(function (error) {
+					console.log('Show sent private message error', error);
+				});
+
+			// var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+			// prvMsgDetails.slideToggle();
+
+		}
+
+
 
 
 

@@ -13,6 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
     $response = ['success' => $jsonRcvdPrvMsgs];
+
+//    parse_str(file_get_contents("php://input"), $patchVars);
+//    $privateMessage = Privatemessage::loadPrivateMessageById($conn, $patchVars['prvMsgId']);
+//
+//    $privateMessage->setReadStatus($patchVars['readStatus']);
+//    $privateMessage->saveToDB($conn);
+//
+//    $response = ['prvMessage' => $privateMessage];
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
