@@ -140,8 +140,9 @@ class Privatemessage implements JsonSerializable {
         return null;
     }
     
-    static public function loadAllPrivateMessagesBySenderId(PDO $pdo, $senderId) {
-        $stmt = $pdo->prepare("SELECT * FROM PrivateMessage WHERE sender_id=:sender_id");
+    static public function loadAllPrivateMessagesBySenderId(PDO $pdo, $senderId = null) {
+//        $stmt = $pdo->prepare("SELECT * FROM PrivateMessage WHERE sender_id=:sender_id");
+        $stmt = $pdo->prepare("SELECT p.*, u.username FROM PrivateMessage p JOIN Users u ON p.receiver_id=u.id WHERE sender_id=:sender_id");
         $result = $stmt->execute([
             'sender_id' => $senderId
         ]);
@@ -158,6 +159,7 @@ class Privatemessage implements JsonSerializable {
                 $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
                 $loadedPrivateMessage->text = $row['privatemessage_text'];
                 $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
+                $loadedPrivateMessage->userName = $row['username'];
 
                 $ret[] = $loadedPrivateMessage;
             }

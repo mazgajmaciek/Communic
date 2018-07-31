@@ -1,6 +1,7 @@
 $(function () {
 
 	var $receivedMsgList = $("#receivedMsgList");
+	var $sentMsgList = $("#sentMsgList");
 
 	function getReceivedPrivateMsg() {
 		$
@@ -25,24 +26,22 @@ $(function () {
 			});
 	}
 
-	// function getSentPrivateMsg() {
-	// 	$
-	// 		.ajax({
-	// 			url: '../../../rest/rest.php/privateMessage',
-	// 			type: 'GET'
-	// 		})
-	// 		.done(function (response) {
-	// 			for (var i = 0; i < response.success.length; i++) {
-	// 				renderAuthor(response.success[i]);
-	// 				renderEditSelect(response.success[i]);
-	//
-	// 			}
-	// 			console.log(response);
-	// 		})
-	// 		.fail(function (error) {
-	// 			console.log('Create author error', error);
-	// 		});
-	// }
+	function getSentPrivateMsg() {
+		$
+			.ajax({
+				url: '../../../rest/rest.php/privateMessage',
+				type: 'GET'
+			})
+			.done(function (response) {
+				for (var i = 0; i < response.sentPrvMsgs.length; i++) {
+					renderSentPrivateMsg(response.sentPrvMsgs[i]);
+				}
+				console.log(response);
+			})
+			.fail(function (error) {
+				console.log('Create author error', error);
+			});
+	}
 
 	function renderReceivedPrivateMsg(receivedMsg) {
 		var string = `<li class="list-group-item">
@@ -77,6 +76,23 @@ $(function () {
 		$receivedMsgList.html($receivedMsgList.html() + string);
 	}
 
+	function renderSentPrivateMsg(sentMsg) {
+
+		var string = `<li class="list-group-item">
+                <div class="panel-heading"> To:
+                <span class="senderUserNameNew" data-id="${sentMsg.id}">${sentMsg.userName}</span>
+                <button data-id="${sentMsg.id}"
+                class="btn btn-primary pull-right btn-xs btn-show-received-message">
+                <li class="fa fa-info-circle"></li> Show message
+                </button>
+                </div>
+                <div class="panel-body btn-show-message-details">
+                </div>
+                </li>`;
+
+		$sentMsgList.html($sentMsgList.html() + string);
+	}
+
 	$('body').on('click', '.btn-show-received-message', function () {
 
 		var that = $(this);
@@ -106,29 +122,6 @@ $(function () {
 					boxNewMsg.removeClass("btn-warning");
 					prvMsgDetails.slideToggle();
 
-
-
-					//TODO - ajax to be completed for POSTing db update for read message
-					// if (response.success[id].readStatus === "0") {
-					// 	// renderNewReceivedPrivateMsg(response.success[id]);
-					//
-					// 	$
-					// 		.ajax({
-					// 			url: '../../../rest/rest.php/privateMessage/' + id,
-					// 			type: 'PATCH',
-					// 			data: PrvMsgReadStatus
-					// 		})
-					// 		.done(function (response) {
-					// 			console.log(PrvMsgReadStatus);
-					// 			console.log(response);
-					// 		})
-					// 		.fail(function (error) {
-					// 			console.log('Update private message read status error', error);
-					// 		})
-					//
-					//
-					//
-					// }
 				})
 				.fail(function (error) {
 					console.log('Show sent private message error', error);
@@ -158,45 +151,17 @@ $(function () {
 						}
 					}
 
-					//TODO - ajax to be completed for POSTing db update for read message
-					// if (response.success[id].readStatus === "0") {
-					// 	// renderNewReceivedPrivateMsg(response.success[id]);
-					//
-					// 	$
-					// 		.ajax({
-					// 			url: '../../../rest/rest.php/privateMessage/' + id,
-					// 			type: 'PATCH',
-					// 			data: PrvMsgReadStatus
-					// 		})
-					// 		.done(function (response) {
-					// 			console.log(PrvMsgReadStatus);
-					// 			console.log(response);
-					// 		})
-					// 		.fail(function (error) {
-					// 			console.log('Update private message read status error', error);
-					// 		})
-					//
-					//
-					//
-					// }
 				})
 				.fail(function (error) {
 					console.log('Show sent private message error', error);
 				});
-
-			// var prvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
-			// prvMsgDetails.slideToggle();
-
 		}
 
 
+	});
 
-
-
-
-			});
 
 	getReceivedPrivateMsg();
-	// getSentPrivateMsg();
+	getSentPrivateMsg();
 
 	});

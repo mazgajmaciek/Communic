@@ -12,15 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $jsonRcvdPrvMsgs[] = json_decode(json_encode($prvMsg), true);
     }
 
-    $response = ['success' => $jsonRcvdPrvMsgs];
+    $sentPrvMsgsArray = Privatemessage::loadAllPrivateMessagesBySenderId($conn, isset($userId) ? $userId : null);
+    $jsonSentPrvMsgs = [];
+    foreach ($sentPrvMsgsArray as $prvMsg) {
+        $jsonSentPrvMsgs[] = json_decode(json_encode($prvMsg), true);
+    }
 
-//    parse_str(file_get_contents("php://input"), $patchVars);
-//    $privateMessage = Privatemessage::loadPrivateMessageById($conn, $patchVars['prvMsgId']);
-//
-//    $privateMessage->setReadStatus($patchVars['readStatus']);
-//    $privateMessage->saveToDB($conn);
-//
-//    $response = ['prvMessage' => $privateMessage];
+    $response = ['success' => $jsonRcvdPrvMsgs,
+        'sentPrvMsgs' => $jsonSentPrvMsgs];
 
 }
 
