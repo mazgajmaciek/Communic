@@ -39,7 +39,6 @@ if ($_SESSION['userId'] !== $_GET['userId'])
     </form>
 
     <?php
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['private_message']) && !empty($_POST['private_message'])) {

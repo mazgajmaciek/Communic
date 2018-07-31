@@ -37,8 +37,11 @@ $(function () {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
-						            <b>${tweet.userName}</b>
-						            <span>${tweet.creationDate}</span></div>
+						            <a href="../pages/userpage.php">
+						            	<b>${tweet.userName}</b>
+						            </a>
+						            <span>${tweet.creationDate}</span>
+						        </div>
 						  </div>
 						  <div class="panel-body">${tweet.text}</div>
 						</div>`;
