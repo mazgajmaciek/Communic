@@ -10,9 +10,6 @@ $(function () {
 				type: 'GET'
 			})
 			.done(function (response) {
-
-				console.log(response);
-
 				for (var i = 0; i < response.success.length; i++) {
 					if (response.success[i].readStatus === "0") {
 						renderNewReceivedPrivateMsg(response.success[i]);
@@ -36,7 +33,6 @@ $(function () {
 				for (var i = 0; i < response.sentPrvMsgs.length; i++) {
 					renderSentPrivateMsg(response.sentPrvMsgs[i]);
 				}
-				console.log(response);
 			})
 			.fail(function (error) {
 				console.log('Create author error', error);
@@ -82,7 +78,7 @@ $(function () {
                 <div class="panel-heading"> To:
                 <span class="senderUserNameNew" data-id="${sentMsg.id}">${sentMsg.userName}</span>
                 <button data-id="${sentMsg.id}"
-                class="btn btn-primary pull-right btn-xs btn-show-received-message">
+                class="btn btn-primary pull-right btn-xs btn-show-sent-message">
                 <li class="fa fa-info-circle"></li> Show message
                 </button>
                 </div>
@@ -93,6 +89,7 @@ $(function () {
 		$sentMsgList.html($sentMsgList.html() + string);
 	}
 
+	//shows details for unread and already read received private messages
 	$('body').on('click', '.btn-show-received-message', function () {
 
 		var that = $(this);
@@ -102,8 +99,6 @@ $(function () {
 			readStatus: 1,
 			prvMsgId: id
 		};
-
-		//TODO - Got to work on how to make PATCH working wish ajax/server-side - server gets updated but .done executes only on already read message - why?
 
 		var boxNewMsg = that.closest('.list-group-item').find('.btn-warning');
 
@@ -135,10 +130,6 @@ $(function () {
 					type: 'GET'
 				})
 				.done(function (response) {
-
-					console.log(id);
-					console.log(response);
-
 					for (var i = 0; i < response.success.length; i++) {
 						if (response.success[i].id == id) {
 
@@ -156,9 +147,34 @@ $(function () {
 					console.log('Show sent private message error', error);
 				});
 		}
+	});
 
+	$('body').on('click', '.btn-show-sent-message', function () {
+
+		var that = $(this);
+		var id = that.data('id');
+		$
+			.ajax({
+				url: '../../../rest/rest.php/privateMessage/',
+				type: 'GET'
+			})
+			.done(function (response) {
+				for (var i = 0; i < response.sentPrvMsgs.length; i++) {
+					if (response.sentPrvMsgs[i].id == id) {
+
+						var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+						sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
+						sentPrvMsgDetails.slideToggle();
+					}
+				}
+
+			})
+			.fail(function (error) {
+				console.log('Show sent private message error', error);
+			});
 
 	});
+
 
 
 	getReceivedPrivateMsg();
