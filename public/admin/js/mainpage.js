@@ -37,7 +37,7 @@ $(function () {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
-						            <a href="../pages/userpage.php">
+						            <a data-userid=${tweet.userId} href="../pages/userpage.php?user=${tweet.userId}">
 						            	<b>${tweet.userName}</b>
 						            </a>
 						            <span>${tweet.creationDate}</span>
@@ -50,10 +50,14 @@ $(function () {
 	}
 
 	//append new tweet to the top of the list
+	//TODO -
 	function prependNewTweet(tweets) {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
+						        	<a data-userid=${tweet.userId} href="../pages/userpage.php?user=${tweet.userId}">
+						            	<b>${tweet.userName}</b>
+						            </a>
 						            <b>${tweets.username}</b>
 						            <span>${tweets.newTweet.creationDate}</span></div>
 						  </div>

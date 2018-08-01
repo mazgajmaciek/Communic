@@ -15,15 +15,26 @@
 <?php
 include_once '../../bootstrap.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    var_dump($_SESSION);
+//TODO below php code is supposed to be another endpoint
+var_dump($_GET);
+var_dump($_SESSION);
+
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && ($_SESSION['userId'] == $_GET['user'])) {
+
     $userName = $_SESSION['username'];
     echo "Strona użytkownika " . $userName;
+
+    //TODO - add logic for redirecting to logged user page (part for sending private message should NOT be visible)
+
+} else {
+
+    //TODO - add logic for redirecting to page of another user (not currently logged)
+
 }
 
-//if($_SESSION['userId'] == $_GET['userId']) {
+if($_SESSION['userId'] == $_GET['userId']) {
     echo sprintf("<a href=privateMessage.phpprivateMessage.php><h3>Przejdź do prywatnych wiadomości</h3></a>");
-//}
+}
 
 if ($_SESSION['userId'] !== $_GET['userId'])
     ?>
