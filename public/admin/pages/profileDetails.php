@@ -1,10 +1,26 @@
-<?php
-include_once '../../bootstrap.php';
-?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Communic - Private Messages</title>
 
-<!--<h2><a href="mainpage.php">Powrót do strony głównej</a></h2>-->
-<!---->
-<!--    <a href="../privateMessages.php"><h3>Przejdź do prywatnych wiadomości</h3></a>-->
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/mainpage.css" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+<!--page background-->
+<div class="page-bg"></div>
+
 
 <h2>Zmień swój adres email:</h2>
 
@@ -14,21 +30,7 @@ include_once '../../bootstrap.php';
     <input type="submit">
 </form>
 
-<?php
-$userId = $_SESSION['userId'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['email_change']) && !empty($_POST['email_change'])) {
-        $newEmail = $_POST['email_change'];
-
-        $loggedUser = User::loadUserById($conn, $userId);
-        $loggedUser->setEmail($newEmail);
-        $loggedUser->save($conn);
-
-        echo "Twój adres email został zmieniony!";
-    }
-}
-?>
 
 <h2>Zmień swoją nazwę użytkownika:</h2>
 
@@ -39,20 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['username_change']) && !empty($_POST['username_change'])) {
-        $newUsername = $_POST['username_change'];
 
-        $loggedUser = User::loadUserById($conn, $userId);
-        $loggedUser->setUsername($newUsername);
-        $loggedUser->save($conn);
-
-        $_SESSION['username'] = $newUsername;
-
-
-        echo "Twoja nazwa użytkownika została zmieniona!";
-    }
-}
 ?>
 
 <h2>Zmień swoje hasło:</h2>
@@ -64,15 +53,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['password_change']) && !empty($_POST['password_change'])) {
-        $newPassword = $_POST['password_change'];
 
-        $loggedUser = User::loadUserById($conn, $userId);
-        $loggedUser->setHashPassword($newPassword);
-        $loggedUser->save($conn);
-
-        echo "Twoje hasło zostało zmienione!";
-    }
-}
 ?>

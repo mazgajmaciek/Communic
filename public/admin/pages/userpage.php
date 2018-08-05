@@ -21,6 +21,63 @@
 <!--page background-->
 <div class="page-bg"></div>
 
+
+
+<div class="row voffset5">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                Strona użytkownika [username]
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-body">
+                <form class="navbar-form navbar-left" role="search">
+
+
+
+                <ul class="list-group" id="userCredentials">
+<!--                                        <li class="list-group-item">-->
+                                            <div class="panel panel-default">
+<!--                                                <div class="panel-heading"><span class="authorTitle">Jan Kowalski</span>-->
+<!--                                                    <button data-id="1" class="btn btn-danger pull-right btn-xs btn-author-remove"><i-->
+<!--                                                                class="fa fa-trash"></i></button>-->
+<!--                                                    <button data-id="1" class="btn btn-primary pull-right btn-xs btn-author-books"><i-->
+<!--                                                                class="fa fa-book"></i></button>-->
+
+<!--                                                </div>-->
+<!--                                                <ul class="authorBooksList"></ul>-->
+                                                <li class="list-group-item">
+                                                    <div class="form-group">asd
+                                                        <input type="text" class="form-control" placeholder="Search">
+                                                        <button type="submit" class="btn btn-default text-right">Submit</button>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="form-group">asd
+                                                        <input type="text" class="form-control" placeholder="Search">
+                                                        <button type="submit" class="btn btn-default text-right">Submit</button>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="form-group">asd
+                                                        <input type="text" class="form-control" placeholder="Search">
+                                                        <button type="submit" class="btn btn-default text-right">Submit</button>
+                                                    </div>
+                                                </li>
+                                            </div>
+<!--                                        </li>-->
+                </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+</div>
+
 <?php
 //include_once '../../bootstrap.php';
 //
@@ -37,41 +94,7 @@
 //if ($_SESSION['userId'] !== $_GET['userId'])
 //    ?>
 
-    <h3>Wyślij prywatną wiadomość:</h3>
 
-    <form method="post" action="#">
-        Twoja wiadomosc <input name="private_message" placeholder="Max 140 znaków" maxlength="140">
-        <br>
-        <button type="submit">Wyslij</button>
-        <br>
-        <br>
-    </form>
-
-<!--    --><?php
-//
-//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//    if (isset($_POST['private_message']) && !empty($_POST['private_message'])) {
-//
-//        $privateMessageText = $_POST['private_message'];
-//
-//        $senderId = $_SESSION['userId'];
-//        $receiverId = $_GET['userId'];
-//
-//        $privateMessage = new Privatemessage();
-//
-//        $privateMessage->setReadStatus(0);
-//        $privateMessage->setReceiverId($receiverId);
-//        $privateMessage->setSenderId($senderId);
-//        $privateMessage->setText($privateMessageText);
-//
-//        $privateMessage->saveToDB($conn);
-//
-//        echo "Wiadomość wysłana!";
-//    } else {
-//        echo "Nie wpisano wiadomości";
-//    }
-//}
-//?>
 
 
 <h3>Wiadomości wraz z komentarzami:</h3>

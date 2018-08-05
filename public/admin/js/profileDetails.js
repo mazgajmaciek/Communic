@@ -1,7 +1,7 @@
 $(function () {
 
 	var that = $(this);
-}
+
 	$('#privateMsgLink').on('submit', function (event) {
 		event.preventDefault();
 		alert("js bang");
@@ -19,4 +19,6 @@ $(function () {
 
 			data[name] = value;
 		});
+	});
+
 });
