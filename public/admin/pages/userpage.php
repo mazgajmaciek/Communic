@@ -35,43 +35,7 @@
 
         <div class="panel panel-primary">
             <div class="panel-body">
-                <form class="navbar-form navbar-left" role="search">
 
-
-
-                <ul class="list-group" id="userCredentials">
-<!--                                        <li class="list-group-item">-->
-                                            <div class="panel panel-default">
-<!--                                                <div class="panel-heading"><span class="authorTitle">Jan Kowalski</span>-->
-<!--                                                    <button data-id="1" class="btn btn-danger pull-right btn-xs btn-author-remove"><i-->
-<!--                                                                class="fa fa-trash"></i></button>-->
-<!--                                                    <button data-id="1" class="btn btn-primary pull-right btn-xs btn-author-books"><i-->
-<!--                                                                class="fa fa-book"></i></button>-->
-
-<!--                                                </div>-->
-<!--                                                <ul class="authorBooksList"></ul>-->
-                                                <li class="list-group-item">
-                                                    <div class="form-group">asd
-                                                        <input type="text" class="form-control" placeholder="Search">
-                                                        <button type="submit" class="btn btn-default text-right">Submit</button>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="form-group">asd
-                                                        <input type="text" class="form-control" placeholder="Search">
-                                                        <button type="submit" class="btn btn-default text-right">Submit</button>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <div class="form-group">asd
-                                                        <input type="text" class="form-control" placeholder="Search">
-                                                        <button type="submit" class="btn btn-default text-right">Submit</button>
-                                                    </div>
-                                                </li>
-                                            </div>
-<!--                                        </li>-->
-                </ul>
-                </form>
             </div>
         </div>
     </div>
