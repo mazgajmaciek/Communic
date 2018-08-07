@@ -24,62 +24,30 @@
 <div class="row voffset5">
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
         <div class="panel panel-primary">
             <div class="panel-heading">User credentials</div>
             <div class="panel-body">
-                <ul class="list-group" id="receivedMsgList">
-                    <!--                    <li class="list-group-item">-->
-                    <!--                        <div class="panel panel-default">-->
-                    <!--                            <div class="panel-heading"><span class="authorTitle">Jan Kowalski</span>-->
-                    <!--                                <button data-id="1" class="btn btn-danger pull-right btn-xs btn-author-remove"><i-->
-                    <!--                                            class="fa fa-trash"></i></button>-->
-                    <!--                                <button data-id="1" class="btn btn-primary pull-right btn-xs btn-author-books"><i-->
-                    <!--                                            class="fa fa-book"></i></button>-->
-                    <!--
-                    <!--                            </div>-->
-                    <!--                            <ul class="authorBooksList"></ul>-->
-                    <!--                        </div>-->
-                    <!--                    </li>-->
-<!--                        <div class="form-inline">asd-->
-<!--                            <input type="text" placeholder="Search">-->
-<!--                            <button type="submit" class="btn btn-default text-right">Submit</button>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">asd-->
-<!--                            <input type="text" class="form-control" placeholder="Search">-->
-<!--                            <button type="submit" class="btn btn-default text-right">Submit</button>-->
-<!--                        </div>-->
-<!--                        <div class="form-group">asd-->
-<!--                            <input type="text" class="form-control" placeholder="Search">-->
-<!--                            <button type="submit" class="btn btn-default text-right">Submit</button>-->
-<!--                        </div>-->
-
-<!--                        <form class="form-group">-->
-                            <div class="form-inline">
-                                <div>asd
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <button type="submit" class="btn btn-default text-right">Submit</button>
-                                </div>
-                            </div>
-                            <div class="form-inline">asd
-                                <input type="text" class="form-control" placeholder="Search">
-                                <button type="submit" class="btn btn-default text-right">Submit</button>
-                            </div>
-                            <div class="form-inline">asd
-                                <input type="text" class="form-control" placeholder="Search">
-                                <button type="submit" class="btn btn-default text-right">Submit</button>
-                            </div>
-<!--                            <div class="form-group">-->
-<!--                                <label class="sr-only">Email</label>-->
-<!--                                <p class="form-control-static">email@example.com</p>-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="inputPassword2" class="sr-only">Password</label>-->
-<!--                                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">-->
-<!--                            </div>-->
-<!--                            <button type="submit" class="btn btn-default">Confirm identity</button>-->
-<!--                        </form>-->
-
-                </ul>
+                <div class="container-fluid">
+                    <div class="form-inline">
+                        <div>Update your email
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="btn btn-default text-right">Update</button>
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div>Update your email
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="btn btn-default text-right">Update</button>
+                        </div>
+                    </div>
+                    <div class="form-inline">
+                        <div>Update your email
+                            <input type="text" class="form-control" placeholder="Search">
+                            <button type="submit" class="btn btn-default text-right">Update</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
