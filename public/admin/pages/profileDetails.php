@@ -29,24 +29,31 @@
             <div class="panel-heading">User credentials</div>
             <div class="panel-body">
                 <div class="container-fluid">
-                    <div class="form-inline">
-                        <div>Update your email
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn btn-default text-right">Update</button>
+                    <li class="list-group-item">
+                        <div class="form-inline">
+                            <div>Update your email
+                                <input type="text" class="form-control" placeholder="Search">
+                                <button type="submit" class="btn btn-default text-right">Update</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-inline">
-                        <div>Update your email
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn btn-default text-right">Update</button>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-inline">
+                            <div>Update your email
+                                <input type="text" class="form-control" placeholder="Search">
+                                <button type="submit" class="btn btn-default text-right">Update</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-inline">
-                        <div>Update your email
-                            <input type="text" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn btn-default text-right">Update</button>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-inline">
+                            <div>Update your email
+                                <input type="text" class="form-control" placeholder="Search">
+                                <button type="submit" class="btn btn-default text-right">Update</button>
+                            </div>
                         </div>
-                    </div>
+                    </li>
+                </div>
                 </div>
             </div>
         </div>
