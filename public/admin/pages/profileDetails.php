@@ -21,45 +21,79 @@
 <!--page background-->
 <div class="page-bg"></div>
 
-<div class="row voffset5">
+<div class="container form-new-user-credentials">
+
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">User credentials</div>
-            <div class="panel-body">
-                <div class="container-fluid">
-                    <li class="list-group-item">
-                        <div class="form-inline">
-                            <div>Update your email
-                                <input type="text" class="form-control" placeholder="Search">
-                                <button type="submit" class="btn btn-default text-right">Update</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-inline">
-                            <div>Update your email
-                                <input type="text" class="form-control" placeholder="Search">
-                                <button type="submit" class="btn btn-default text-right">Update</button>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-inline">
-                            <div>Update your email
-                                <input type="text" class="form-control" placeholder="Search">
-                                <button type="submit" class="btn btn-default text-right">Update</button>
-                            </div>
-                        </div>
-                    </li>
+    <div class="panel panel-info">
+        <div class="panel-body h4">
+            Change User Credentials
+        </div>
+        <div class="panel-footer">
+            <form class="form-new-user-credentials" method="post">
+                <div class="form-group">
+                    <label for="InputEmail">Change your email address</label>
+                    <input name="email" type="email" id="newEmail" class="form-control" placeholder="New email address" required autofocus>
+                    <button class="btn btn-default btn-block" type="submit" id="newEmailButton">Submit</button>
                 </div>
+                <div class="form-group">
+                    <label for="InputUsername">Change your username</label>
+                    <input name="username" type="username" id="newUsername" class="form-control" placeholder="New username" required autofocus>
+                    <button class="btn btn-default btn-block" type="submit" id="newUsernameButton">Submit</button>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Change your password</label>
+                    <input name="password" type="password" id="newPassword" class="form-control" placeholder="New password" required autofocus>
+                    <button class="btn btn-default btn-block" type="submit" id="newPassword">Submit</button>
+                </div>
+
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+            </form>
         </div>
     </div>
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-</div>
+    </div>
+</div> <!-- /container -->
+
+<!--<div class="row voffset5">-->
+<!--    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>-->
+<!--    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">-->
+<!---->
+<!--        <div class="panel panel-primary">-->
+<!--            <div class="panel-heading">User credentials</div>-->
+<!--            <div class="panel-body">-->
+<!--                <div class="container-fluid">-->
+<!--                    <li class="list-group-item">-->
+<!--                        <div class="form-inline">-->
+<!--                            <div>Update your email-->
+<!--                                <input type="text" class="form-control" placeholder="Search">-->
+<!--                                <button type="submit" class="btn btn-default text-right">Update</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="list-group-item">-->
+<!--                        <div class="form-inline">-->
+<!--                            <div>Update your email-->
+<!--                                <input type="text" class="form-control" placeholder="Search">-->
+<!--                                <button type="submit" class="btn btn-default text-right">Update</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li class="list-group-item">-->
+<!--                        <div class="form-inline">-->
+<!--                            <div>Update your email-->
+<!--                                <input type="text" class="form-control" placeholder="Search">-->
+<!--                                <button type="submit" class="btn btn-default text-right">Update</button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>-->
+<!--</div>-->
 
 
 <!--<h2>Zmień swój adres email:</h2>-->
