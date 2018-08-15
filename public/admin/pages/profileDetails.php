@@ -31,25 +31,35 @@
             Change User Credentials
         </div>
         <div class="panel-footer">
-            <form class="form-new-user-credentials" method="post">
+            <form class="form-new-email" action="" method="post">
                 <div class="form-group">
                     <label for="InputEmail">Change your email address</label>
-                    <input name="email" type="email" id="newEmail" class="form-control" placeholder="New email address" required autofocus>
+                    <input name="newEmail" id="newEmail" class="form-control" placeholder="New email address" autofocus>
+                    <div id="emailChange" style="display:none;"></div>
                     <button class="btn btn-default btn-block" type="submit" id="newEmailButton">Submit</button>
                 </div>
+            </form>
+
+            <form class="form-new-username" action="" method="post">
                 <div class="form-group">
                     <label for="InputUsername">Change your username</label>
-                    <input name="username" type="username" id="newUsername" class="form-control" placeholder="New username" required autofocus>
+                    <input name="newUsername" id="newUsername" class="form-control" placeholder="New username" autofocus>
+                    <div id="usernameChange" style="display:none;"></div>
                     <button class="btn btn-default btn-block" type="submit" id="newUsernameButton">Submit</button>
                 </div>
+            </form>
+
+            <form class="form-new-password" action="" method="post">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Change your password</label>
-                    <input name="password" type="password" id="newPassword" class="form-control" placeholder="New password" required autofocus>
+                    <label for="InputPassword">Change your password</label>
+                    <input name="newPassword" id="newPassword" type="password" class="form-control" placeholder="New password" autofocus>
+                    <div id="passwordChange" style="display:none;"></div>
                     <button class="btn btn-default btn-block" type="submit" id="newPassword">Submit</button>
                 </div>
+            </form>
 
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-            </form>
+
         </div>
     </div>
     </div>

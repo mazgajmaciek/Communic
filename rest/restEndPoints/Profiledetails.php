@@ -2,20 +2,25 @@
 session_start();
 
 header('Content-Type: application/json');//return json header
-
 $userId = $_SESSION['userId'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-    if (isset($_POST['email_change']) && !empty($_POST['email_change'])) {
-        $newEmail = $_POST['email_change'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
+        $newEmail = $_POST['newEmail'];
+
 
         $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setEmail($newEmail);
         $loggedUser->save($conn);
 
-        echo "Twój adres email został zmieniony!";
-    } elseif (isset($_POST['username_change']) && !empty($_POST['username_change'])) {
-        $newUsername = $_POST['username_change'];
+        $newEmailArray = [];
+        $newEmailArray[] = json_decode(json_encode($newEmail), true);
+
+        $response = ['success' => $newEmailArray,
+            'message' => "Email address updated"];
+
+    } elseif (isset($_POST['newUsername']) && !empty($_POST['newUsername'])) {
+        $newUsername = $_POST['newUsername'];
 
         $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setUsername($newUsername);
@@ -25,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
 
 
         echo "Twoja nazwa użytkownika została zmieniona!";
-    } elseif (isset($_POST['password_change']) && !empty($_POST['password_change'])) {
-        $newPassword = $_POST['password_change'];
+    } elseif (isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
+        $newPassword = $_POST['newPassword'];
 
         $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setHashPassword($newPassword);
@@ -36,4 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
     } else {
         //json response error
     }
+} else {
+    echo "not post";
 }

@@ -4,6 +4,7 @@ $(function () {
 	var $sentMsgList = $("#sentMsgList");
 
 	function getReceivedPrivateMsg() {
+
 		$
 			.ajax({
 				url: '../../../rest/rest.php/privateMessage',

@@ -25,7 +25,7 @@
 <div class="page-bg"></div>
 
 <!--new message panel-->
-<form class="tweet-new" method="post" action="mainpage.php">
+<form class="tweet-new" method="post" action="">
     <div class="panel panel-default panel-primary tweet-newmessage">
         <div class="panel-heading">
             <h3 class="panel-title"><b>New message:</b></h3>
