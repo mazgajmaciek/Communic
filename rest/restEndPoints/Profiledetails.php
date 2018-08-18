@@ -44,7 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = ['success' => "Password changed"];
     } else {
         //json response error
-        $response = ['success' => "No data provided"];
+        $errorMessage = "No data provided";
+        $errorMessageArray[] = json_decode(json_encode($errorMessage), true);
+        $response = ['message' => $errorMessage];
     }
 } else {
     echo "not post";

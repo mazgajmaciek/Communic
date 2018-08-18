@@ -1,24 +1,5 @@
 $(function () {
 
-	// $('#privateMsgLink').on('submit', function (event) {
-	// 	event.preventDefault();
-	// 	alert("js bang");
-	//
-	// 	var that = $(this),
-	// 		url = that.attr('action'),
-	// 		type = that.attr('method'),
-	// 		data = {};
-	//
-	// 	that.find('[name]').each(function () {
-	//
-	// 		var that = $(this),
-	// 			name = that.attr('name'),
-	// 			value = that.val();
-	//
-	// 		data[name] = value;
-	// 	});
-	// });
-
 	var $formNewEmail = $('form.form-new-email');
 	var $formNewUsername = $('form.form-new-username');
 	var $formNewPassword = $('form.form-new-password');
@@ -59,10 +40,12 @@ $(function () {
 					$statusChange.slideUp().delay(delay);
 
 				} else {
-					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
+					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.message} </div>`;
 					$statusChange.html(msg);
 					$statusChange.slideDown().delay(delay);
 					$statusChange.slideUp().delay(delay);
+
+					return false;
 				}
 			})
 			.fail(function (response) {
@@ -106,7 +89,7 @@ $(function () {
 					$statusChange.slideUp().delay(delay);
 
 				} else {
-					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
+					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.message} </div>`;
 					$statusChange.html(msg);
 					$statusChange.slideDown().delay(delay);
 					$statusChange.slideUp().delay(delay);
@@ -155,7 +138,7 @@ $(function () {
 					$statusChange.slideUp().delay(delay);
 
 				} else {
-					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
+					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.message} </div>`;
 					$statusChange.html(msg);
 					$statusChange.slideDown().delay(delay);
 					$statusChange.slideUp().delay(delay);
