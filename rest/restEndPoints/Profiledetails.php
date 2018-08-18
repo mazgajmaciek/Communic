@@ -28,8 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $_SESSION['username'] = $newUsername;
 
+        $newUsernameArray = [];
+        $newUsernameArray[] = json_decode(json_encode($newUsername), true);
 
-        echo "Twoja nazwa użytkownika została zmieniona!";
+        $response = ['success' => $newUsername,
+            'message' => "Username updated"];
+
     } elseif (isset($_POST['newPassword']) && !empty($_POST['newPassword'])) {
         $newPassword = $_POST['newPassword'];
 
@@ -37,9 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $loggedUser->setHashPassword($newPassword);
         $loggedUser->save($conn);
 
-        echo "Twoje hasło zostało zmienione!";
+        $response = ['success' => "Password changed"];
     } else {
         //json response error
+        $response = ['success' => "No data provided"];
     }
 } else {
     echo "not post";
