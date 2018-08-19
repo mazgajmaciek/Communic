@@ -28,7 +28,7 @@
     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 
         <div class="panel panel-default">
-            <div class="panel-body">
+            <div class="panel-body" id="username">
                 Strona użytkownika [username]
             </div>
         </div>

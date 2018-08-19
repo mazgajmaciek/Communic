@@ -49,5 +49,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = ['message' => $errorMessage];
     }
 } else {
-    echo "not post";
+    $response = ['message' => 'data not sent via POST'];
 }

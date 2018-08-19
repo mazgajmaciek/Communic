@@ -89,42 +89,51 @@ class Tweet extends User implements JsonSerializable {
         return null;
     }
 
-    static public function loadAllTweetsByUserId(PDO $pdo, $id) {
-        //$stmt = $pdo->prepare("SELECT * FROM Messages WHERE user_id=:id");
-        $stmt = $pdo->prepare("SELECT "
-                . "Users.username, "
-                . "Messages.message_text, "
-                . "Messages.message_datetime "
-                . "FROM "
-                . "Messages "
-                . "JOIN "
-                . "Users "
-                . "ON Users.id=Messages.user_id "
-                . "WHERE `user_id`=:id "
-                . "ORDER BY Messages.message_datetime DESC");
-        $result = $stmt->execute([
-            'id' => $id
-        ]);
+    static public function loadAllTweetsByUserId(PDO $pdo, $userId) {
 
-        //var_dump($stmt->rowCount());
+//        if ($result === true && $stmt->rowCount() > 0) {
+//            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//
+//                $loadedTweet = new Tweet($pdo);
+//                //echo $loadedTweet->id = $row['message_id'] . '<br>';
+//                echo $loadedTweet->userId = $row['username'] . '<br>';
+//                echo $loadedTweet->text = $row['message_text'] . '<br>';
+//                echo $loadedTweet->creationDate = $row['message_datetime'] . '<br>';
+//                echo "<br>";
+//
+//
+//                //return $loadedTweet;
+//            }
+//
+//            return null;
+//        }
 
+        $sql = "SELECT Users.username, Messages.message_text, Messages.message_datetime, Messages.message_id FROM Messages JOIN Users ON Users.id=Messages.user_id WHERE `user_id`=:user_id ORDER BY Messages.message_datetime DESC";
 
-        if ($result === true && $stmt->rowCount() > 0) {
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['user_id' => $userId]);
 
-                $loadedTweet = new Tweet();
-                //echo $loadedTweet->id = $row['message_id'] . '<br>';
-                echo $loadedTweet->userId = $row['username'] . '<br>';
-                echo $loadedTweet->text = $row['message_text'] . '<br>';
-                echo $loadedTweet->creationDate = $row['message_datetime'] . '<br>';
-                echo "<br>";
+        $tweets = $stmt->fetchAll(PDO::FETCH_OBJ);
+        $tweetsList = [];
 
+        if ($stmt !== false && $stmt->rowCount() > 0) {
+            foreach ($tweets as $dbTweet) {
+                $tweet = new Tweet($pdo);
+                $tweet->id = $dbTweet->message_id;
+//                $tweet->userId = $dbTweet->user_id;
+                $tweet->text = $dbTweet->message_text;
+                $tweet->creationDate = $dbTweet->message_datetime;
 
-                //return $loadedTweet;
+//                $userName = User::loadUserById($pdo, $dbTweet->user_id);
+//                $tweet->userName = $userName->getUsername();
+
+                $tweetsList[] = $tweet;
             }
-
+            return $tweetsList;
+        } else {
             return null;
         }
+
     }
 
     static public function loadAllTweets(PDO $pdo) {

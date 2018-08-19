@@ -1,7 +1,7 @@
 <?php
-require_once('User.php');
+require_once('Tweet.php');
 
-class Profiledetails extends User implements JsonSerializable
+class Profiledetails extends Tweet implements JsonSerializable
 {
 
 }
