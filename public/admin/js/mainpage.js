@@ -4,6 +4,7 @@ $(function () {
 	var $tweetList = $('#tweetList');
 
 	//renders all existing tweets
+	function getMainPageTweets() {
 		$.ajax({
 			url: "../../../rest/rest.php/tweet",
 			dataType: 'json',
@@ -30,7 +31,9 @@ $(function () {
 			.fail(function (response) {
 				console.log(response.responseText);
 			});
+	};
 
+	getMainPageTweets();
 
 	//render tweet function
 	function renderTweet(tweet) {
@@ -124,4 +127,6 @@ $(function () {
 	});
 
 
+
 });
+
