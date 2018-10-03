@@ -1,5 +1,7 @@
 $(function () {
 
+	var $sentTweetsList = $('#sentTweets');
+
 	function getUsername() {
 
 		$.ajax({
@@ -11,6 +13,16 @@ $(function () {
 
 				var $username = $('#username');
 				$username.append(response.username);
+
+				if (response.sentTweets.length > 0) {
+
+					$.each(response.sentTweets, function (index, tweet) {
+						renderTweet(tweet);
+					})
+
+				} else {
+					$tweetPanel.find('.panel-body').html("No tweets");
+				}
 
 				// var $statusChange = $("#emailChange");
 				// var delay = 500;
@@ -38,6 +50,28 @@ $(function () {
 
 	getUsername();
 
+	function renderSentTweets () {
+		var string = `<div class="panel panel-default">
+                    <div class="panel-heading">${tweet.userName}</div>
+                    <div class="panel-body">${tweet.text}</div>
+                    </div>`;
+	}
+
+	function renderTweet(tweet) {
+		var string = `<div class="panel panel-default">
+						  <div class="panel-heading">
+						        <div class="split-para">
+						            	<b>${tweet.userName}</b>
+						            <span>${tweet.creationDate}</span>
+						        </div>
+						  </div>
+						  <div class="panel-body">${tweet.text}</div>
+						</div>`;
+
+		$sentTweetsList.append(string);
+	}
+
+	// renderTweet();
 
 
 	// $('body').on('submit', '#authorEdit', function (element) {

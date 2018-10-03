@@ -29,16 +29,30 @@
 
         <div class="panel panel-default">
             <div class="panel-body" id="username">
-                Strona użytkownika [username]
+                Strona użytkownika
             </div>
         </div>
 
         <div class="panel panel-primary">
+            <div class="panel-heading">Sent tweets</div>
             <div class="panel-body">
-
+                <ul class="list-group" id="sentTweets">
+                    <!--                    <li class="list-group-item">-->
+                    <!--                        <div class="panel panel-default">-->
+                    <!--                            <div class="panel-heading"><span class="authorTitle">Jan Kowalski</span>-->
+                    <!--                                <button data-id="1" class="btn btn-danger pull-right btn-xs btn-author-remove"><i-->
+                    <!--                                            class="fa fa-trash"></i></button>-->
+                    <!--                                <button data-id="1" class="btn btn-primary pull-right btn-xs btn-author-books"><i-->
+                    <!--                                            class="fa fa-book"></i></button>-->
+                    <!--
+                    <!--                            </div>-->
+                    <!--                            <ul class="authorBooksList"></ul>-->
+                    <!--                        </div>-->
+                    <!--                    </li>-->
+                </ul>
             </div>
         </div>
-    </div>
+
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 </div>
 
@@ -57,12 +71,3 @@
 //
 //if ($_SESSION['userId'] !== $_GET['userId'])
 //    ?>
-
-
-
-
-<h3>Wiadomości wraz z komentarzami:</h3>
-
-<?php
-
-?>

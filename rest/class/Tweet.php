@@ -123,9 +123,9 @@ class Tweet extends User implements JsonSerializable {
 //                $tweet->userId = $dbTweet->user_id;
                 $tweet->text = $dbTweet->message_text;
                 $tweet->creationDate = $dbTweet->message_datetime;
-
+                $tweet->userName = $dbTweet->username;
 //                $userName = User::loadUserById($pdo, $dbTweet->user_id);
-//                $tweet->userName = $userName->getUsername();
+
 
                 $tweetsList[] = $tweet;
             }
