@@ -96,19 +96,20 @@ $(function () {
 					prependNewTweet(response.newTweet);
 					//clears new tweet textarea
 					$textArea.val('');
-				} else {
-					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.error} </div>`;
-
-					$newTweetNotice.html(msg);
-					$newTweetNotice.slideDown().delay(500);
-					$newTweetNotice.slideUp().delay(500);
-
-					return false;
 				}
 
 			})
 			.fail(function (response) {
 				console.log(response);
+
+				var $newTweetNotice = $("#tweet-textarea-notice");
+				var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.responseJSON.error} </div>`;
+
+				$newTweetNotice.html(msg);
+				$newTweetNotice.slideDown().delay(500);
+				$newTweetNotice.slideUp().delay(500);
+
+				return false;
 			});
 
 	});
