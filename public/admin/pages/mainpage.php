@@ -8,7 +8,13 @@
     <title>Communic - Main Page</title>
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+<!--    <link href="../css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link href="../css/mainpage.css" rel="stylesheet">-->
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<!--    <link rel="stylesheet" href="../css/bootstrap.min.css">-->
     <link href="../css/mainpage.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -49,6 +55,11 @@
 </ul>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/mainpage.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

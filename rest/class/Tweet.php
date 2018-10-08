@@ -68,6 +68,22 @@ class Tweet extends User implements JsonSerializable {
         $this->creationDate = $creationDate;
     }
 
+    /**
+     * @return null
+     */
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+
+    /**
+     * @param null $userName
+     */
+    public function setUserName($userName)
+    {
+        $this->userName = $userName;
+    }
+
     static public function loadTweetById(PDO $pdo, $id) {
         $stmt = $pdo->prepare("SELECT * FROM Messages WHERE message_id=:id");
         $result = $stmt->execute([
@@ -135,6 +151,8 @@ class Tweet extends User implements JsonSerializable {
         }
 
     }
+
+
 
     static public function loadAllTweets(PDO $pdo) {
 

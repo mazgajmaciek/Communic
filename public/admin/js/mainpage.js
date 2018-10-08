@@ -33,8 +33,6 @@ $(function () {
 			});
 	};
 
-	getMainPageTweets();
-
 	//render tweet function
 	function renderTweet(tweet) {
 		var string = `<div class="panel panel-default">
@@ -52,28 +50,9 @@ $(function () {
 		$tweetList.append(string);
 	}
 
-	//append new tweet to the top of the list
-	//TODO -
-	function prependNewTweet(tweets) {
-		var string = `<div class="panel panel-default">
-						  <div class="panel-heading">
-						        <div class="split-para">
-						        	<a data-userid=${tweet.userId} href="../pages/userpage.php?user=${tweet.userId}">
-						            	<b>${tweet.userName}</b>
-						            </a>
-						            <b>${tweets.username}</b>
-						            <span>${tweets.newTweet.creationDate}</span></div>
-						  </div>
-						  <div class="panel-body">${tweets.newTweet.text}</div>
-						</div>`;
-
-		$tweetList.prepend(string);
-	}
-
-
-
 
 	//send new tweet
+	//TODO - complete the below
 	$($newTweetForm).on('submit', function (event) {
 		event.preventDefault();
 
@@ -81,6 +60,14 @@ $(function () {
 			url = that.attr('action'),
 			type = that.attr('method'),
 			data = {};
+
+		// var text = $('#new-tweet-textarea').val();
+
+
+			// var newTweet = {
+			// 	text: text,
+			//
+			// };
 
 		that.find('[name]').each(function () {
 
@@ -91,22 +78,22 @@ $(function () {
 			data[name] = value;
 		});
 
+
+
 		$.ajax({
 			url: "../../../rest/rest.php/tweet",
-			dataType: 'json',
+			dataType: 'JSON',
 			type: type,
 			data: data
 		})
 			.done(function (response) {
-
-				console.log(response);
 
 				var $newTweetNotice = $("#tweet-textarea-notice");
 				var $textArea = $("textarea[name='new_message_text']");
 
 				if (response.newTweet) {
 					console.log(response);
-					prependNewTweet(response);
+					prependNewTweet(response.newTweet);
 					//clears new tweet textarea
 					$textArea.val('');
 				} else {
@@ -126,7 +113,23 @@ $(function () {
 
 	});
 
+	//append new tweet to the top of the list
+	function prependNewTweet(newTweet) {
+		var string = `<div class="panel panel-default">
+						  <div class="panel-heading">
+						        <div class="split-para">
+						        	<a data-userid=${newTweet.userId} href="../pages/userpage.php?user=${newTweet.userId}">
+						            	<b>${newTweet.userName}</b>
+						            </a>
+						            <span>${newTweet.creationDate}</span></div>
+						  </div>
+						  <div class="panel-body">${newTweet.text}</div>
+						</div>`;
 
+		$tweetList.prepend(string);
+	}
+
+	getMainPageTweets();
 
 });
 
