@@ -1,24 +1,61 @@
 <?php
 session_start();
-
 header('Content-Type: application/json');//return json header
 
-$userId = $_SESSION['userId'];
-$userName = $_SESSION['username'];
-//    echo "Strona użytkownika " . $userName;
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+    $userId = $_SESSION['userId'];
+    $userName = $_SESSION['username'];
+
+        $username = $_SESSION['username'];
+        $tweets = Tweet::loadAllTweetsByUserId($conn, $userId);
+        $jsonTweets = [];
+
+        foreach ($tweets as $newTweet) {
+            $jsonTweets[] = json_decode(json_encode($newTweet), true);
+        }
+
+        $response = ["sentTweets" => $jsonTweets,
+            "username" => $userName];
+
+
+} else {
+    $response = ["error" => "wrong HTTP request type"];
+}
+
+//if (($_SERVER['REQUEST_METHOD'] === 'GET')) {
+//
+//    var_dump($_GET);
+//}
+
+$action = '';
+
+
+//check if there is subpage request
+//if (isset($_SESSION['userIdUserpage']) && ($userId === $userIdUserpage)) {
+//
+//    $tweets = Tweet::loadAllTweetsByUserId($conn, $userId);
+//    $jsonSentTweets = [];
+//
+//    foreach ($tweets as $newTweet) {
+//        $jsonSentTweets[] = json_decode(json_encode($newTweet), true);
+//    }
+//
+//    $response = ['username' => $userName,
+//        'sentTweets' => $jsonSentTweets];
+//} else {
+//    $response = ['error' => 'different user logged'];
+//}
+
+
+
+
+
+
+
 
 //TODO - add logic for redirecting to logged user page (part for sending private message should NOT be visible)
 //TODO - add logic for json handler for sent tweets
-
-$tweets = Tweet::loadAllTweetsByUserId($conn, $userId);
-$jsonSentTweets = [];
-
-foreach ($tweets as $newTweet) {
-    $jsonSentTweets[] = json_decode(json_encode($newTweet), true);
-}
-
-$response = ['sentTweets' => $jsonSentTweets,
-    'username' => $userName];
 
 //if (($_SERVER['REQUEST_METHOD'] === 'GET') && ($_SESSION['userId'] === $_GET['user'])) {
 //

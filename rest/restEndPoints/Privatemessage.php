@@ -3,6 +3,13 @@ session_start();
 
 header('Content-Type: application/json');//return json header
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["userSearchForm"])) {
+
+    $query = $_POST["userSearch"];
+    $queryResult = Privatemessage::searchByUsername($conn, $query);
+    $response = ['success' => $queryResult];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     $userId = $_SESSION['userId'];

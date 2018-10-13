@@ -40,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
     } else {
-        $response += ["error" => "Cannot submit empty tweet."];
+        $response = ["error" => "Cannot submit empty tweet."];
     }
 
 } else {
-    $response += ["error" => "Server error. New tweet not sent."];
+    $response = ["error" => "Server error. New tweet not sent."];
 }
 
 ?>

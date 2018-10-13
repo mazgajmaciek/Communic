@@ -168,6 +168,35 @@ class Privatemessage implements JsonSerializable {
         return null;
     }
 
+    static public function searchByUsername(PDO $pdo, $userName) {
+//        $stmt = $pdo->prepare("SELECT * FROM PrivateMessage WHERE sender_id=:sender_id");
+        $stmt = $pdo->prepare("SELECT u.username FROM Users u WHERE userName LIKE CONCAT('%',:userName,'%')");
+        $result = $stmt->execute([
+            'userName' => $userName
+        ]);
+
+        $ret = [];
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+                $loadedUsername = new Privatemessage($pdo);
+                $loadedUsername->userName = $row['username'];
+//                $loadedPrivateMessage->id = $row['id'];
+//                $loadedPrivateMessage->senderId = $row['sender_id'];
+//                $loadedPrivateMessage->receiverId = $row['receiver_id'];
+//                $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
+//                $loadedPrivateMessage->text = $row['privatemessage_text'];
+//                $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
+//                $loadedPrivateMessage->userName = $row['username'];
+
+                $ret[] = $loadedUsername;
+            }
+            return $ret;
+        }
+        return null;
+    }
+
     public function saveToDB(PDO $pdo) {
         //sprawdza czy robimy insert czy update
         if ($this->id == -1) { // if -1, robimy insert

@@ -91,7 +91,7 @@ $(function () {
 
 	                var delay = 500;
 	                var indexURL = '../admin/pages/index.php';
-	                var mainpageURL = '../admin/mainpage.html';
+	                var mainpageURL = "../public/admin/pages/index.php";
 	                setTimeout(function(){ window.location = indexURL; }, delay);
 	                setTimeout(function(){ window.location = mainpageURL; }, delay);
                 } else {

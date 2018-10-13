@@ -32,14 +32,83 @@
 
 <div class="container" id="container">
     <?php
-    $action = '';
+    session_start();
+    /*
+    The following function will strip the script name from URL
+    i.e.  http://www.something.com/search/book/fitzgerald will become /search/book/fitzgerald
+    */
 
+
+
+
+//    function getCurrentUri()
+//    {
+//        $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
+//        $uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
+//        if (strstr($uri, '?')) $uri = substr($uri, 0, strpos($uri, '?'));
+//        $uri = '/' . trim($uri, '/');
+//        return $uri;
+//    }
+//
+//    $base_url = getCurrentUri();
+//    $routes = array();
+//    $routes = explode('/', $base_url);
+//    foreach($routes as $route)
+//    {
+//        if(trim($route) != '')
+//            array_push($routes, $route);
+//    }
+//
+//    /*
+//    Now, $routes will contain all the routes. $routes[0] will correspond to first route.
+//    For e.g. in above example $routes[0] is search, $routes[1] is book and $routes[2] is fitzgerald
+//    */
+//
+//    var_dump($routes);
+//    var_dump($_SERVER["REQUEST_URI"]);
+//    var_dump($_SERVER["REQUEST_URI"]);
+//    var_dump($base_url);
+
+
+
+//    if($routes[0] == "search")
+//    {
+//        if($routes[1] == "book")
+//        {
+//            searchBooksBy($routes[2]);
+//        }
+//    }
+    $action = '';
     //check if there is subpage request
     if (isset($_GET['action'])) {
-        $action = preg_replace('#[^0-9a-zA-Z]#', '', $_GET['action']);//clean all non alfanum chars from action for safety
-        $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
-        include_once $incFile;//load subpage file
+        $addArr = explode('/', $_GET['action']);
+
+        if (count($addArr) > 1) {
+            $_SESSION['userpageId'] = $addArr[1];
+            $action = preg_replace('#[^0-9a-zA-Z]#', '', $addArr[0]);//clean all non alfanum chars from action for safety
+            $incFile = __DIR__.'/'.$action. '.php';//define variable with subpage path
+
+            include_once $incFile;//load subpage file
+        } else {
+            $action = preg_replace('#[^0-9a-zA-Z]#', '', $addArr[0]);//clean all non alfanum chars from action for safety
+            $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
+            include_once $incFile;//load subpage file
+        }
     }
+
+//    if (isset($_GET['userid'])) {
+//        $userIdURL = $_GET['userid'];
+//        $action = preg_replace('#[^0-9a-zA-Z]#', '', $addArr[0]);//clean all non alfanum chars from action for safety
+//        $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
+//        include_once $incFile;//load subpage file
+//        $_SESSION['userIdUserpage'] = $userIdURL;
+//    }
+
+
+
+    //TODO - pass $addArr[1] via $_SESSION to Userpage.php endpoint + modifications of userpage.php depending on what userId is being
+    //TODO - passed (part of the webpage must be loaded via .js
+
     ?>
 </div>
 
@@ -49,7 +118,7 @@
 <?php
 //check if there is subpage request
 if ($action) {
-    echo '<script src="../js/'.$action.'.js"></script>';//load js file for subbage
+    echo '<script src="../js/'.$addArr[0].'.js"></script>';//load js file for subbage
 }
 ?>
 </body>

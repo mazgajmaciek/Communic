@@ -41,7 +41,7 @@ if (!isset($response['error'])) {//process request if no db error
     $dir = __DIR__.'/restEndPoints/'.$className.'.php';
     str_replace("//", "", $dir);
     include_once $dir;
-    $response['dir'] = $dir;
+
 }
 
 header('Content-Type: application/json');//return json header

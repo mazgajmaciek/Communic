@@ -38,9 +38,7 @@ $(function () {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
-						            <a data-userid=${tweet.userId} href="../pages/userpage.php?user=${tweet.userId}">
 						            	<b>${tweet.userName}</b>
-						            </a>
 						            <span>${tweet.creationDate}</span>
 						        </div>
 						  </div>
@@ -119,7 +117,8 @@ $(function () {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
-						        	<a data-userid=${newTweet.userId} href="../pages/userpage.php?user=${newTweet.userId}">
+						        	<!--<a data-userid=${newTweet.userId} href="../pages/userpage.php?user=${newTweet.userId}">-->
+						        	<a data-userid=${newTweet.userId} id="userpageLink" href="../pages/index.php?action=userpage">
 						            	<b>${newTweet.userName}</b>
 						            </a>
 						            <span>${newTweet.creationDate}</span></div>
@@ -131,6 +130,38 @@ $(function () {
 	}
 
 	getMainPageTweets();
+	//
+	// //redirect to userpage depending on data-userid value
+	// $('body').on('click', '#userpageLink', function (event) {
+	// 	event.preventDefault();
+	//
+	// 	var that = $(this);
+	// 	var userId = that.data('userid');
+	// 	console.log(userId);
+	//
+	// 	// window.location.replace("../../userpage.php");
+	//
+	// 	$.ajax({
+	// 		url: '../../../rest/rest.php/userpage',
+	// 		type: 'GET'
+	// 	})
+	// 		.done(function (response) {
+	// 			console.log(response);
+	//
+	// 			if (response.loggedout) {
+	// 				//alert dropdown here
+	//
+	// 				setTimeout(window.location.replace("../../index.php"), 2000);
+	// 			} else {
+	// 				alert('something went no yes');
+	// 				return false;
+	// 			}
+	// 		})
+	// 		.fail(function (response) {
+	// 			console.log(JSON.stringify(response.error));
+	// 		});
+	//
+	// });
 
 });
 

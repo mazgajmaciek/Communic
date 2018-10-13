@@ -60,8 +60,6 @@
 //include_once '../../bootstrap.php';
 //
 ////TODO below php code is supposed to be another endpoint
-//var_dump($_GET);
-//var_dump($_SESSION);
 //
 //
 //
@@ -70,4 +68,34 @@
 //}
 //
 //if ($_SESSION['userId'] !== $_GET['userId'])
-//    ?>
+//
+
+//check if there is subpage request
+//if (isset($_GET['action'])) {
+//    var_dump($_GET['action']);
+//
+//    $addArr = explode('/', $_GET['action']);
+//    var_dump($addArr);
+//
+//    if(($_SERVER['REQUEST_METHOD'] === 'GET') && ($_SESSION['userId'] === $addArr[1])) {
+//
+//        $tweets = Tweet::loadAllTweetsByUserId($conn, $userId);
+//        $jsonSentTweets = [];
+//
+//        foreach ($tweets as $newTweet) {
+//            $jsonSentTweets[] = json_decode(json_encode($newTweet), true);
+//        }
+//
+//        $response = ['sentTweets' => $jsonSentTweets,
+//            'username' => $userName];
+//
+//    } else {
+//
+//    }
+
+//    $action = preg_replace('#[^0-9a-zA-Z]#', '', $addArr[0]);//clean all non alfanum chars from action for safety
+//    $incFile = __DIR__.'/'.$action.'.php';//define variable with subpage path
+//    include_once $incFile;//load subpage file
+
+
+?>

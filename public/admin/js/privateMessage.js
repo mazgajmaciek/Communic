@@ -2,6 +2,7 @@ $(function () {
 
 	var $receivedMsgList = $("#receivedMsgList");
 	var $sentMsgList = $("#sentMsgList");
+	var $userSearchForm = $("#userSearchForm");
 
 	function getReceivedPrivateMsg() {
 
@@ -37,6 +38,27 @@ $(function () {
 			})
 			.fail(function (error) {
 				console.log('Create author error', error);
+			});
+	}
+
+	function doUserSearch() {
+
+		$
+			.ajax({
+				url: '../../../rest/rest.php/privateMessage',
+				type: 'POST'
+			})
+			.done(function (response) {
+				for (var i = 0; i < response.success.length; i++) {
+					if (response.success[i].readStatus === "0") {
+						renderNewReceivedPrivateMsg(response.success[i]);
+					} else {
+						renderReceivedPrivateMsg(response.success[i]);
+					}
+				}
+			})
+			.fail(function (error) {
+				console.log('Create sent private message error', error);
 			});
 	}
 
@@ -175,6 +197,43 @@ $(function () {
 			});
 
 	});
+
+	//search for users to whom private message would be sent
+
+	$($userSearchForm).on('keyup', function () {
+		// event.preventDefault();
+
+		var $query = $('#userSearch').val();
+
+		$
+			.ajax({
+				url: '../../../rest/restEndPoints/Privatemessage.php/',
+				type: 'POST',
+				data: $query
+			})
+			.done(function (response) {
+
+				console.log(response);
+
+				// for (var i = 0; i < response.sentPrvMsgs.length; i++) {
+				// 	if (response.sentPrvMsgs[i].id == id) {
+				//
+				// 		var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+				// 		sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
+				// 		sentPrvMsgDetails.slideToggle();
+				// 	}
+				// }
+
+			})
+			.fail(function (error) {
+				console.log('Username not found', error);
+			});
+
+	});
+
+	// $($userSearch).autocomplete{
+	//
+	// }
 
 	getReceivedPrivateMsg();
 	getSentPrivateMsg();

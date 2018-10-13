@@ -15,7 +15,6 @@ $(function () {
 				$username.append(response.username);
 
 				if (response.sentTweets.length > 0) {
-
 					$.each(response.sentTweets, function (index, tweet) {
 						renderTweet(tweet);
 					})
@@ -46,9 +45,9 @@ $(function () {
 			.fail(function (response) {
 				console.log(response);
 			});
+
 	}
 
-	getUsername();
 
 	function renderSentTweets () {
 		var string = `<div class="panel panel-default">
@@ -71,7 +70,7 @@ $(function () {
 		$sentTweetsList.append(string);
 	}
 
-	// renderTweet();
+	getUsername();
 
 
 	// $('body').on('submit', '#authorEdit', function (element) {

@@ -26,6 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['username']) && !empty
         $result = $user->save($conn);
 
         $_SESSION['logged'] = true;
+        //TODO - change $_SESSION credentials
+        $user = User::showUserByEmail($conn, $email);
+        $_SESSION['userId'] = $user->getId();
+        $_SESSION['username'] = $user->getUsername();
+//        $username = $_SESSION['username'];
 
         $response = ['success' => 'You have registered!'];
         echo json_encode($response);
