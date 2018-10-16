@@ -2,7 +2,7 @@ $(function () {
 
 	var $receivedMsgList = $("#receivedMsgList");
 	var $sentMsgList = $("#sentMsgList");
-	var $userSearchForm = $("#userSearchForm");
+	var $userSearchbox = $("#userSearch");
 
 	function getReceivedPrivateMsg() {
 
@@ -200,20 +200,23 @@ $(function () {
 
 	//search for users to whom private message would be sent
 
-	$($userSearchForm).on('keyup', function () {
-		// event.preventDefault();
+	$($userSearchbox).on('keyup', function () {
+		event.preventDefault();
 
 		var $query = $('#userSearch').val();
+		console.log($query);
 
 		$
 			.ajax({
-				url: '../../../rest/restEndPoints/Privatemessage.php/',
+				url: '../../../rest/restEndPoints/Privatemessage.php',
 				type: 'POST',
-				data: $query
+				data: {
+					usernameQuery: $query
+				}
 			})
 			.done(function (response) {
 
-				console.log(response);
+				console.log(response.success);
 
 				// for (var i = 0; i < response.sentPrvMsgs.length; i++) {
 				// 	if (response.sentPrvMsgs[i].id == id) {

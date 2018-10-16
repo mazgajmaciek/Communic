@@ -29,13 +29,26 @@
             <div class="panel-body">
                 <ul class="list-group" id="sendPrivateMessage">
                     <form class="form-user-search" id="userSearchForm" action="" method="post">
+<!--                        <div class="form-group">-->
+<!--                            <label for="userSearch">Find user</label>-->
+<!--                            <input name="userSearch" id="userSearch" class="form-control" placeholder="Find user" autofocus>-->
+<!--                            <input name="newPrvMessage" id="newPrvMessage" class="form-control" placeholder="Type in message" autofocus>-->
+<!--                            <div id="userSearch" style="display:none;"></div>-->
+<!---->
+<!--                        </div>-->
+
                         <div class="form-group">
-                            <label for="userSearch">Find user</label>
-                            <input name="userSearch" id="userSearch" class="form-control" placeholder="Find user" autofocus>
-                            <input name="newPrvMessage" id="newPrvMessage" class="form-control" placeholder="Type in message" autofocus>
-                            <div id="userSearch" style="display:none;"></div>
-                            <button class="btn btn-default btn-block" type="submit" id="userSearchButton">Submit new private message</button>
+                            <label for="name">User Search</label>
+                            <input type="text" class="form-control" name="userSearch" id="userSearch" placeholder="Find user...">
                         </div>
+                        <div class="form-group">
+                            <label for="surname">Private Message</label>
+                            <input type="text" class="form-control" name="newPrvMessage" id="newPrvMessage" placeholder="Type in private message...">
+                        </div>
+
+                        <button id="userSearchButton" type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Submit new private message</button>
+                    </form>
+
                     </form>
                     <!--                    <li class="list-group-item">-->
                     <!--                        <div class="panel panel-default">-->

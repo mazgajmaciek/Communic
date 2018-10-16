@@ -3,11 +3,33 @@ session_start();
 
 header('Content-Type: application/json');//return json header
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["userSearchForm"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('../class/Privatemessage.php');
 
-    $query = $_POST["userSearch"];
-    $queryResult = Privatemessage::searchByUsername($conn, $query);
-    $response = ['success' => $queryResult];
+    //load DB config
+    require_once '../config/db.php';
+
+    //connect to DB
+    try {
+        $conn = new PDO(
+            "mysql:host=".DB_HOST.";dbname=".DB_DB.";charset=utf8"
+            , DB_LOGIN, DB_PASSWORD,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
+    } catch (PDOException $e) {
+        $response = ['error' => 'DB Connection error: '.$e->getMessage()];
+    }
+
+    $query = $_POST["usernameQuery"];
+    $jsonUsernameQuery = [];
+    $queryResultArray = Privatemessage::searchByUsername($conn, $query);
+
+    foreach ($queryResultArray as $username) {
+        $jsonUsernameQuery[] = json_decode(json_encode($username), true);
+    }
+
+    $response = ['success' => $jsonUsernameQuery];
+    echo json_encode($response);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

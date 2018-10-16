@@ -134,6 +134,25 @@ class User implements JsonSerializable {
         return null;
     }
 
+    static public function loadUserByUsername(PDO $pdo, $username) {
+
+        $stmt = $pdo->prepare("SELECT u.id, u.username FROM Users u WHERE username LIKE :username");
+        $result = $stmt->execute([
+            'username' => $username
+        ]);
+
+        if ($result === true && $stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $loadedUser = new User();
+            $loadedUser->username = $row['username'];
+
+            return $loadedUser;
+        }
+
+        return null;
+    }
+
     static public function showUserByEmail(PDO $pdo, $email) {
         $stmt = $pdo->prepare('SELECT * FROM Users WHERE email=:email');
         $result = $stmt->execute(['email' => $email]);
