@@ -39,7 +39,9 @@
 
                         <div class="form-group">
                             <label for="name">User Search</label>
-                            <input type="text" class="form-control" name="userSearch" id="userSearch" placeholder="Find user...">
+                            <div class="autocomplete" style="width:300px;">
+                                <input type="text" class="form-control" name="userSearch" id="userSearch" placeholder="Find user...">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="surname">Private Message</label>

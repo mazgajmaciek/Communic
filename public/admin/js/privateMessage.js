@@ -218,14 +218,23 @@ $(function () {
 
 				console.log(response.success);
 
-				// for (var i = 0; i < response.sentPrvMsgs.length; i++) {
-				// 	if (response.sentPrvMsgs[i].id == id) {
-				//
-				// 		var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
-				// 		sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
-				// 		sentPrvMsgDetails.slideToggle();
-				// 	}
-				// }
+				for (var i = 0; i < response.success.length; i++) {
+
+					var userlistElement = document.createElement('div');
+					userlistElement.innerHTML = response.success[i].userName;
+					userlistElement.setAttribute("data-user-id", response.success[i].id);
+					console.log(userlistElement);
+
+					$userSearchbox.after(userlistElement);
+					// $userSearchbox.appendChild(userlistElement);
+
+					// if (response.sentPrvMsgs[i].id == id) {
+					//
+					// 	var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+					// 	sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
+					// 	sentPrvMsgDetails.slideToggle();
+					// }
+				}
 
 			})
 			.fail(function (error) {
@@ -234,9 +243,10 @@ $(function () {
 
 	});
 
-	// $($userSearch).autocomplete{
-	//
-	// }
+	//create list of options for username query result
+	function addValue(username,userId){
+
+	}
 
 	getReceivedPrivateMsg();
 	getSentPrivateMsg();
