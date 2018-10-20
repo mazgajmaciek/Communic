@@ -168,11 +168,9 @@ class Privatemessage implements JsonSerializable {
         return null;
     }
 
-    static public function searchByUsername(PDO $pdo, $userName) {
-        $stmt = $pdo->prepare("SELECT u.id, u.username FROM Users u WHERE username LIKE CONCAT(:username,'%')");
-        $result = $stmt->execute([
-            'username' => $userName
-        ]);
+    static public function searchByUsername(PDO $pdo) {
+        $stmt = $pdo->prepare("SELECT u.id, u.username FROM Users u");
+        $result = $stmt->execute();
 
         $ret = [];
 
@@ -182,12 +180,6 @@ class Privatemessage implements JsonSerializable {
                 $loadedUsername = new Privatemessage($pdo);
                 $loadedUsername->id = $row['id'];
                 $loadedUsername->userName = $row['username'];
-//                $loadedPrivateMessage->senderId = $row['sender_id'];
-//                $loadedPrivateMessage->receiverId = $row['receiver_id'];
-//                $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
-//                $loadedPrivateMessage->text = $row['privatemessage_text'];
-//                $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
-//                $loadedPrivateMessage->userName = $row['username'];
 
                 $ret[] = $loadedUsername;
             }
@@ -195,6 +187,34 @@ class Privatemessage implements JsonSerializable {
         }
         return null;
     }
+
+//    static public function searchByUsername(PDO $pdo, $userName) {
+//        $stmt = $pdo->prepare("SELECT u.id, u.username FROM Users u WHERE username LIKE CONCAT(:username,'%')");
+//        $result = $stmt->execute([
+//            'username' => $userName
+//        ]);
+//
+//        $ret = [];
+//
+//        if ($result === true && $stmt->rowCount() > 0) {
+//            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+//
+//                $loadedUsername = new Privatemessage($pdo);
+//                $loadedUsername->id = $row['id'];
+//                $loadedUsername->userName = $row['username'];
+////                $loadedPrivateMessage->senderId = $row['sender_id'];
+////                $loadedPrivateMessage->receiverId = $row['receiver_id'];
+////                $loadedPrivateMessage->creationDate = $row['privatemessage_datetime'];
+////                $loadedPrivateMessage->text = $row['privatemessage_text'];
+////                $loadedPrivateMessage->readStatus = $row['privatemessage_readstatus'];
+////                $loadedPrivateMessage->userName = $row['username'];
+//
+//                $ret[] = $loadedUsername;
+//            }
+//            return $ret;
+//        }
+//        return null;
+//    }
 
     public function saveToDB(PDO $pdo) {
         //sprawdza czy robimy insert czy update

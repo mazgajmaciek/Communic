@@ -3,6 +3,7 @@ $(function () {
 	var $receivedMsgList = $("#receivedMsgList");
 	var $sentMsgList = $("#sentMsgList");
 	var $userSearchbox = $("#userSearch");
+	var $input = $userSearchbox.val();
 
 	function getReceivedPrivateMsg() {
 
@@ -12,6 +13,9 @@ $(function () {
 				type: 'GET'
 			})
 			.done(function (response) {
+				console.log(response.users);
+
+
 				for (var i = 0; i < response.success.length; i++) {
 					if (response.success[i].readStatus === "0") {
 						renderNewReceivedPrivateMsg(response.success[i]);
@@ -38,27 +42,6 @@ $(function () {
 			})
 			.fail(function (error) {
 				console.log('Create author error', error);
-			});
-	}
-
-	function doUserSearch() {
-
-		$
-			.ajax({
-				url: '../../../rest/rest.php/privateMessage',
-				type: 'POST'
-			})
-			.done(function (response) {
-				for (var i = 0; i < response.success.length; i++) {
-					if (response.success[i].readStatus === "0") {
-						renderNewReceivedPrivateMsg(response.success[i]);
-					} else {
-						renderReceivedPrivateMsg(response.success[i]);
-					}
-				}
-			})
-			.fail(function (error) {
-				console.log('Create sent private message error', error);
 			});
 	}
 
@@ -198,57 +181,140 @@ $(function () {
 
 	});
 
-	//search for users to whom private message would be sent
+	var $filteredUsersArray = [];
 
-	$($userSearchbox).on('keyup', function () {
-		event.preventDefault();
-
-		var $query = $('#userSearch').val();
-		console.log($query);
+	function getUsers() {
 
 		$
 			.ajax({
-				url: '../../../rest/restEndPoints/Privatemessage.php',
-				type: 'POST',
-				data: {
-					usernameQuery: $query
-				}
+				url: '../../../rest/rest.php/privateMessage',
+				type: 'GET'
 			})
 			.done(function (response) {
-
-				console.log(response.success);
-
-				for (var i = 0; i < response.success.length; i++) {
-
-					var userlistElement = document.createElement('div');
-					userlistElement.innerHTML = response.success[i].userName;
-					userlistElement.setAttribute("data-user-id", response.success[i].id);
-					console.log(userlistElement);
-
-					$userSearchbox.after(userlistElement);
-					// $userSearchbox.appendChild(userlistElement);
-
-					// if (response.sentPrvMsgs[i].id == id) {
-					//
-					// 	var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
-					// 	sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
-					// 	sentPrvMsgDetails.slideToggle();
-					// }
+				for (var i = 0; i < response.users.length; i++) {
+					$filteredUsersArray.push(response.users[i].userName);
+					$filteredUsersArray.push(response.users[i].id);
 				}
+
+				console.log($filteredUsersArray);
 
 			})
 			.fail(function (error) {
-				console.log('Username not found', error);
+				console.log('Create users array error', error);
 			});
-
-	});
-
-	//create list of options for username query result
-	function addValue(username,userId){
-
 	}
+
+	//search for users to whom private message would be sent
+
+
+
+
+	// $($userSearchbox).on('keyup', function () {
+	// 	event.preventDefault();
+	//
+	// 	var that = $(this);
+	// 	var $input = $('#userSearch').val();
+	// 	//var userlistElement = $(this).value;
+	// 	console.log($input);
+	//
+	//
+	// 	$
+	// 		.ajax({
+	// 			url: '../../../rest/restEndPoints/Privatemessage.php',
+	// 			type: 'POST',
+	// 			data: {
+	// 				usernameQuery: $input
+	// 			}
+	// 		})
+	// 		.done(function (response) {
+	//
+	// 			console.log(response.success);
+	//
+	// 			for (var i = 0; i < response.success.length; i++) {
+	//
+	// 				userlistElement = document.createElement('div');
+	// 				userlistElement.innerHTML = response.success[i].userName;
+	// 				userlistElement.setAttribute("data-user-id", response.success[i].id);
+	// 				console.log(userlistElement);
+	//
+	// 				$userSearchbox.after(userlistElement);
+	//
+	// 				// $userSearchbox.appendChild(userlistElement);
+	//
+	// 				// if (response.sentPrvMsgs[i].id == id) {
+	// 				//
+	// 				// 	var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+	// 				// 	sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
+	// 				// 	sentPrvMsgDetails.slideToggle();
+	// 				// }
+	// 			}
+	//
+	// 		})
+	// 		.fail(function (error) {
+	// 			console.log('Username not found', error);
+	// 		});
+	// });
+
+
+
+	// $userSearchbox.autocomplete({
+	// 	source: function (request, response) {
+	// 		$.ajax({
+	// 			url: '../../../rest/restEndPoints/Privatemessage.php',
+	// 			type: 'POST',
+	// 			data: {
+	// 				usernameQuery: $input
+	// 			}
+	// 		})
+	// 			.done(function (data) {
+	//
+	// 				console.log(data.success);
+	// 				// $usernameQueryResult.push(data);
+	// 				// // response(data);
+	// 				// // console.log($usernameQueryResult);
+	//
+	//
+	// 							for (var i = 0; i < data.success.length; i++) {
+	//
+	// 								$filteredQueryResult.push(data.success[i].userName);
+	//
+	//
+	// 							}
+	// 				console.log($filteredQueryResult);
+	//
+	// 								// userlistElement = document.createElement('div');
+	// 								// userlistElement.innerHTML = response.success[i].userName;
+	// 								// userlistElement.setAttribute("data-user-id", response.success[i].id);
+	// 								// console.log(userlistElement);
+	// 								//
+	// 								// $userSearchbox.after(userlistElement);
+	//
+	// 								// $userSearchbox.appendChild(userlistElement);
+	//
+	// 								// if (response.sentPrvMsgs[i].id == id) {
+	// 								//
+	// 								// 	var sentPrvMsgDetails = that.closest('.list-group-item').find('.btn-show-message-details');
+	// 								// 	sentPrvMsgDetails.text(response.sentPrvMsgs[i].text);
+	// 								// 	sentPrvMsgDetails.slideToggle();
+	// 								// }
+	//
+	// 			})
+	// 			.fail(function (error) {
+	// 				console.log('Username not found', error);
+	// 			})
+	// 	}
+	// });
+
+
+
+	$(function() {
+		$userSearchbox.autocomplete({
+			source: $filteredUsersArray
+		});
+	} );
 
 	getReceivedPrivateMsg();
 	getSentPrivateMsg();
+	getUsers();
 
 	});

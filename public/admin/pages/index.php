@@ -119,6 +119,9 @@
 //check if there is subpage request
 if ($action) {
     echo '<script src="../js/'.$addArr[0].'.js"></script>';//load js file for subbage
+    echo '<link rel="stylesheet" href="../../admin/jquery-ui-1.12.1.custom/jquery-ui.min.css">';
+    echo '<script src="../../admin/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>';
+    echo '<script src="../../admin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>';
 }
 ?>
 </body>

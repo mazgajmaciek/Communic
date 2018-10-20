@@ -22,14 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $query = $_POST["usernameQuery"];
     $jsonUsernameQuery = [];
-    $queryResultArray = Privatemessage::searchByUsername($conn, $query);
+    $usersArray = Privatemessage::searchByUsername($conn);
 
-    foreach ($queryResultArray as $username) {
+    foreach ($usersArray as $username) {
         $jsonUsernameQuery[] = json_decode(json_encode($username), true);
     }
 
     $response = ['success' => $jsonUsernameQuery];
-    echo json_encode($response);
+//    $response = $jsonUsernameQuery;
+    echo(json_encode($response));
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -47,8 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $jsonSentPrvMsgs[] = json_decode(json_encode($prvMsg), true);
     }
 
+    $registeredUsers = [];
+    $usersArray = Privatemessage::searchByUsername($conn);
+
+    foreach ($usersArray as $username) {
+        $registeredUsers[] = json_decode(json_encode($username), true);
+    }
+
+//    $response = ['success' => $jsonUsernameQuery];
+//    $response = $jsonUsernameQuery;
+//    echo(json_encode($response));
+
     $response = ['success' => $jsonRcvdPrvMsgs,
-        'sentPrvMsgs' => $jsonSentPrvMsgs];
+        'sentPrvMsgs' => $jsonSentPrvMsgs,
+        'users' => $registeredUsers];
 
 }
 

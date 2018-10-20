@@ -124,3 +124,7 @@
     </div>
     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
 </div>
+
+<link rel="stylesheet" href="../../admin/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+<script src="../../admin/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+<script src="../../admin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
