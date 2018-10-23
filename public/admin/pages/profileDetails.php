@@ -54,7 +54,7 @@
                     <label for="InputPassword">Change your password</label>
                     <input name="newPassword" id="newPassword" type="password" class="form-control" placeholder="New password" autofocus>
                     <div id="passwordChange" style="display:none;"></div>
-                    <button class="btn btn-default btn-block" type="submit" id="newPassword">Submit</button>
+                    <button class="btn btn-default btn-block" type="submit" id="newPasswordBtn">Submit</button>
                 </div>
             </form>
 

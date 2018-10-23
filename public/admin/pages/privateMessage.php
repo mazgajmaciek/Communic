@@ -40,12 +40,12 @@
                         <div class="form-group">
                             <label for="name">User Search</label>
                             <div class="autocomplete" style="width:300px;">
-                                <input type="text" class="form-control" name="userSearch" id="userSearch" placeholder="Find user...">
+                                <input type="text" class="form-control" name="userSearch" id="userSearch" placeholder="Find user..." required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="surname">Private Message</label>
-                            <input type="text" class="form-control" name="newPrvMessage" id="newPrvMessage" placeholder="Type in private message...">
+                            <input type="text" class="form-control" name="newPrvMessage" id="newPrvMessage" placeholder="Type in private message..." required>
                         </div>
 
                         <button id="userSearchButton" type="submit" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Submit new private message</button>

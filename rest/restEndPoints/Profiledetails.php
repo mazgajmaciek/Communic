@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['newEmail']) && !empty($_POST['newEmail'])) {
         $newEmail = $_POST['newEmail'];
 
+        var_dump($_POST);
 
         $loggedUser = User::loadUserById($conn, $userId);
         $loggedUser->setEmail($newEmail);

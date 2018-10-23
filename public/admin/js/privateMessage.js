@@ -218,11 +218,49 @@ $(function () {
 	$userSearchForm.on("submit", function (event) {
 		event.preventDefault();
 
+		let $prvMsgText = $newPrvMessage.val();
+		let $userId = $("#userSearch").attr("value");
+		console.log($userId);
+		console.log($prvMsgText);
 
+		let data = {
+			id: $userId,
+			messagetext: $prvMsgText
+		}
 
-		let $prvMsgTest = $newPrvMessage.val();
-		let userId = $("#userSearch").attr("value");
-		console.log(userId);
+		$
+			.ajax({
+				url: '../../../rest/rest.php/privateMessage',
+				type: 'POST',
+				data: data
+			})
+			.done(function (response) {
+
+				var delay = 500;
+
+				if(response.success){
+					var $msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
+
+					$userSearchbox.html($msg);
+					$userSearchbox.slideDown().delay(delay);
+					$userSearchbox.slideUp().delay(delay);
+
+				} else {
+					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
+					$userSearchbox.html(msg);
+					$userSearchbox.slideDown().delay(delay);
+					$userSearchbox.slideUp().delay(delay);
+
+					return false;
+				}
+
+			})
+			.fail(function (error) {
+				console.log('Send private message error', error);
+			});
+
+		$sentMsgList.empty();
+		getSentPrivateMsg();
 
 	});
 
