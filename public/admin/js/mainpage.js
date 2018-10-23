@@ -117,10 +117,9 @@ $(function () {
 		var string = `<div class="panel panel-default">
 						  <div class="panel-heading">
 						        <div class="split-para">
-						        	<!--<a data-userid=${newTweet.userId} href="../pages/userpage.php?user=${newTweet.userId}">-->
-						        	<a data-userid=${newTweet.userId} id="userpageLink" href="../pages/index.php?action=userpage">
+						        	<div data-userid=${newTweet.userId}>
 						            	<b>${newTweet.userName}</b>
-						            </a>
+						            </div>
 						            <span>${newTweet.creationDate}</span></div>
 						  </div>
 						  <div class="panel-body">${newTweet.text}</div>
