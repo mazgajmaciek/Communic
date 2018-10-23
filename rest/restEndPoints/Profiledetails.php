@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newEmailArray = [];
         $newEmailArray[] = json_decode(json_encode($newEmail), true);
 
-        $response = ['success' => $newEmailArray,
+        $response = ['success' => $newEmail,
             'message' => "Email address updated"];
 
     } elseif (isset($_POST['newUsername']) && !empty($_POST['newUsername'])) {

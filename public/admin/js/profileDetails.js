@@ -40,6 +40,7 @@ $(function () {
 					$statusChange.slideUp().delay(delay);
 
 				} else {
+
 					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.message} </div>`;
 					$statusChange.html(msg);
 					$statusChange.slideDown().delay(delay);
@@ -131,7 +132,7 @@ $(function () {
 				var delay = 500;
 
 				if(response.success){
-					var $msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.message} </div>`;
+					var $msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
 
 					$statusChange.html($msg);
 					$statusChange.slideDown().delay(delay);

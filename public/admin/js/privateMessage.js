@@ -236,23 +236,6 @@ $(function () {
 			})
 			.done(function (response) {
 
-				var delay = 500;
-
-				if(response.success){
-					var $msg = `<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
-
-					$userSearchbox.html($msg);
-					$userSearchbox.slideDown().delay(delay);
-					$userSearchbox.slideUp().delay(delay);
-
-				} else {
-					var msg = `<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> ${response.success} </div>`;
-					$userSearchbox.html(msg);
-					$userSearchbox.slideDown().delay(delay);
-					$userSearchbox.slideUp().delay(delay);
-
-					return false;
-				}
 
 			})
 			.fail(function (error) {
