@@ -4,6 +4,7 @@ $(function () {
 	var $sentMsgList = $("#sentMsgList");
 	var $userSearchbox = $("#userSearch");
 	var $userSearchForm = $("#userSearchForm");
+	let $newPrvMessage = $("#newPrvMessage");
 
 	function getReceivedPrivateMsg() {
 
@@ -192,10 +193,6 @@ $(function () {
 			})
 			.done(function (response) {
 				for (var i = 0; i < response.users.length; i++) {
-
-					// $filteredUsersArray.push(response.users[i].userName);
-					// $filteredUsersArray.push(response.users[i].id);
-
 					$filteredUsersArray.push({
 						label: response.users[i].userName,
 						value: response.users[i].id
@@ -211,11 +208,6 @@ $(function () {
 
 	$userSearchbox.autocomplete ({
 		source: $filteredUsersArray,
-		focus: function(event, ui) {
-			$(this).val(ui.item.label);
-			$(this).attr("value", ui.item.value);
-			return false;
-		},
 		select: function(event, ui) {
 			$(this).attr("value", ui.item.value);
 			$(this).val(ui.item.label);
@@ -226,39 +218,13 @@ $(function () {
 	$userSearchForm.on("submit", function (event) {
 		event.preventDefault();
 
+
+
+		let $prvMsgTest = $newPrvMessage.val();
 		let userId = $("#userSearch").attr("value");
 		console.log(userId);
 
-	})
-
-	// var filterUsers = function(){
-	// 	console.clear();
-	// 	var value = $userSearchbox.val(); // get current value
-	// 	console.log(`Current value is: "${value}"`);
-	//
-	// 	// $.grep loops through each array item
-	// 	// return true to include the item,
-	// 	// return false to exclude that item from array
-	// 	var filtered_users = $.grep($filteredUsersArray, function(item){
-	// 		console.log(item); // just an array item!
-	// 		var include_user = item.username.includes(item);
-	// 		console.log(include_user)
-	// 		// console.log('Include this user?', include_user);
-	// 		return include_user; // see if the userName includes the input value
-	// 	});
-	//
-	// 	// see our great new array with filtered results?!?!? :D
-	// 	console.log('Filtered Array: ',filtered_users);
-	//
-	// 	// clear old list values
-	// 	// ul.html('');
-	//
-	// 	// append newly filtered values
-	// 	// $(filtered_users).each(function(index, item){
-	// 	// 	ul.append('<li>'+ item.userName +'</li>');
-	// 	// });
-	// }
-
+	});
 
 	getReceivedPrivateMsg();
 	getSentPrivateMsg();
