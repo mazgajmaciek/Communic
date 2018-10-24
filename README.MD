@@ -1,3 +1,5 @@
-## Ładowanie bazy
+## Description
 
-``mysql -uUŻYTKOWNIK -p NAZWA_BAZY < data/db.sql``
+
+
+[Check it out here](https://www.maciekmazgaj.com/communic)
