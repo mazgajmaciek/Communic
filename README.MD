@@ -4,7 +4,7 @@ Simple Twitter-like API that uses principles of OOP programming and MySQL databa
 
 [Check it out here](https://www.maciekmazgaj.com/communic)
 
-dummy user credentials for login (if you don't want to register):
+## Dummy user credentials for login (if you don't want to register):
 
 email: dummy@dummy.com
 password: dummy
